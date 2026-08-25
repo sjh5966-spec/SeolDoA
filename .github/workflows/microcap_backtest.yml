@@ -25,8 +25,14 @@ jobs:
               url=base+f
               print('\n===', f, '===')
               try:
-                  print(con.execute(f"DESCRIBE SELECT * FROM read_parquet('{url}')").fetchdf().to_string(index=False))
-                  print(con.execute(f"SELECT * FROM read_parquet('{url}') LIMIT 3").fetchdf().to_string(index=False))
+                  schema=con.execute(f"DESCRIBE SELECT * FROM read_parquet('{url}')").fetchall()
+                  print('SCHEMA')
+                  for row in schema:
+                      print(row)
+                  rows=con.execute(f"SELECT * FROM read_parquet('{url}') LIMIT 3").fetchall()
+                  print('ROWS')
+                  for row in rows:
+                      print(row)
               except Exception as e:
                   print('ERROR',repr(e))
           PY
