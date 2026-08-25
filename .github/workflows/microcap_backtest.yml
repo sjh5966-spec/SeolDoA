@@ -1,4 +1,4 @@
-name: Actions Smoke Test
+name: Probe Hugging Face Parquet
 
 on:
   push:
@@ -6,10 +6,27 @@ on:
   workflow_dispatch:
 
 jobs:
-  smoke:
+  probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Confirm runner
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install DuckDB
+        run: python -m pip install duckdb
+      - name: Probe schemas
         run: |
-          python --version
-          echo "actions-ok"
+          python - <<'PY'
+          import duckdb
+          base='https://huggingface.co/datasets/defeatbeta/yahoo-finance-data/resolve/main/data/'
+          files=['stock_statement.parquet','stock_prices.parquet','stock_shares_outstanding.parquet','stock_sec_filing.parquet']
+          con=duckdb.connect()
+          for f in files:
+              url=base+f
+              print('\n===', f, '===')
+              try:
+                  print(con.execute(f"DESCRIBE SELECT * FROM read_parquet('{url}')").fetchdf().to_string(index=False))
+                  print(con.execute(f"SELECT * FROM read_parquet('{url}') LIMIT 3").fetchdf().to_string(index=False))
+              except Exception as e:
+                  print('ERROR',repr(e))
+          PY
