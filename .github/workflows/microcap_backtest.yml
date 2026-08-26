@@ -1,49 +1,30 @@
-name: Probe Finance Items
+name: Full Microcap EBIT Turnaround Backtest
 
 on:
   push:
     branches: [main]
+    paths:
+      - 'hf_microcap_backtest.py'
+      - '.github/workflows/microcap_backtest.yml'
   workflow_dispatch:
 
 jobs:
-  probe:
+  backtest:
     runs-on: ubuntu-latest
+    timeout-minutes: 180
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - name: Install DuckDB
         run: python -m pip install duckdb
-      - name: Probe relevant items
-        run: |
-          python - <<'PY'
-          import duckdb
-          u='https://huggingface.co/datasets/defeatbeta/yahoo-finance-data/resolve/main/data/stock_statement.parquet'
-          con=duckdb.connect()
-          print('MATCHING ITEM NAMES')
-          q="""
-          SELECT item_name, finance_type, period_type, count(*) n,
-                 min(report_date), max(report_date)
-          FROM read_parquet(?)
-          WHERE lower(item_name) LIKE '%ebit%'
-             OR lower(item_name) LIKE '%operating_income%'
-             OR lower(item_name) LIKE '%net_income%'
-             OR lower(item_name) LIKE '%stockholder%equity%'
-             OR lower(item_name) LIKE '%shareholder%equity%'
-          GROUP BY 1,2,3 ORDER BY 1,2,3
-          """
-          for r in con.execute(q,[u]).fetchall(): print(r)
-          print('\nSAMPLE QUARTERLY ROWS')
-          q2="""
-          SELECT symbol,report_date,item_name,item_value,finance_type,period_type
-          FROM read_parquet(?)
-          WHERE period_type='quarterly'
-            AND item_name IN ('ebit','operating_income','net_income','stockholders_equity')
-            AND item_value IS NOT NULL
-          ORDER BY symbol,report_date,item_name LIMIT 60
-          """
-          for r in con.execute(q2,[u]).fetchall(): print(r)
-          print('\nFORM COUNTS')
-          f='https://huggingface.co/datasets/defeatbeta/yahoo-finance-data/resolve/main/data/stock_sec_filing.parquet'
-          for r in con.execute("SELECT form_type,count(*) FROM read_parquet(?) WHERE form_type IN ('10-Q','10-K','10-Q/A','10-K/A') GROUP BY 1 ORDER BY 1",[f]).fetchall(): print(r)
-          PY
+      - name: Run full event study
+        run: python hf_microcap_backtest.py
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: microcap-ebit-turnaround-results
+          path: results/
+          if-no-files-found: warn
