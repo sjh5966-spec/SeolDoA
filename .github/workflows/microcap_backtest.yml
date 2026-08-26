@@ -6,6 +6,7 @@ on:
     paths:
       - 'historical_turnaround_2010s.py'
       - 'historical_regime_analysis.py'
+      - 'modern_score4_regime_oos.py'
       - '.github/workflows/microcap_backtest.yml'
   workflow_dispatch:
 
@@ -24,10 +25,19 @@ jobs:
         run: python historical_turnaround_2010s.py
       - name: Run market regime analysis
         run: python historical_regime_analysis.py
+      - name: Run modern frozen OOS regime test
+        run: python modern_score4_regime_oos.py
       - name: Upload historical results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: historical-turnaround-results
           path: historical_results/
+          if-no-files-found: warn
+      - name: Upload modern OOS results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: modern-score4-regime-oos
+          path: modern_regime_results/
           if-no-files-found: warn
