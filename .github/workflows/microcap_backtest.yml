@@ -1,17 +1,17 @@
-name: SECDatabase Parquet Test
+name: Historical XBRL Tag Probe
 
 on:
   push:
     branches: [main]
     paths:
-      - 'test_secdatabase_s3.py'
+      - 'probe_historical_tags.py'
       - '.github/workflows/microcap_backtest.yml'
   workflow_dispatch:
 
 jobs:
   analyze:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -19,5 +19,5 @@ jobs:
           python-version: '3.12'
       - name: Install DuckDB
         run: python -m pip install duckdb
-      - name: Test public parquet mirror
-        run: python test_secdatabase_s3.py
+      - name: Probe historical tags
+        run: python probe_historical_tags.py
