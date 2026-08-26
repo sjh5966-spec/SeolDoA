@@ -20,24 +20,20 @@ for d in (hist,mod):
     for c in ['filing_date','report_date']:
         d[c]=pd.to_datetime(d[c])
 all_events=pd.concat([hist[cols_needed],mod[cols_needed]],ignore_index=True)
-all_events['candidate3']=(
-    (all_events.market_cap<80_000_000) &
-    (all_events.fcf_improve_to_mcap>0.01) &
-    (all_events.ni_loss_to_mcap>0.10)
-).astype(int)
+all_events['candidate3']=((all_events.market_cap<80_000_000)&(all_events.fcf_improve_to_mcap>0.01)&(all_events.ni_loss_to_mcap>0.10)).astype(int)
 all_events['score4']=(all_events.tail_score==4).astype(int)
 all_events['event_key']=range(1,len(all_events)+1)
 
 con=duckdb.connect(); con.execute("SET threads=4"); con.execute("SET memory_limit='6GB'")
 con.register('ev',all_events)
-# Only load prices for symbols in our event set and derive 60d/120d returns from the already point-in-time entry row number.
+# IMPORTANT: both source backtests used different price-table start dates, so their stored entry_rn values are not cross-era compatible.
+# Rebuild one common price row-number axis and independently locate the first trading day after each filing date.
 con.execute(f"""CREATE TABLE px AS
 SELECT p.symbol,TRY_CAST(p.report_date AS DATE) d,p.close::DOUBLE px_close,
        ROW_NUMBER() OVER(PARTITION BY p.symbol ORDER BY TRY_CAST(p.report_date AS DATE)) rn
 FROM read_parquet('{P}') p
 JOIN (SELECT DISTINCT symbol FROM ev) s USING(symbol)
 WHERE TRY_CAST(p.report_date AS DATE) BETWEEN DATE '2008-01-01' AND DATE '2026-08-26' AND p.close IS NOT NULL""")
-# Original 10-Q/10-K filing stream for next-filing horizon.
 con.execute(f"""CREATE TABLE ff AS
 SELECT symbol,TRY_CAST(filing_date AS DATE) filing_date
 FROM read_parquet('{F}') f
@@ -46,17 +42,28 @@ WHERE form_type IN ('10-Q','10-K') AND TRY_CAST(filing_date AS DATE) BETWEEN DAT
 
 extd=con.execute("""WITH e AS (
  SELECT *,TRY_CAST(filing_date AS DATE) fdate FROM ev
+), er AS (
+ SELECT e.event_key,(SELECT p.rn FROM px p WHERE p.symbol=e.symbol AND p.d>e.fdate ORDER BY p.d LIMIT 1) entry_rn_common FROM e
 ), nf AS (
- SELECT e.event_key,MIN(f.filing_date) next_filing_date
- FROM e LEFT JOIN ff f ON f.symbol=e.symbol AND f.filing_date>e.fdate
- GROUP BY 1
+ SELECT e.event_key,MIN(f.filing_date) next_filing_date FROM e LEFT JOIN ff f ON f.symbol=e.symbol AND f.filing_date>e.fdate GROUP BY 1
 )
-SELECT e.*,p60.px_close/e.entry_price-1 r60d,p120.px_close/e.entry_price-1 r120d,nf.next_filing_date,
+SELECT e.*,er.entry_rn_common,
+ p20.px_close/e.entry_price-1 r20_recalc,
+ p60.px_close/e.entry_price-1 r60d,
+ p120.px_close/e.entry_price-1 r120d,
+ nf.next_filing_date,
  (SELECT p.px_close/e.entry_price-1 FROM px p WHERE p.symbol=e.symbol AND nf.next_filing_date IS NOT NULL AND p.d<nf.next_filing_date ORDER BY p.d DESC LIMIT 1) r_next_filing
-FROM e LEFT JOIN px p60 ON p60.symbol=e.symbol AND p60.rn=e.entry_rn+60
-       LEFT JOIN px p120 ON p120.symbol=e.symbol AND p120.rn=e.entry_rn+120
-       LEFT JOIN nf USING(event_key)
+FROM e JOIN er USING(event_key)
+LEFT JOIN px p20 ON p20.symbol=e.symbol AND p20.rn=er.entry_rn_common+20
+LEFT JOIN px p60 ON p60.symbol=e.symbol AND p60.rn=er.entry_rn_common+60
+LEFT JOIN px p120 ON p120.symbol=e.symbol AND p120.rn=er.entry_rn_common+120
+LEFT JOIN nf USING(event_key)
 """).fetchdf()
+# Validate recomputed 20d returns against the independently-produced source backtests, then use the common-axis result for every horizon.
+valid=extd[['r20d','r20_recalc']].dropna()
+max_abs_diff=float((valid.r20d-valid.r20_recalc).abs().max()) if len(valid) else None
+median_abs_diff=float((valid.r20d-valid.r20_recalc).abs().median()) if len(valid) else None
+extd['r20d_source']=extd['r20d']; extd['r20d']=extd['r20_recalc']
 extd.to_csv(OUT/'events_extended.csv',index=False)
 
 horizons=['r20d','r60d','r120d','r_next_filing']
@@ -81,7 +88,6 @@ for era in ['2012-2020','2023-2026']:
 summary=pd.DataFrame(rows); summary.to_csv(OUT/'horizon_summary.csv',index=False)
 pd.DataFrame(tests).to_csv(OUT/'horizon_tests.csv',index=False)
 
-# Candidate3 year-by-year stability, no re-tuning.
 yrows=[]
 for era in ['2012-2020','2023-2026']:
     e=extd[extd.era==era].copy(); e['year']=pd.to_datetime(e.report_date).dt.year
@@ -96,11 +102,9 @@ meta={
  'score4':'candidate3 plus delta_EBIT_YoY/market_cap>5%',
  'entry':'next trading day open after filing',
  'horizons':'20/60/120 trading days plus last close strictly before next original 10-Q/10-K filing',
+ 'row_number_fix':'all horizons recomputed on a common 2008-2026 price row-number axis; stored source entry_rn is not reused cross-era',
+ 'r20_recalc_check':{'n':int(len(valid)),'max_abs_diff':max_abs_diff,'median_abs_diff':median_abs_diff},
  'counts':{era:{'events':int((extd.era==era).sum()),'candidate3':int(((extd.era==era)&(extd.candidate3==1)).sum()),'score4':int(((extd.era==era)&(extd.score4==1)).sum())} for era in ['2012-2020','2023-2026']}
 }
 with open(OUT/'meta.json','w') as f: json.dump(meta,f,indent=2)
-print('META',json.dumps(meta,indent=2))
-print('\nSUMMARY')
-print(summary.to_string(index=False))
-print('\nTESTS')
-print(pd.DataFrame(tests).to_string(index=False))
+print('META',json.dumps(meta,indent=2)); print('\nSUMMARY'); print(summary.to_string(index=False)); print('\nTESTS'); print(pd.DataFrame(tests).to_string(index=False))
