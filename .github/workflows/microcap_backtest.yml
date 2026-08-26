@@ -1,4 +1,4 @@
-name: Frozen Historical Turnaround Backtest
+name: Frozen Turnaround Validation
 
 on:
   push:
@@ -11,9 +11,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  analyze:
+  modern-oos:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -21,19 +21,8 @@ jobs:
           python-version: '3.12'
       - name: Install dependencies
         run: python -m pip install duckdb pandas scipy
-      - name: Run frozen historical backtest
-        run: python historical_turnaround_2010s.py
-      - name: Run market regime analysis
-        run: python historical_regime_analysis.py
       - name: Run modern frozen OOS regime test
         run: python modern_score4_regime_oos.py
-      - name: Upload historical results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: historical-turnaround-results
-          path: historical_results/
-          if-no-files-found: warn
       - name: Upload modern OOS results
         if: always()
         uses: actions/upload-artifact@v4
