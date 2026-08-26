@@ -1,23 +1,21 @@
-name: Historical Coverage Probe
+name: SEC FSDS Download Test
 
 on:
   push:
     branches: [main]
     paths:
-      - 'probe_historical_coverage.py'
+      - 'test_sec_fsds_download.py'
       - '.github/workflows/microcap_backtest.yml'
   workflow_dispatch:
 
 jobs:
   analyze:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install DuckDB
-        run: python -m pip install duckdb
-      - name: Probe historical coverage
-        run: python probe_historical_coverage.py
+      - name: Test SEC quarterly dataset download
+        run: python test_sec_fsds_download.py
