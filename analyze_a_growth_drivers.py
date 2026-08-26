@@ -12,7 +12,6 @@ con=duckdb.connect('growth.duckdb')
 con.execute("SET threads=4")
 con.execute("SET memory_limit='6GB'")
 
-# Rebuild the validated event set, but retain richer quarterly fundamentals.
 con.execute(f"""
 CREATE OR REPLACE TABLE q AS
 SELECT symbol, TRY_CAST(report_date AS DATE) report_date,
@@ -45,7 +44,6 @@ WITH w AS (
   LAG(cash,4) OVER(PARTITION BY symbol ORDER BY report_date) cash_yoy,
   LAG(debt,4) OVER(PARTITION BY symbol ORDER BY report_date) debt_yoy,
   LAG(interest_expense,4) OVER(PARTITION BY symbol ORDER BY report_date) interest_yoy,
-  LAG(ebit/revenue,4) OVER(PARTITION BY symbol ORDER BY report_date) ebit_margin_yoy,
   SUM(net_income) OVER(PARTITION BY symbol ORDER BY report_date ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) ni_ttm,
   COUNT(net_income) OVER(PARTITION BY symbol ORDER BY report_date ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) ni4
  FROM q
@@ -53,8 +51,8 @@ WITH w AS (
  SELECT *,
   CASE WHEN revenue_yoy_base IS NOT NULL AND revenue_yoy_base<>0 THEN revenue/revenue_yoy_base-1 END rev_yoy,
   CASE WHEN revenue_yoy_base_prev IS NOT NULL AND revenue_yoy_base_prev<>0 AND revenue_prev IS NOT NULL THEN revenue_prev/revenue_yoy_base_prev-1 END rev_yoy_prev,
-  CASE WHEN revenue<>0 THEN ebit/revenue END ebit_margin,
-  CASE WHEN revenue_yoy_base IS NOT NULL AND revenue_yoy_base<>0 THEN (ebit/revenue)-(ebit_yoy/revenue_yoy_base) END ebit_margin_yoy_change,
+  CASE WHEN revenue IS NOT NULL AND revenue<>0 THEN ebit/revenue END ebit_margin,
+  CASE WHEN revenue IS NOT NULL AND revenue<>0 AND revenue_yoy_base IS NOT NULL AND revenue_yoy_base<>0 THEN (ebit/revenue)-(ebit_yoy/revenue_yoy_base) END ebit_margin_yoy_change,
   CASE WHEN equity IS NOT NULL AND equity<>0 THEN (ebit-ebit_yoy)/ABS(equity) END ebit_improve_to_equity,
   CASE WHEN revenue IS NOT NULL AND revenue<>0 THEN (ebit-ebit_yoy)/ABS(revenue) END ebit_improve_to_revenue,
   cash-debt net_cash,
@@ -81,7 +79,7 @@ GROUP BY 1,2
 """)
 con.execute(f"""
 CREATE OR REPLACE TABLE prices AS
-SELECT symbol,TRY_CAST(report_date AS DATE) d,open::DOUBLE open,close::DOUBLE close,
+SELECT symbol,TRY_CAST(report_date AS DATE) d,open::DOUBLE px_open,close::DOUBLE px_close,
  ROW_NUMBER() OVER(PARTITION BY symbol ORDER BY TRY_CAST(report_date AS DATE)) rn
 FROM read_parquet('{P}')
 WHERE TRY_CAST(report_date AS DATE) BETWEEN DATE '2021-01-01' AND DATE '2026-08-26' AND open IS NOT NULL AND close IS NOT NULL
@@ -97,10 +95,10 @@ CREATE OR REPLACE TABLE a_events AS
 WITH c AS (
  SELECT q.*,f.filing_date,
   (SELECT s.shares_outstanding FROM shares s WHERE s.symbol=q.symbol AND s.d<=q.report_date ORDER BY s.d DESC LIMIT 1) shares_asof,
-  (SELECT p.close FROM prices p WHERE p.symbol=q.symbol AND p.d<=f.filing_date ORDER BY p.d DESC LIMIT 1) signal_close,
+  (SELECT p.px_close FROM prices p WHERE p.symbol=q.symbol AND p.d<=f.filing_date ORDER BY p.d DESC LIMIT 1) signal_close,
   (SELECT p.rn FROM prices p WHERE p.symbol=q.symbol AND p.d>f.filing_date ORDER BY p.d ASC LIMIT 1) entry_rn,
   (SELECT p.d FROM prices p WHERE p.symbol=q.symbol AND p.d>f.filing_date ORDER BY p.d ASC LIMIT 1) entry_date,
-  (SELECT p.open FROM prices p WHERE p.symbol=q.symbol AND p.d>f.filing_date ORDER BY p.d ASC LIMIT 1) entry_price
+  (SELECT p.px_open FROM prices p WHERE p.symbol=q.symbol AND p.d>f.filing_date ORDER BY p.d ASC LIMIT 1) entry_price
  FROM qp q JOIN filings f USING(symbol,report_date)
  WHERE q.ebit>0 AND q.ebit_yoy<=0 AND q.ni_ttm<0 AND q.equity>0
 ), e AS (
@@ -108,18 +106,16 @@ WITH c AS (
  WHERE shares_asof IS NOT NULL AND signal_close IS NOT NULL AND entry_rn IS NOT NULL AND entry_price>0
    AND shares_asof*signal_close BETWEEN 10000000 AND 300000000
 )
-SELECT e.*,p60.close/e.entry_price-1 r60d
+SELECT e.*,p60.px_close/e.entry_price-1 r60d
 FROM e LEFT JOIN prices p60 ON p60.symbol=e.symbol AND p60.rn=e.entry_rn+60
 """)
 
-# Feature summaries: quartiles of each feature inside A, with median return / win rate.
 features=['rev_yoy','rev_accel','ebit_margin','ebit_margin_yoy_change','ebit_improve_to_equity','ebit_improve_to_revenue','fcf','fcf_yoy_change','fcf_qoq_change','net_cash','cash_to_debt','cash_yoy_change','debt_yoy_change','interest_coverage','interest_yoy_change','market_cap']
 parts=[]
 for feat in features:
     parts.append(f"""
     WITH z AS (
-      SELECT '{feat}' feature,{feat} value,r60d,
-             NTILE(4) OVER(ORDER BY {feat}) quartile
+      SELECT '{feat}' feature,{feat} value,r60d,NTILE(4) OVER(ORDER BY {feat}) quartile
       FROM a_events WHERE {feat} IS NOT NULL AND isfinite({feat}) AND r60d IS NOT NULL
     )
     SELECT feature,quartile,COUNT(*) n,MIN(value) min_value,MAX(value) max_value,
@@ -130,22 +126,18 @@ for feat in features:
 summary_sql=' UNION ALL '.join(parts)
 con.execute(f"COPY ({summary_sql}) TO '{OUT/'feature_quartiles.csv'}' (HEADER,DELIMITER ',')")
 
-# Rank-correlation (Spearman) between each feature and R60 using rank transforms.
 corr_rows=[]
 for feat in features:
     q=f"""
-    WITH z AS (
-      SELECT {feat} x,r60d y FROM a_events WHERE {feat} IS NOT NULL AND isfinite({feat}) AND r60d IS NOT NULL
-    ), r AS (
-      SELECT RANK() OVER(ORDER BY x)::DOUBLE rx,RANK() OVER(ORDER BY y)::DOUBLE ry FROM z
-    ) SELECT COUNT(*),CORR(rx,ry) FROM r
+    WITH z AS (SELECT {feat} x,r60d y FROM a_events WHERE {feat} IS NOT NULL AND isfinite({feat}) AND r60d IS NOT NULL),
+    r AS (SELECT RANK() OVER(ORDER BY x)::DOUBLE rx,RANK() OVER(ORDER BY y)::DOUBLE ry FROM z)
+    SELECT COUNT(*),CORR(rx,ry) FROM r
     """
     n,rho=con.execute(q).fetchone(); corr_rows.append((feat,n,rho))
 con.execute("CREATE OR REPLACE TABLE corr(feature VARCHAR,n BIGINT,spearman_rho DOUBLE)")
 con.executemany("INSERT INTO corr VALUES (?,?,?)",corr_rows)
 con.execute(f"COPY corr TO '{OUT/'feature_correlations.csv'}' (HEADER,DELIMITER ',')")
 
-# Simple interpretable combinations, intentionally predefined before looking at results.
 con.execute("""
 CREATE OR REPLACE TABLE combos AS
 SELECT
@@ -161,10 +153,7 @@ GROUP BY 1,2,3,4
 """)
 con.execute(f"COPY combos TO '{OUT/'predefined_combos.csv'}' (HEADER,DELIMITER ',')")
 con.execute(f"COPY a_events TO '{OUT/'a_events_enriched.csv'}' (HEADER,DELIMITER ',')")
-
-meta={'n_a':con.execute('SELECT COUNT(*) FROM a_events').fetchone()[0],
-      'n_r60':con.execute('SELECT COUNT(r60d) FROM a_events').fetchone()[0],
-      'features':features}
+meta={'n_a':con.execute('SELECT COUNT(*) FROM a_events').fetchone()[0],'n_r60':con.execute('SELECT COUNT(r60d) FROM a_events').fetchone()[0],'features':features}
 with open(OUT/'meta.json','w') as f: json.dump(meta,f,indent=2)
 print('META',meta)
 print('CORR')
