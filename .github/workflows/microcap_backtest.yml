@@ -5,14 +5,13 @@ on:
     branches: [main]
     paths:
       - 'historical_turnaround_2010s.py'
-      - 'historical_regime_analysis.py'
       - 'modern_score4_regime_oos.py'
-      - 'leave_one_out_score4.py'
+      - 'cross_era_horizon_validation.py'
       - '.github/workflows/microcap_backtest.yml'
   workflow_dispatch:
 
 jobs:
-  leave-one-out:
+  cross-era-horizons:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
@@ -22,16 +21,16 @@ jobs:
           python-version: '3.12'
       - name: Install dependencies
         run: python -m pip install duckdb pandas scipy
-      - name: Run historical frozen backtest
+      - name: Build historical events
         run: python historical_turnaround_2010s.py
-      - name: Run modern frozen OOS build
+      - name: Build modern events
         run: python modern_score4_regime_oos.py
-      - name: Run leave-one-out validation
-        run: python leave_one_out_score4.py
-      - name: Upload leave-one-out results
+      - name: Run cross-era horizon validation
+        run: python cross_era_horizon_validation.py
+      - name: Upload cross-era horizon results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: score4-leave-one-out
-          path: loo_results/
+          name: cross-era-horizon-validation
+          path: cross_era_horizon_results/
           if-no-files-found: warn
