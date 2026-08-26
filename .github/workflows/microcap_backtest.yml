@@ -1,36 +1,30 @@
-name: Probe Enrichment Items
+name: A Signal Growth Driver Analysis
 
 on:
   push:
     branches: [main]
+    paths:
+      - 'analyze_a_growth_drivers.py'
+      - '.github/workflows/microcap_backtest.yml'
   workflow_dispatch:
 
 jobs:
-  probe:
+  analyze:
     runs-on: ubuntu-latest
+    timeout-minutes: 180
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - name: Install DuckDB
         run: python -m pip install duckdb
-      - name: Probe enrichment names
-        run: |
-          python - <<'PY'
-          import duckdb
-          u='https://huggingface.co/datasets/defeatbeta/yahoo-finance-data/resolve/main/data/stock_statement.parquet'
-          con=duckdb.connect()
-          q="""
-          SELECT item_name, finance_type, period_type, count(*) n
-          FROM read_parquet(?)
-          WHERE lower(item_name) LIKE '%revenue%'
-             OR lower(item_name) LIKE '%debt%'
-             OR lower(item_name) LIKE '%cash%equivalent%'
-             OR lower(item_name) LIKE '%free_cash_flow%'
-             OR lower(item_name) LIKE '%interest_expense%'
-          GROUP BY 1,2,3
-          HAVING count(*) > 500
-          ORDER BY item_name,finance_type,period_type
-          """
-          for r in con.execute(q,[u]).fetchall(): print(r)
-          PY
+      - name: Analyze A growth drivers
+        run: python analyze_a_growth_drivers.py
+      - name: Upload growth results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a-signal-growth-drivers
+          path: growth_results/
+          if-no-files-found: warn
