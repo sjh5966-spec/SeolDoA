@@ -1,10 +1,10 @@
-name: A Signal Growth Driver Analysis
+name: Filtered A vs D Comparison
 
 on:
   push:
     branches: [main]
     paths:
-      - 'analyze_a_growth_drivers.py'
+      - 'compare_filtered_a_vs_d.py'
       - '.github/workflows/microcap_backtest.yml'
   workflow_dispatch:
 
@@ -19,12 +19,12 @@ jobs:
           python-version: '3.12'
       - name: Install DuckDB
         run: python -m pip install duckdb
-      - name: Analyze A growth drivers
-        run: python analyze_a_growth_drivers.py
-      - name: Upload growth results
+      - name: Compare filtered A vs D
+        run: python compare_filtered_a_vs_d.py
+      - name: Upload comparison results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: a-signal-growth-drivers
-          path: growth_results/
+          name: filtered-a-vs-d
+          path: compare_results/
           if-no-files-found: warn
