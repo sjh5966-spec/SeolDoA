@@ -1,10 +1,10 @@
-name: A Tail Structure Analysis
+name: Holdout Turnaround Shock Score
 
 on:
   push:
     branches: [main]
     paths:
-      - 'tail_structure_analysis.py'
+      - 'holdout_shock_score.py'
       - '.github/workflows/microcap_backtest.yml'
   workflow_dispatch:
 
@@ -19,12 +19,12 @@ jobs:
           python-version: '3.12'
       - name: Install packages
         run: python -m pip install duckdb scipy
-      - name: Analyze A tail structure
-        run: python tail_structure_analysis.py
-      - name: Upload tail results
+      - name: Run holdout shock score analysis
+        run: python holdout_shock_score.py
+      - name: Upload holdout results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: a-tail-structure
-          path: tail_results/
+          name: holdout-shock-score
+          path: holdout_results/
           if-no-files-found: warn
