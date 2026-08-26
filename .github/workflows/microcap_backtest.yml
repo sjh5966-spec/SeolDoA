@@ -7,6 +7,7 @@ on:
       - 'historical_turnaround_2010s.py'
       - 'modern_score4_regime_oos.py'
       - 'cross_era_horizon_validation.py'
+      - 'holding_path_validation.py'
       - '.github/workflows/microcap_backtest.yml'
   workflow_dispatch:
 
@@ -41,10 +42,26 @@ jobs:
             sleep 45
           done
           exit 1
+      - name: Run holding-period path validation with retry
+        shell: bash
+        run: |
+          for i in 1 2 3 4; do
+            if python holding_path_validation.py; then exit 0; fi
+            echo "holding-path attempt $i failed; retrying after cooldown"
+            sleep 45
+          done
+          exit 1
       - name: Upload cross-era horizon results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cross-era-horizon-validation
           path: cross_era_horizon_results/
+          if-no-files-found: warn
+      - name: Upload holding-path results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: holding-path-validation
+          path: holding_path_results/
           if-no-files-found: warn
