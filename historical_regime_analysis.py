@@ -17,7 +17,6 @@ events['filing_date']=pd.to_datetime(events['filing_date'])
 events['report_date']=pd.to_datetime(events['report_date'])
 
 con=duckdb.connect()
-# Verify benchmark availability and load only the two pre-specified ETFs.
 avail=con.execute(f"""SELECT symbol,COUNT(*) n,MIN(TRY_CAST(report_date AS DATE)) d0,MAX(TRY_CAST(report_date AS DATE)) d1
 FROM read_parquet('{P}') WHERE symbol IN ('IWM','SPY') GROUP BY 1 ORDER BY 1""").fetchdf()
 avail.to_csv(OUT/'benchmark_coverage.csv',index=False)
@@ -25,18 +24,17 @@ if set(avail['symbol']) != {'IWM','SPY'}:
     raise RuntimeError(f'IWM/SPY benchmark coverage missing: {avail.to_dict(orient="records")}')
 
 px=con.execute(f"""WITH x AS (
- SELECT symbol,TRY_CAST(report_date AS DATE) d,close::DOUBLE close,
+ SELECT symbol,TRY_CAST(report_date AS DATE) d,close::DOUBLE px_close,
         ROW_NUMBER() OVER(PARTITION BY symbol ORDER BY TRY_CAST(report_date AS DATE)) rn
  FROM read_parquet('{P}')
  WHERE symbol IN ('IWM','SPY') AND TRY_CAST(report_date AS DATE) BETWEEN DATE '2008-01-01' AND DATE '2021-12-31' AND close IS NOT NULL
 )
-SELECT a.symbol,a.d,a.close,a.close/p20.close-1 ret20,a.close/p60.close-1 ret60
+SELECT a.symbol,a.d,a.px_close,a.px_close/p20.px_close-1 ret20,a.px_close/p60.px_close-1 ret60
 FROM x a LEFT JOIN x p20 ON p20.symbol=a.symbol AND p20.rn=a.rn-20
          LEFT JOIN x p60 ON p60.symbol=a.symbol AND p60.rn=a.rn-60
 ORDER BY a.symbol,a.d""").fetchdf()
 px['d']=pd.to_datetime(px['d'])
 
-# Attach latest benchmark close available on or before the filing date (no future data).
 def asof_series(sym):
     z=px[px.symbol==sym][['d','ret20','ret60']].sort_values('d').copy()
     z=z.rename(columns={'d':'benchmark_date','ret20':f'{sym.lower()}_ret20','ret60':f'{sym.lower()}_ret60'})
@@ -47,10 +45,6 @@ for sym in ['IWM','SPY']:
     m=pd.merge_asof(m.sort_values('filing_date'),asof_series(sym),left_on='filing_date',right_on='benchmark_date',direction='backward',tolerance=pd.Timedelta(days=7))
     m=m.drop(columns=['benchmark_date'])
 
-# Pre-specified regime definition. No tuning on event outcomes:
-# risk_on: small-caps positive over both 20d and 60d AND outperform SPY over 20d.
-# risk_off: small-caps negative over both 20d and 60d.
-# neutral: everything else.
 m['iwm_rel20']=m['iwm_ret20']-m['spy_ret20']
 m['regime']='neutral'
 m.loc[(m.iwm_ret20>0)&(m.iwm_ret60>0)&(m.iwm_rel20>0),'regime']='risk_on'
@@ -58,7 +52,6 @@ m.loc[(m.iwm_ret20<0)&(m.iwm_ret60<0),'regime']='risk_off'
 
 m.to_csv(OUT/'historical_events_with_regime.csv',index=False)
 
-# Focus on frozen score4, while also keeping rest as a comparator.
 def summarize(g):
     g=g[g.r20d.notna()].copy()
     if len(g)==0:
@@ -73,7 +66,6 @@ for regime in ['risk_on','neutral','risk_off']:
 summary=pd.DataFrame(rows)
 summary.to_csv(OUT/'regime_summary.csv',index=False)
 
-# One-sided tests are directional and limited to the three pre-specified regimes.
 tests=[]
 for regime in ['risk_on','neutral','risk_off']:
     s=m[(m.tail_score==4)&(m.regime==regime)&m.r20d.notna()]
@@ -86,7 +78,6 @@ for regime in ['risk_on','neutral','risk_off']:
     tests.append(rec)
 pd.DataFrame(tests).to_csv(OUT/'regime_tests.csv',index=False)
 
-# Direct comparison inside score4: risk-on vs non-risk-on. This tests whether market regime adds value to the frozen corporate signal.
 s4=m[(m.tail_score==4)&m.r20d.notna()].copy()
 on=s4[s4.regime=='risk_on']; non=s4[s4.regime!='risk_on']
 direct={'risk_on':summarize(on),'non_risk_on':summarize(non)}
