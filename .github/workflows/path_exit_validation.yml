@@ -1,0 +1,38 @@
+name: Path Exit Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'path_based_exit_validation.py'
+      - '.github/workflows/path_exit_validation.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  path-exit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: python -m pip install pandas numpy
+      - name: Download MFE MAE input
+        uses: actions/download-artifact@v4
+        with:
+          name: mfe-mae-exit-validation
+          path: mfe_mae_results
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: 32949639285
+      - name: Run path exit validation
+        run: python path_based_exit_validation.py
+      - name: Upload path exit results
+        uses: actions/upload-artifact@v4
+        with:
+          name: path-exit-validation
+          path: path_based_exit_results/
