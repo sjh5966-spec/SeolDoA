@@ -1,0 +1,45 @@
+name: Liquidity Capacity Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'liquidity_capacity_validation.py'
+      - '.github/workflows/liquidity_capacity_validation.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  liquidity-capacity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: python -m pip install duckdb pandas numpy
+      - name: Download frozen MFE/MAE paths
+        uses: actions/download-artifact@v4
+        with:
+          name: mfe-mae-exit-validation
+          path: mfe_mae_input
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: 32949639285
+      - name: Download frozen FCF High input
+        uses: actions/download-artifact@v4
+        with:
+          name: fcf-high-liquidity-cost-stress
+          path: fcf_high_input
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: 0
+      - name: Run liquidity validation
+        run: python liquidity_capacity_validation.py
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: liquidity-capacity-validation
+          path: liquidity_capacity_results/
