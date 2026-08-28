@@ -29,13 +29,6 @@ jobs:
           path: mfe_mae_input
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: 32949639285
-      - name: Download frozen FCF High input
-        uses: actions/download-artifact@v4
-        with:
-          name: fcf-high-liquidity-cost-stress
-          path: fcf_high_input
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          run-id: 0
       - name: Run liquidity validation
         run: python liquidity_capacity_validation.py
       - name: Upload results
