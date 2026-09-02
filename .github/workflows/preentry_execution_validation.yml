@@ -1,0 +1,37 @@
+name: preentry-execution-validation
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'preentry_execution_validation.py'
+      - '.github/workflows/preentry_execution_validation.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install duckdb pandas numpy
+      - name: Prepare frozen validation inputs
+        run: |
+          mkdir -p mfe_mae_input
+          python - <<'PY'
+          import urllib.request, zipfile, io, os
+          url='https://api.github.com/repos/${{ github.repository }}/actions/artifacts'
+          print('Inputs are expected to be present in repository/workflow context; failing clearly if absent.')
+          PY
+          test -f mfe_mae_input/event_mfe_mae.csv
+          test -f mfe_mae_input/daily_path_0_20.csv
+      - name: Run validation
+        run: python preentry_execution_validation.py
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: preentry-execution-validation
+          path: preentry_execution_results/
