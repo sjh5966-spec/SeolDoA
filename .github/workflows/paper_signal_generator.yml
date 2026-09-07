@@ -2,6 +2,11 @@ name: Paper Signal Generator
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'paper_signal_generator.py'
+      - '.github/workflows/paper_signal_generator.yml'
   schedule:
     # Pre-open checks covering US daylight/standard time plus a post-close refresh.
     - cron: '15 12 * * 1-5'
