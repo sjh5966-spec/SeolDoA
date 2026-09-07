@@ -4,79 +4,84 @@ Status: frozen operational specification for paper trading. This document transl
 
 ## 1. Scope
 
-The purpose of paper trading is to test execution realism and operational discipline for the frozen FCF High subset of the EBIT-turnaround strategy. The research signal, priority rule, entry timing, holding period, slot cap, and liquidity cap remain unchanged.
-
-Historical 2012-2020 and modern 2023-2026 evidence must continue to be reported separately. Historical data has known survivorship/mapping limitations and missing Q4 coverage. Modern OOS has only 12 mature FCF High events. Neither period should be represented as an investable-performance claim.
+Paper trading tests execution realism and operational discipline for the frozen FCF High cohort. Historical 2012-2020, modern 2023-2026 OOS, and paper results must be reported separately. None should be presented as an investable-performance claim.
 
 ## 2. Frozen signal and priority rules
 
-Discovery signal: Candidate3, unchanged from the research handoff.
+Discovery signal: Candidate3, unchanged from the handoff:
+- point-in-time market cap USD 10M-300M
+- quarterly EBIT > 0 and same quarter prior year EBIT <= 0
+- NI TTM < 0
+- quarter-end equity > 0
+- Candidate3: market cap < USD 80M, YoY quarterly FCF improvement / market cap > 1%, abs NI TTM loss / market cap > 10%
+
+The removed EBIT-improvement / market-cap > 5% rule must not be reintroduced.
 
 FCF High priority requires both:
 - current quarterly FCF / market cap >= 3.591639%
 - YoY quarterly FCF improvement / market cap >= 11.938595%
 
-Within FCF High, rank larger YoY quarterly FCF improvement / market cap higher. Do not add new accounting filters or hard thresholds without a separately preregistered redesign.
+Within FCF High, rank larger YoY quarterly FCF improvement / market cap higher. Do not add accounting filters or return-dependent thresholds.
 
-## 3. Entry and exit
+## 3. Filing, entry, and exit
 
-- Signal timestamp: actual filing/publication timestamp only; no look-ahead.
-- Entry: first trading-day open after the filing/publication date.
-- Exit: day-20 trading-day close.
-- No forced interim stop-loss.
-- No forced take-profit.
-- No day-10 no-response exit.
-- Do not substitute later-known data when reconstructing pre-entry information.
+- Signal date: confirmed actual filing/publication date; no look-ahead.
+- Exact acceptance timestamp is retained when the source provides it, but missing time-of-day alone is not a skip when filing_date is confirmed.
+- Entry: first trading-day open strictly AFTER the filing/publication date. Same-day entry is prohibited, so time-of-day cannot change the selected entry session under this protocol.
+- Exit: close of the 20th subsequent trading session, with entry session treated as day 0.
+- No forced interim stop-loss, take-profit, or day-10 no-response exit.
+- Pre-entry fields must use only information available before entry.
 
 ## 4. Portfolio rules
 
 - Maximum concurrent positions: 3.
-- Target allocation per new position: up to one third of marked portfolio equity.
-- Position notional must also be <= 5% of pre-entry ADV20 dollar volume.
-- ADV20 must use exactly the 20 trading days strictly before entry.
-- Initial paper-capital reference: USD 15,000.
-- USD 30,000 remains an upper experimental sensitivity level, not the default deployment size.
-- If a candidate position is too small to be operationally meaningful, log it as skipped_min_order rather than altering the signal.
-
-Minimum practical order size was not frozen by the research handoff. During paper trading, record the chosen operational minimum explicitly before the first signal and do not change it in response to returns. The validated sensitivity grid was USD 100 / 250 / 500 / 1,000; USD 500 is a reasonable default reference for logging because it preserved all 12 modern OOS events while filtering several extremely illiquid historical events, but it is an operational convention rather than a research-optimized parameter.
+- Target new-position allocation: up to one third of portfolio equity.
+- Position notional <= 5% of strictly pre-entry ADV20 dollar volume.
+- ADV20 uses exactly 20 trading sessions before entry.
+- Initial paper capital: USD 15,000.
+- USD 30,000 remains an execution sensitivity, not the default paper capital.
+- Minimum practical paper order: USD 500, frozen before the first paper signal was logged. This operational choice was made after reviewing the existing sensitivity grid and therefore must not be cited as evidence of strategy quality or changed in response to paper returns.
 
 ## 5. Pre-entry liquidity diagnostics
 
-For every candidate event, capture before entry:
-- 20 trading days of Open, High, Low, Close, Volume
+Capture before entry:
+- 20 sessions Open, High, Low, Close, Volume
 - ADV20 dollar volume
 - median dollar volume
 - median Amihud illiquidity proxy
 - median Corwin-Schultz-style OHLC spread proxy
 
-These are pre-entry diagnostics only. Corwin-Schultz is an OHLC-based spread proxy, not a measured quoted or realized spread.
+The CS-style field is not a measured quote spread. The implementation uses the two-day high-low closed form and clips negative alpha to zero, but does not apply overnight-return adjustment. See `EXECUTION_PROXY_METHOD.md`.
 
 ## 6. Expected execution-cost model
 
-Expected round-trip cost is a scenario estimate, not a measured transaction cost.
+Expected round-trip cost is a scenario estimate, not measured transaction cost.
 
 Primary paper reference:
-- spread component = 1.0 x pre-entry median Corwin-Schultz spread proxy
-- impact component = k * sqrt(position_notional / ADV20)
-- reference impact coefficient k = 0.01
+- spread component = 1.0 x pre-entry median CS-style spread proxy
+- impact component = 0.01 * sqrt(position_notional / ADV20)
 
-Required stress logging:
+Required sensitivities:
 - spread multiplier 1.0x and 2.0x
 - k = 0.005, 0.01, 0.02, 0.05
 
-Do not choose the scenario that best matches realized returns. Paper trading should record all scenarios alongside actual observed execution data when available.
+Do not choose a scenario based on realized returns. Expected and observed execution costs remain separate.
 
-## 7. Actual execution logging
+## 7. Immutable signal log and lifecycle
 
-For every signal, including skipped signals, create one immutable row in `paper_trade_log.csv`.
+Every FCF High paper signal gets one `paper_trade_log.csv` row, including skipped signals. Do not delete rows.
 
-Before entry, populate all fields through `expected_rt_cost_*`. After the market open, record the paper fill or actual executable quote snapshot. At day-20 close, record exit information and realized paper return.
+Lifecycle states are derived separately in `paper_portfolio_ledger.csv`:
+- PLANNED: valid signal but entry open not yet observable
+- OPEN: entry-session open observed, day-20 close not yet observable
+- CLOSED: day-20 close observed
+- SKIPPED: operational rule prevented execution
 
-Expected cost and observed cost must remain separate fields. Never overwrite expected cost after observing the outcome.
+When daily data becomes available later, the lifecycle process may fill previously unavailable execution outcome fields such as entry open, exit date, exit close, gross R20 and paper net R20. Pre-entry signal, ranking, liquidity and expected-cost fields must not be rewritten after the outcome is known.
 
-## 8. Required skip reasons
+## 8. Skip reasons
 
-Use only the following operational skip codes unless this document is formally versioned:
+Allowed codes:
 - none
 - skipped_min_order
 - skipped_slot
@@ -85,35 +90,20 @@ Use only the following operational skip codes unless this document is formally v
 - filing_timestamp_ambiguous
 - trading_halt_or_no_open
 
-A skipped trade remains part of the signal log. Do not delete it from the dataset.
+`filing_timestamp_ambiguous` is reserved for cases where the filing/publication date itself cannot be safely established for strict next-session entry. Absence of time-of-day alone is not sufficient.
 
-## 9. Live/paper review metrics
+## 9. Review metrics
 
-Report at minimum:
-- number of FCF High signals
-- number and percentage traded
-- skip counts by reason
-- median position notional
-- median participation rate vs ADV20
-- median expected round-trip cost under 1x/k=0.01 and 2x/k=0.01
-- median observed entry slippage when observable
-- median observed exit slippage when observable
-- median and mean net R20
-- win rate
-- >= +20% rate
-- <= -20% rate
-- maximum concurrent positions
+Report at minimum signal/trade counts, skips by reason, median notional, participation, expected cost at 1x/k=.01 and 2x/k=.01, observed slippage when available, median/mean net R20, win rate, >=20%, <=-20%, and maximum concurrent positions.
 
-Do not combine historical and modern periods into one CAGR. For paper trading, report the paper period separately from both historical and modern backtest evidence.
+Do not combine historical and modern periods into one CAGR. Paper results are a third separate period.
 
 ## 10. Change control
 
-Any change to signal criteria, ranking, entry timing, 20-day holding period, 3-slot cap, 5% ADV20 limit, cost-proxy definition, or minimum-order convention requires a dated change-log entry before the next signal is processed.
+Any change to signal criteria, FCF High thresholds, ranking, entry timing, 20-session hold, 3-slot cap, 5% ADV20 cap, minimum order, spread-proxy definition, or impact model requires a dated entry in `PAPER_TRADING_CHANGELOG.md` before processing the next signal.
 
-Research bugs require recomputation of all dependent outputs. Do not patch only the narrative.
+Research bugs require recomputation of all dependent outputs. Narrative-only patches are not acceptable.
 
 ## 11. Current interpretation
 
-Execution robustness passed the pre-entry proxy stress test in the frozen 30-event FCF High sample: the direction of results remained positive across 1x/2x spread-proxy multipliers and impact sensitivities, while the main historical constraint was low liquidity/minimum practical order size rather than the 3-slot cap.
-
-This does not establish live investability. The next evidence to collect is paper/live execution data under the frozen protocol above.
+Execution robustness remained positive in the frozen 30-event FCF High sample across the tested 1x/2x spread-proxy and impact sensitivities, while historical capacity was primarily constrained by liquidity/minimum practical order rather than the observed 3-slot cap. This remains proxy evidence, not proof of live investability.
