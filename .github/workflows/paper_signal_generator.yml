@@ -7,6 +7,7 @@ on:
     paths:
       - 'paper_signal_generator.py'
       - 'paper_filing_date_policy.py'
+      - 'paper_batch_allocator.py'
       - 'paper_data_freshness.py'
       - 'paper_portfolio_ledger.py'
       - 'validate_paper_trade_log.py'
@@ -48,6 +49,8 @@ jobs:
         run: python paper_signal_generator.py
       - name: Apply strict post-filing-date entry policy
         run: python paper_filing_date_policy.py
+      - name: Enforce ranked same-scan allocation
+        run: python paper_batch_allocator.py
       - name: Validate immutable paper log constraints
         run: python validate_paper_trade_log.py paper_trade_log.csv
       - name: Update paper portfolio lifecycle ledger
