@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - 'paper_signal_generator.py'
+      - 'paper_acceptance_timestamp_enricher.py'
       - 'paper_filing_date_policy.py'
       - 'paper_batch_allocator.py'
       - 'paper_data_freshness.py'
@@ -47,7 +48,9 @@ jobs:
           PAPER_INITIAL_CAPITAL: '15000'
           PAPER_MIN_ORDER: '500'
         run: python paper_signal_generator.py
-      - name: Apply strict post-filing-date entry policy
+      - name: Enrich exact acceptance timestamps
+        run: python paper_acceptance_timestamp_enricher.py
+      - name: Apply strict post-filing-date fallback policy
         run: python paper_filing_date_policy.py
       - name: Enforce ranked same-scan allocation
         run: python paper_batch_allocator.py
