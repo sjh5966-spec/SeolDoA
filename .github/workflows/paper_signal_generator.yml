@@ -9,6 +9,7 @@ on:
       - 'paper_filing_date_policy.py'
       - 'paper_data_freshness.py'
       - 'paper_portfolio_ledger.py'
+      - 'validate_paper_trade_log.py'
       - '.github/workflows/paper_signal_generator.yml'
   schedule:
     - cron: '15 12 * * 1-5'
