@@ -48,16 +48,18 @@ jobs:
         run: python validate_paper_trade_log.py paper_trade_log.csv
       - name: Update paper portfolio lifecycle ledger
         run: python paper_portfolio_ledger.py
+      - name: Revalidate after lifecycle update
+        run: python validate_paper_trade_log.py paper_trade_log.csv
       - name: Commit paper state
         shell: bash
         run: |
-          if git diff --quiet -- paper_trade_log.csv paper_signal_candidates.csv paper_data_freshness.json paper_portfolio_ledger.csv paper_portfolio_summary.csv; then
+          git add paper_trade_log.csv paper_signal_candidates.csv paper_data_freshness.json paper_portfolio_ledger.csv paper_portfolio_summary.csv
+          if git diff --cached --quiet; then
             echo 'No paper state changes.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add paper_trade_log.csv paper_signal_candidates.csv paper_data_freshness.json paper_portfolio_ledger.csv paper_portfolio_summary.csv
           git commit -m 'Update frozen paper trading state'
           git pull --rebase origin main
           git push origin HEAD:main
