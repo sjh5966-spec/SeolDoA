@@ -7,9 +7,9 @@ on:
     paths:
       - 'paper_signal_generator.py'
       - 'paper_data_freshness.py'
+      - 'paper_portfolio_ledger.py'
       - '.github/workflows/paper_signal_generator.yml'
   schedule:
-    # Pre-open checks covering US daylight/standard time plus a post-close refresh.
     - cron: '15 12 * * 1-5'
     - cron: '15 13 * * 1-5'
     - cron: '30 23 * * 1-5'
@@ -46,20 +46,22 @@ jobs:
         run: python paper_signal_generator.py
       - name: Validate immutable paper log constraints
         run: python validate_paper_trade_log.py paper_trade_log.csv
-      - name: Commit new signal rows, queue, and freshness snapshot
+      - name: Update paper portfolio lifecycle ledger
+        run: python paper_portfolio_ledger.py
+      - name: Commit paper state
         shell: bash
         run: |
-          if git diff --quiet -- paper_trade_log.csv paper_signal_candidates.csv paper_data_freshness.json; then
-            echo 'No paper signal or source-freshness changes.'
+          if git diff --quiet -- paper_trade_log.csv paper_signal_candidates.csv paper_data_freshness.json paper_portfolio_ledger.csv paper_portfolio_summary.csv; then
+            echo 'No paper state changes.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add paper_trade_log.csv paper_signal_candidates.csv paper_data_freshness.json
-          git commit -m 'Update frozen paper signal scan'
+          git add paper_trade_log.csv paper_signal_candidates.csv paper_data_freshness.json paper_portfolio_ledger.csv paper_portfolio_summary.csv
+          git commit -m 'Update frozen paper trading state'
           git pull --rebase origin main
           git push origin HEAD:main
-      - name: Upload signal snapshot
+      - name: Upload paper state snapshot
         uses: actions/upload-artifact@v4
         with:
           name: paper-signal-generator
@@ -67,4 +69,6 @@ jobs:
             paper_trade_log.csv
             paper_signal_candidates.csv
             paper_data_freshness.json
+            paper_portfolio_ledger.csv
+            paper_portfolio_summary.csv
           if-no-files-found: error
