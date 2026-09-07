@@ -9,6 +9,7 @@ P=BASE+'stock_prices.parquet'
 F=BASE+'stock_sec_filing.parquet'
 OUT=Path('paper_data_freshness.json')
 START=date.fromisoformat(os.environ.get('PAPER_START_DATE','2026-09-07'))
+TODAY=datetime.now(timezone.utc).date()
 
 con=duckdb.connect()
 con.execute('INSTALL httpfs; LOAD httpfs')
@@ -21,12 +22,19 @@ filing_cols=con.execute(f"DESCRIBE SELECT * FROM read_parquet('{F}') LIMIT 1").f
 ts_candidates=['acceptance_datetime','accepted_datetime','filing_datetime','filed_at','accepted_at','acceptance_time','filing_time']
 ts_col=next((c for c in ts_candidates if c in filing_cols),None)
 
-filing_covers_start = bool(max_filing and max_filing >= START)
-statement_covers_start = bool(max_statement and max_statement >= START)
-price_covers_start = bool(max_price and max_price >= START)
-# A zero-signal result is operationally conclusive only when both fundamentals and filings
-# have reached the paper period. Prices may legitimately lag the current calendar by non-trading days.
-zero_signal_interpretation = 'conclusive_for_available_source' if filing_covers_start and statement_covers_start else 'nonconclusive_source_not_yet_covering_paper_start'
+# Quarterly statement report_date is the fiscal period end, not an ingestion timestamp.
+# Do not require it to reach the current paper date. Operational freshness is instead
+# judged from filing and market-price recency. Calendar-day tolerances intentionally
+# allow normal weekends / long exchange-holiday weekends without treating the source as stale.
+filing_lag_days=(TODAY-max_filing).days if max_filing else None
+price_lag_days=(TODAY-max_price).days if max_price else None
+filing_recent=bool(filing_lag_days is not None and filing_lag_days <= 4)
+price_recent=bool(price_lag_days is not None and price_lag_days <= 4)
+source_operationally_current=filing_recent and price_recent
+zero_signal_interpretation = (
+    'conclusive_for_available_source' if source_operationally_current
+    else 'nonconclusive_source_stale_or_unavailable'
+)
 
 status={
   'checked_at_utc': datetime.now(timezone.utc).isoformat(),
@@ -35,9 +43,12 @@ status={
   'max_filing_date': max_filing.isoformat() if max_filing else None,
   'max_price_date': max_price.isoformat() if max_price else None,
   'filing_timestamp_column': ts_col,
-  'filing_covers_paper_start': filing_covers_start,
-  'statement_covers_paper_start': statement_covers_start,
-  'price_covers_paper_start': price_covers_start,
+  'filing_lag_calendar_days': filing_lag_days,
+  'price_lag_calendar_days': price_lag_days,
+  'filing_recent_within_4_calendar_days': filing_recent,
+  'price_recent_within_4_calendar_days': price_recent,
+  'source_operationally_current': source_operationally_current,
+  'statement_report_date_note': 'fiscal_period_end_not_used_as_freshness_gate',
   'zero_signal_interpretation': zero_signal_interpretation,
 }
 OUT.write_text(json.dumps(status,indent=2)+'\n')
