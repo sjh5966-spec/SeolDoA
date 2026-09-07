@@ -1,0 +1,59 @@
+name: Paper Signal Generator
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Pre-open checks covering US daylight/standard time plus a post-close refresh.
+    - cron: '15 12 * * 1-5'
+    - cron: '15 13 * * 1-5'
+    - cron: '30 23 * * 1-5'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paper-signal-generator
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: python -m pip install duckdb pandas numpy
+      - name: Generate frozen FCF High paper signals
+        env:
+          PAPER_START_DATE: '2026-09-07'
+          PAPER_INITIAL_CAPITAL: '15000'
+          PAPER_MIN_ORDER: '500'
+        run: python paper_signal_generator.py
+      - name: Validate immutable paper log constraints
+        run: python validate_paper_trade_log.py paper_trade_log.csv
+      - name: Commit new signal rows and queue snapshot
+        shell: bash
+        run: |
+          if git diff --quiet -- paper_trade_log.csv paper_signal_candidates.csv; then
+            echo 'No paper signal changes.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add paper_trade_log.csv paper_signal_candidates.csv
+          git commit -m 'Update frozen paper signal log'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Upload signal snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-signal-generator
+          path: |
+            paper_trade_log.csv
+            paper_signal_candidates.csv
+          if-no-files-found: error
