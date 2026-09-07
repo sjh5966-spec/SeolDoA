@@ -19,7 +19,7 @@ max_statement=con.execute(f"SELECT MAX(TRY_CAST(report_date AS DATE)) FROM read_
 max_filing=con.execute(f"SELECT MAX(TRY_CAST(filing_date AS DATE)) FROM read_parquet('{F}') WHERE TRY_CAST(filing_date AS DATE) IS NOT NULL").fetchone()[0]
 max_price=con.execute(f"SELECT MAX(TRY_CAST(report_date AS DATE)) FROM read_parquet('{P}') WHERE TRY_CAST(report_date AS DATE) IS NOT NULL").fetchone()[0]
 filing_cols=con.execute(f"DESCRIBE SELECT * FROM read_parquet('{F}') LIMIT 1").fetchdf()['column_name'].tolist()
-ts_candidates=['acceptance_datetime','accepted_datetime','filing_datetime','filed_at','accepted_at','acceptance_time','filing_time']
+ts_candidates=['acceptance_date_time','acceptance_datetime','accepted_datetime','filing_datetime','filed_at','accepted_at','acceptance_time','filing_time']
 ts_col=next((c for c in ts_candidates if c in filing_cols),None)
 
 filing_lag_days=(TODAY-max_filing).days if max_filing else None
@@ -27,7 +27,7 @@ price_lag_days=(TODAY-max_price).days if max_price else None
 filing_recent=bool(filing_lag_days is not None and filing_lag_days <= 4)
 price_recent=bool(price_lag_days is not None and price_lag_days <= 4)
 source_operationally_current=filing_recent and price_recent
-zero_signal_interpretation = 'conclusive_for_available_source' if source_operationally_current else 'nonconclusive_source_stale_or_unavailable'
+zero_signal_interpretation='conclusive_for_available_source' if source_operationally_current else 'nonconclusive_source_stale_or_unavailable'
 
 status={
   'checked_at_utc': datetime.now(timezone.utc).isoformat(),
