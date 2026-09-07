@@ -1,0 +1,27 @@
+{
+  "checked_at_utc": "2026-09-07T07:06:41.975938+00:00",
+  "paper_start_date": "2026-09-07",
+  "max_statement_report_date": "2026-07-31",
+  "max_filing_date": "2026-09-04",
+  "max_price_date": "2026-09-04",
+  "filing_timestamp_column": null,
+  "filing_source_columns": [
+    "symbol",
+    "cik",
+    "accession_number",
+    "company_name",
+    "form_type",
+    "form_type_description",
+    "filing_date",
+    "report_date",
+    "acceptance_date_time",
+    "filing_url"
+  ],
+  "filing_lag_calendar_days": 3,
+  "price_lag_calendar_days": 3,
+  "filing_recent_within_4_calendar_days": true,
+  "price_recent_within_4_calendar_days": true,
+  "source_operationally_current": true,
+  "statement_report_date_note": "fiscal_period_end_not_used_as_freshness_gate",
+  "zero_signal_interpretation": "conclusive_for_available_source"
+}
