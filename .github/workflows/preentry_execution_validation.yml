@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - 'preentry_execution_validation.py'
+      - 'preentry_spread_multiplier_sensitivity.py'
       - '.github/workflows/preentry_execution_validation.yml'
 
 permissions:
@@ -43,6 +44,8 @@ jobs:
             sleep 60
           done
           exit 1
+      - name: Run spread multiplier sensitivity
+        run: python preentry_spread_multiplier_sensitivity.py
       - name: Upload results
         if: always()
         uses: actions/upload-artifact@v4
