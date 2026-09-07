@@ -1,10 +1,10 @@
 {
-  "checked_at_utc": "2026-09-07T07:11:55.875764+00:00",
+  "checked_at_utc": "2026-09-07T07:15:18.304122+00:00",
   "paper_start_date": "2026-09-07",
   "max_statement_report_date": "2026-07-31",
   "max_filing_date": "2026-09-04",
   "max_price_date": "2026-09-04",
-  "filing_timestamp_column": null,
+  "filing_timestamp_column": "acceptance_date_time",
   "filing_source_columns": [
     "symbol",
     "cik",
