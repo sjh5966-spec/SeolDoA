@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - 'paper_signal_generator.py'
+      - 'paper_filing_date_policy.py'
       - 'paper_data_freshness.py'
       - 'paper_portfolio_ledger.py'
       - '.github/workflows/paper_signal_generator.yml'
@@ -44,6 +45,8 @@ jobs:
           PAPER_INITIAL_CAPITAL: '15000'
           PAPER_MIN_ORDER: '500'
         run: python paper_signal_generator.py
+      - name: Apply strict post-filing-date entry policy
+        run: python paper_filing_date_policy.py
       - name: Validate immutable paper log constraints
         run: python validate_paper_trade_log.py paper_trade_log.csv
       - name: Update paper portfolio lifecycle ledger
