@@ -9,9 +9,12 @@ base=pd.read_csv('mfe_mae_input/event_mfe_mae.csv')
 base=base[(base.event_key.isin(HIGH_KEYS)) & (base.n_days==21)].copy()
 paths=pd.read_csv('mfe_mae_input/daily_path_0_20.csv',usecols=['event_key','day_num','d'])
 entry=paths[(paths.event_key.isin(HIGH_KEYS)) & (paths.day_num==0)][['event_key','d']].rename(columns={'d':'entry_date'})
-events=base.merge(entry,on='event_key',how='inner')
+exit20=paths[(paths.event_key.isin(HIGH_KEYS)) & (paths.day_num==20)][['event_key','d']].rename(columns={'d':'exit_date'})
+events=base.merge(entry,on='event_key',how='inner').merge(exit20,on='event_key',how='inner')
 events['entry_date']=pd.to_datetime(events.entry_date)
+events['exit_date']=pd.to_datetime(events.exit_date)
 assert len(events)==30, f'expected 30 frozen FCF High events, got {len(events)}'
+assert (events.exit_date>=events.entry_date).all()
 syms=events.symbol.dropna().unique().tolist()
 
 con=duckdb.connect()
@@ -40,7 +43,6 @@ for _,e in events.iterrows():
     g=px[(px.symbol==e.symbol)&(px.d<e.entry_date)].sort_values('d').tail(20).copy()
     if len(g):
         g['dollar_volume']=g.px_close*g.volume
-        g['prev_close']=g.px_close.shift(1)
         g['abs_ret']=g.px_close.pct_change().abs()
         g['amihud']=g.abs_ret/g.dollar_volume.replace(0,np.nan)
         # Corwin-Schultz-style OHLC spread estimate. Uses adjacent daily highs/lows;
@@ -68,9 +70,8 @@ ev=pd.DataFrame(rows)
 daily_df=pd.concat(daily,ignore_index=True) if daily else pd.DataFrame()
 assert (ev.pre20_n==20).all(), 'not every frozen event has 20 strictly pre-entry trading days'
 
-# Transparent sensitivity model, deliberately not fitted to returns.
+# Event-level transparent sensitivity model, deliberately not fitted to returns.
 # Round-trip cost = 2*spread proxy + impact coefficient*sqrt(position/ADV20).
-# Spread proxy is the pre-entry median Corwin-Schultz estimate.
 # k values are sensitivity assumptions, not empirical calibration.
 scenarios=[]
 for capital in [15000,30000]:
@@ -90,11 +91,101 @@ for capital in [15000,30000]:
         'median_net_r20':g.net_r20.median(),'mean_net_r20':g.net_r20.mean(),
         'net_win_rate':(g.net_r20>0).mean(),'net_up20_rate':(g.net_r20>=.2).mean(),
         'net_down20_rate':(g.net_r20<=-.2).mean()})
-
 summary=pd.DataFrame(scenarios)
+
+# Frozen operational rules: 3 concurrent slots, up to 1/3 of portfolio per position,
+# position notional <=5% pre-entry ADV20, R20 exit, no interim exits.
+# Minimum practical order size was not frozen in the handoff, so it is handled only
+# as a pre-specified sensitivity grid rather than optimized to returns.
+def run_portfolio(g, initial_capital, k, min_order):
+    g=g.sort_values(['entry_date','event_key']).copy()
+    cash=float(initial_capital)
+    positions=[]
+    trades=[]
+    skipped_min=0; skipped_slot=0; skipped_cash=0
+
+    def close_through(dt):
+        nonlocal cash,positions
+        remain=[]
+        for p in positions:
+            if p['exit_date']<=dt:
+                proceeds=p['notional']*(1+p['net_r20'])
+                cash += proceeds
+                trades.append(p)
+            else:
+                remain.append(p)
+        positions=remain
+
+    for _,e in g.iterrows():
+        close_through(e.entry_date)
+        if len(positions)>=3:
+            skipped_slot += 1
+            continue
+        marked_equity=cash+sum(p['notional'] for p in positions)
+        target=marked_equity/3.0
+        liquidity_cap=0.05*e.adv20_dollar
+        notional=min(target,liquidity_cap,cash)
+        if notional < min_order:
+            skipped_min += 1
+            continue
+        if notional <= 0:
+            skipped_cash += 1
+            continue
+        participation=notional/e.adv20_dollar
+        spread_rt=2*(0 if pd.isna(e.cs_spread20_median) else e.cs_spread20_median)
+        impact_rt=k*np.sqrt(max(participation,0))
+        rt_cost=spread_rt+impact_rt
+        net_r20=e.r20_close-rt_cost
+        cash -= notional
+        positions.append({'event_key':int(e.event_key),'symbol':e.symbol,'entry_date':e.entry_date,
+            'exit_date':e.exit_date,'notional':notional,'participation':participation,
+            'gross_r20':e.r20_close,'spread_rt':spread_rt,'impact_rt':impact_rt,
+            'rt_cost':rt_cost,'net_r20':net_r20})
+
+    # Realize all remaining positions after the last signal.
+    for p in sorted(positions,key=lambda z:z['exit_date']):
+        cash += p['notional']*(1+p['net_r20'])
+        trades.append(p)
+    positions=[]
+    t=pd.DataFrame(trades)
+    return {
+        'initial_capital':initial_capital,'k':k,'min_order':min_order,
+        'signals':len(g),'trades':len(t),'skipped_min_order':skipped_min,
+        'skipped_slot':skipped_slot,'skipped_cash':skipped_cash,
+        'final_equity':cash,'total_return':cash/initial_capital-1,
+        'median_trade_notional':t.notional.median() if len(t) else np.nan,
+        'median_participation':t.participation.median() if len(t) else np.nan,
+        'median_rt_cost':t.rt_cost.median() if len(t) else np.nan,
+        'median_net_r20':t.net_r20.median() if len(t) else np.nan,
+        'mean_net_r20':t.net_r20.mean() if len(t) else np.nan,
+        'win_rate':(t.net_r20>0).mean() if len(t) else np.nan,
+    },t
+
+portfolio_rows=[]; trade_rows=[]
+for era,g in ev.groupby('era'):
+  for capital in [15000,30000]:
+    for k in [0.005,0.01,0.02,0.05]:
+      for min_order in [100,250,500,1000]:
+        res,t=run_portfolio(g,capital,k,min_order)
+        res['era']=era
+        portfolio_rows.append(res)
+        if len(t):
+            t=t.copy(); t['era']=era; t['initial_capital']=capital; t['k']=k; t['min_order']=min_order
+            trade_rows.append(t)
+portfolio=pd.DataFrame(portfolio_rows)
+portfolio_trades=pd.concat(trade_rows,ignore_index=True) if trade_rows else pd.DataFrame()
+
+# Sanity guards: all 30 events remain pre-entry-only; slot rejection should be zero
+# for the observed frozen FCF High sample under the documented 3-slot cap.
+assert portfolio.skipped_slot.max()==0, 'observed 3-slot cap unexpectedly rejected a frozen FCF High signal'
+
 ev.to_csv(OUT/'event_preentry_execution.csv',index=False)
 daily_df.to_csv(OUT/'preentry_ohlcv_diagnostics.csv',index=False)
 summary.to_csv(OUT/'execution_cost_sensitivity.csv',index=False)
+portfolio.to_csv(OUT/'portfolio_execution_sensitivity.csv',index=False)
+portfolio_trades.to_csv(OUT/'portfolio_trade_detail.csv',index=False)
 ev.groupby('era').agg(n=('event_key','size'),median_adv20=('adv20_dollar','median'),median_cs_spread=('cs_spread20_median','median'),median_amihud=('amihud20_median','median')).reset_index().to_csv(OUT/'era_preentry_diagnostics.csv',index=False)
-print(ev[['event_key','symbol','era','entry_date','adv20_dollar','cs_spread20_median','amihud20_median','r20_close']].sort_values(['era','entry_date']).to_string(index=False))
+print(ev[['event_key','symbol','era','entry_date','exit_date','adv20_dollar','cs_spread20_median','amihud20_median','r20_close']].sort_values(['era','entry_date']).to_string(index=False))
 print(summary.to_string(index=False))
+print('PORTFOLIO_SENSITIVITY')
+print(portfolio.to_string(index=False))
