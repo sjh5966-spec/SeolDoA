@@ -39,8 +39,9 @@ jobs:
       - name: Commit probe outputs
         shell: bash
         run: |
-          git add korea_probe_krx_universe.csv korea_probe_summary.json
-          if [ -f korea_probe_dart_disclosures.csv ]; then git add korea_probe_dart_disclosures.csv; fi
+          for f in korea_probe_summary.json korea_probe_krx_universe.csv korea_probe_dart_disclosures.csv; do
+            if [ -f "$f" ]; then git add "$f"; fi
+          done
           if git diff --cached --quiet; then
             echo 'No probe state changes.'
             exit 0
