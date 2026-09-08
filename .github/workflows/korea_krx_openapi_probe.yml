@@ -1,0 +1,46 @@
+name: Korea KRX OpenAPI Probe
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - korea_krx_openapi_probe.py
+      - .github/workflows/korea_krx_openapi_probe.yml
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests
+      - name: Probe KRX Open API pre-OOS dates
+        env:
+          KRX_OPEN_API_KEY: ${{ secrets.KRX_OPEN_API_KEY }}
+          KRX_PROBE_DATES: '20150105,20200102,20221229'
+        run: python korea_krx_openapi_probe.py
+      - name: Commit probe outputs
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add korea_krx_openapi_probe_summary.json korea_krx_openapi_probe_sample.csv 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Update KRX Open API probe outputs"
+            git push
+          fi
+      - name: Upload probe outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: korea-krx-openapi-probe
+          path: |
+            korea_krx_openapi_probe_summary.json
+            korea_krx_openapi_probe_sample.csv
+          if-no-files-found: ignore
