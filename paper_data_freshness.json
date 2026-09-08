@@ -1,9 +1,9 @@
 {
-  "checked_at_utc": "2026-09-07T23:37:02.230291+00:00",
+  "checked_at_utc": "2026-09-08T12:34:37.015494+00:00",
   "paper_start_date": "2026-09-07",
   "max_statement_report_date": "2026-07-31",
   "max_filing_date": "2026-09-04",
-  "max_price_date": "2026-09-04",
+  "max_price_date": "2026-09-07",
   "filing_timestamp_column": "acceptance_date_time",
   "filing_source_columns": [
     "symbol",
@@ -17,8 +17,8 @@
     "acceptance_date_time",
     "filing_url"
   ],
-  "filing_lag_calendar_days": 3,
-  "price_lag_calendar_days": 3,
+  "filing_lag_calendar_days": 4,
+  "price_lag_calendar_days": 1,
   "filing_recent_within_4_calendar_days": true,
   "price_recent_within_4_calendar_days": true,
   "source_operationally_current": true,
