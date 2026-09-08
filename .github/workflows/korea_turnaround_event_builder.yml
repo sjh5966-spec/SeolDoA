@@ -1,0 +1,52 @@
+name: Korea Pre-OOS Event Builder
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - korea_turnaround_event_builder.py
+      - KOREA_DART_ACCOUNT_MAPPING_SPEC.md
+      - .github/workflows/korea_turnaround_event_builder.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: korea-pre-oos-event-builder
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install pandas requests
+      - name: Build pre-OOS accounting events
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          KOREA_EVENT_START_YEAR: '2015'
+          KOREA_EVENT_END_YEAR: '2022'
+        run: python korea_turnaround_event_builder.py
+      - name: Commit builder outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add korea_turnaround_events_pre_oos.csv korea_turnaround_event_builder_summary.json
+          if git diff --cached --quiet; then
+            echo "No output changes"
+          else
+            git commit -m "Update Korea pre-OOS accounting events"
+            git push
+          fi
+      - name: Upload event snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: korea-pre-oos-events
+          path: |
+            korea_turnaround_events_pre_oos.csv
+            korea_turnaround_event_builder_summary.json
