@@ -18,7 +18,6 @@ KEY = os.getenv("KRX_OPEN_API_KEY", "").strip()
 if not KEY:
     raise SystemExit("KRX_OPEN_API_KEY is required")
 
-# Official KRX Open API stock daily endpoints. Override env vars if KRX changes IDs/paths.
 BASE = "https://data-dbg.krx.co.kr/svc/apis/sto"
 ENDPOINTS = {
     "kospi": os.getenv("KRX_KOSPI_DAILY_PATH", "/stk_bydd_trd"),
@@ -28,6 +27,15 @@ DATES = [x.strip() for x in os.getenv("KRX_PROBE_DATES", "20150105,20200102,2022
 if any(len(d) != 8 or not d.isdigit() or int(d[:4]) > 2022 for d in DATES):
     raise SystemExit("KRX_PROBE_DATES must be YYYYMMDD and <= 2022")
 
+
+def safe_body(text: str) -> str:
+    # Never persist the credential even if a remote service unexpectedly echoes it.
+    s = (text or "")[:1000]
+    if KEY:
+        s = s.replace(KEY, "***REDACTED***")
+    return s
+
+
 rows=[]; errors=[]
 for market, path in ENDPOINTS.items():
     for d in DATES:
@@ -35,13 +43,21 @@ for market, path in ENDPOINTS.items():
         try:
             r=requests.get(url, headers={"AUTH_KEY":KEY}, params={"basDd":d}, timeout=60)
             rec={"market":market,"date":d,"http_status":r.status_code,"content_type":r.headers.get("content-type","")}
-            r.raise_for_status()
+            if not r.ok:
+                errors.append({
+                    "market": market,
+                    "date": d,
+                    "http_status": r.status_code,
+                    "reason": r.reason,
+                    "response_body": safe_body(r.text),
+                })
+                continue
             payload=r.json()
             data=payload.get("OutBlock_1", []) if isinstance(payload,dict) else []
             rec["rows"]=len(data); rec["keys"]=sorted(data[0].keys()) if data else []
             rows.append(rec)
             for x in data[:5]:
-                y={"market":market,"probe_date":d,**x};
+                y={"market":market,"probe_date":d,**x}
                 pd.DataFrame([y]).to_csv("korea_krx_openapi_probe_sample.csv", mode="a", header=not Path("korea_krx_openapi_probe_sample.csv").exists(), index=False)
         except Exception as e:
             errors.append({"market":market,"date":d,"error_type":type(e).__name__,"error":str(e)[:300]})
