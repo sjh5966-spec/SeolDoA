@@ -17,7 +17,7 @@ Account labels alone are not sufficient. Candidate rows must come from the appro
 
 ### Operating profit
 
-Use only income-statement rows (`sj_div` = `IS` or equivalent income-statement section).
+Use income-statement or comprehensive-income-statement rows (`sj_div` = `IS` or `CIS`) when they represent the company's operating profit/loss. The `CIS` allowance was added before opening 2023+ OOS after the <=2022 builder showed companies with valid statements but missing operating profit under an IS-only rule.
 
 Preferred standardized account ID:
 
