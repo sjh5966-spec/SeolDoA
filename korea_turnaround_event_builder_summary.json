@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-09-08T05:43:18.569346+00:00",
+  "checked_at_utc": "2026-09-08T06:48:13.427719+00:00",
   "research_stage": "pre_oos_accounting_event_build",
   "modern_oos_protected": true,
   "start_year": 2015,
@@ -12,7 +12,7 @@
     "091990"
   ],
   "rows": 160,
-  "turnaround_rows": 0,
+  "turnaround_rows": 1,
   "base_a_accounting_only_rows": 0,
   "api_errors_caught": 0,
   "survivorship_free_universe_ready": false,
