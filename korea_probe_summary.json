@@ -1,0 +1,23 @@
+{
+  "checked_at_utc": "2026-09-08T04:10:07.956841+00:00",
+  "probe_dates": [
+    "20151230",
+    "20201230",
+    "20221229",
+    "20260904"
+  ],
+  "research_stage": "data_audit_only",
+  "krx_probe_ok": false,
+  "dart_probe_ok": true,
+  "dart_api_key_present": true,
+  "krx_error_type": "KeyError",
+  "krx_error": "\"None of [Index(['종가', '시가총액', '거래량', '거래대금'], dtype='object')] are in the [columns]\"",
+  "dart_corp_codes": 118942,
+  "dart_listed_stock_codes": 3931,
+  "dart_rows": 100,
+  "dart_unique_receipts": 100,
+  "dart_probe_window": [
+    "20260901",
+    "20260907"
+  ]
+}
