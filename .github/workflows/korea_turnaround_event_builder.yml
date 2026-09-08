@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - korea_turnaround_event_builder.py
+      - korea_turnaround_event_builder_v2.py
       - KOREA_DART_ACCOUNT_MAPPING_SPEC.md
       - .github/workflows/korea_turnaround_event_builder.yml
 
@@ -31,7 +32,7 @@ jobs:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
           KOREA_EVENT_START_YEAR: '2015'
           KOREA_EVENT_END_YEAR: '2022'
-        run: python korea_turnaround_event_builder.py
+        run: python korea_turnaround_event_builder_v2.py
       - name: Commit builder outputs
         run: |
           git config user.name "github-actions[bot]"
