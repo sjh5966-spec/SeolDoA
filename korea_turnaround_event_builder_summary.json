@@ -1,0 +1,20 @@
+{
+  "checked_at_utc": "2026-09-08T05:43:18.569346+00:00",
+  "research_stage": "pre_oos_accounting_event_build",
+  "modern_oos_protected": true,
+  "start_year": 2015,
+  "end_year": 2022,
+  "configured_stocks": [
+    "005930",
+    "000660",
+    "035720",
+    "068270",
+    "091990"
+  ],
+  "rows": 160,
+  "turnaround_rows": 0,
+  "base_a_accounting_only_rows": 0,
+  "api_errors_caught": 0,
+  "survivorship_free_universe_ready": false,
+  "important_limitation": "This output validates accounting-event construction on a configured stock list. It is not yet the historical KOSPI/KOSDAQ survivor-free research universe and contains no returns or market-cap filter."
+}
