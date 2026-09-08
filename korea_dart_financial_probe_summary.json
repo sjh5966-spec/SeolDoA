@@ -1,0 +1,32 @@
+{
+  "checked_at_utc": "2026-09-08T04:37:41.038139+00:00",
+  "research_stage": "dart_financial_schema_audit_only",
+  "modern_oos_protected": true,
+  "probe_stocks": [
+    "005930",
+    "000660",
+    "035720",
+    "068270",
+    "091990"
+  ],
+  "probe_years": [
+    2015,
+    2020,
+    2022
+  ],
+  "fetch_attempts": 120,
+  "fetch_ok": 88,
+  "fetch_no_data": 32,
+  "fetch_errors": 0,
+  "candidate_account_rows": 2862,
+  "candidate_account_classes": {
+    "equity": 1746,
+    "net_income": 733,
+    "capex": 174,
+    "operating_profit": 94,
+    "cfo": 89,
+    "operating_profit|net_income": 22,
+    "net_income|equity": 4
+  },
+  "note": "This probe audits account availability only; no Korea return thresholds or OOS returns are inspected."
+}
