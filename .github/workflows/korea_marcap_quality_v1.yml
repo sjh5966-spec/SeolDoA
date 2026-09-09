@@ -1,0 +1,42 @@
+name: Korea Marcap Quality V1
+
+on:
+  push:
+    paths:
+      - korea_marcap_quality_v1.py
+      - .github/workflows/korea_marcap_quality_v1.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  quality:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas numpy pyarrow requests
+      - run: python korea_marcap_quality_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-marcap-quality-v1
+          retention-days: 14
+          path: |
+            korea_marcap_quality_v1_summary.json
+            korea_marcap_corporate_action_flags_2015_2020.csv
+      - name: Commit compact diagnostics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add korea_marcap_quality_v1_summary.json korea_marcap_corporate_action_flags_2015_2020.csv
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Validate Korea marcap integrity and corporate actions'
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep $((i*3))
+          done
+          echo 'Push race persisted; artifact preserves diagnostics'
