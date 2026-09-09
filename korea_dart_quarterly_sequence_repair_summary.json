@@ -1,0 +1,28 @@
+{
+  "checked_at_utc": "2026-09-09T06:39:04.856597+00:00",
+  "research_stage": "development_sequence_validation",
+  "modern_oos_protected": true,
+  "reports": [
+    {
+      "changed_cells": 8,
+      "missing_immediate_predecessor_metric_cases": 24,
+      "negative_normalized_capex_delta_cases": 3,
+      "input": "korea_dart_quarterly_v2_2016_chunk000.csv",
+      "output": "korea_dart_quarterly_v2_2016_chunk000_sequence_checked.csv",
+      "rows": 80,
+      "op_q_populated": 72,
+      "fcf_q_populated": 49
+    },
+    {
+      "changed_cells": 5,
+      "missing_immediate_predecessor_metric_cases": 3,
+      "negative_normalized_capex_delta_cases": 4,
+      "input": "korea_dart_quarterly_xbrl_2015.csv",
+      "output": "korea_dart_quarterly_xbrl_2015_sequence_checked.csv",
+      "rows": 80,
+      "op_q_populated": 70,
+      "fcf_q_populated": 64
+    }
+  ],
+  "rule": "Q2/Q3/Q4 require the immediately preceding quarter cumulative metric on the same statement basis. CAPEX cumulative values are sign-normalized before differencing; negative normalized deltas are missing, never absolute-valued."
+}
