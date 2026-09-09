@@ -1,0 +1,42 @@
+name: Korea Historical Security Universe V1
+
+on:
+  push:
+    paths:
+      - korea_historical_security_universe_v1.py
+      - .github/workflows/korea_historical_security_universe_v1.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas pyarrow requests
+      - run: python korea_historical_security_universe_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-historical-security-universe-v1
+          retention-days: 30
+          path: |
+            korea_historical_security_universe_2015_2020.csv
+            korea_historical_security_universe_2015_2020_summary.json
+      - name: Commit compact universe bridge
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add korea_historical_security_universe_2015_2020.csv korea_historical_security_universe_2015_2020_summary.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Build Korea historical DART-marcap security universe'
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep $((i*3))
+          done
+          echo 'Push race persisted; artifact preserves outputs'
