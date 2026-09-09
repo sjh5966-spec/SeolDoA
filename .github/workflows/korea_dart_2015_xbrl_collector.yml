@@ -1,0 +1,44 @@
+name: Korea DART 2015 PIT XBRL Collector
+
+on:
+  push:
+    paths:
+      - korea_dart_2015_xbrl_collector_v1.py
+      - .github/workflows/korea_dart_2015_xbrl_collector.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests lxml
+      - name: Reconstruct 2015 quarterly accounting
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python korea_dart_2015_xbrl_collector_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-dart-2015-pit-xbrl-accounting
+          path: |
+            korea_dart_quarterly_xbrl_2015.csv
+            korea_dart_quarterly_xbrl_2015_summary.json
+      - name: Commit outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add korea_dart_quarterly_xbrl_2015.csv korea_dart_quarterly_xbrl_2015_summary.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Collect Korea DART 2015 PIT XBRL accounting'
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep $((i*3))
+          done
+          echo 'Push race persisted; artifact preserves output'
