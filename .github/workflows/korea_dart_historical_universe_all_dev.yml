@@ -1,0 +1,56 @@
+name: Korea DART Historical Universe All Development
+
+on:
+  push:
+    paths:
+      - .github/workflows/korea_dart_historical_universe_all_dev.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests
+      - name: Collect historical DART universes 2015-2019 sequentially
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: |
+          for Y in 2015 2016 2017 2018 2019; do
+            echo "=== Development universe $Y ==="
+            DART_UNIVERSE_YEAR="$Y" python korea_dart_historical_universe_v1.py
+          done
+      - name: Build combined historical seed
+        run: python korea_dart_historical_seed_builder.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-dart-historical-universe-development
+          path: |
+            korea_dart_historical_universe_20*.csv
+            korea_dart_historical_universe_20*_summary.json
+            korea_dart_historical_seed_2015_2020.csv
+            korea_dart_historical_seed_2015_2020_summary.json
+      - name: Commit Development universe and seed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add korea_dart_historical_universe_2015.csv korea_dart_historical_universe_2015_summary.json
+          git add korea_dart_historical_universe_2016.csv korea_dart_historical_universe_2016_summary.json
+          git add korea_dart_historical_universe_2017.csv korea_dart_historical_universe_2017_summary.json
+          git add korea_dart_historical_universe_2018.csv korea_dart_historical_universe_2018_summary.json
+          git add korea_dart_historical_universe_2019.csv korea_dart_historical_universe_2019_summary.json
+          git add korea_dart_historical_seed_2015_2020.csv korea_dart_historical_seed_2015_2020_summary.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Collect Korea DART Development historical universes 2015-2020'
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep $((i*3))
+          done
+          echo 'Push race persisted; artifact preserves full Development universe'
