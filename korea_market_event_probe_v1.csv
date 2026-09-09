@@ -1,0 +1,2 @@
+corp_code,company_name,stock_code,year,quarter,signal_date,signal_receipt_no,signal_report_name,entry_date,entry_open,pit_mcap_entry_day,adv20_amount,adv20_complete,market,holding_path_shares_change_gt20pct,status,R5,R10,R20,R60,R120
+00101752,(주)케이씨피드,025880,2016,Q1,2016-05-13,20160513003046,분기보고서 (2016.03),2016-05-16,3240.0,43234173240.0,709269925.25,True,KOSDAQ,True,PROVISIONAL_MARKET_BRIDGE,-13.580246913580252,-10.030864197530864,-11.265432098765427,9.722222222222232,26.234567901234573

@@ -1,0 +1,8 @@
+{
+  "development_only": true,
+  "modern_oos_protected": true,
+  "rows": 1,
+  "market_bridge_rows": 1,
+  "corp_action_flagged": 1,
+  "note": "Returns are provisional QC only. Signal precedence is not frozen and raw-price holding windows with material shares changes require corporate-action handling before research use."
+}
