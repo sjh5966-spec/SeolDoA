@@ -1,0 +1,34 @@
+name: Korea DART Bulk Development Probe V1
+
+on:
+  push:
+    paths:
+      - korea_dart_bulk_dev_probe_v1.py
+      - .github/workflows/korea_dart_bulk_dev_probe_v1.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests
+      - run: python korea_dart_bulk_dev_probe_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-dart-bulk-dev-probe-v1
+          path: korea_dart_bulk_dev_probe_v1.json
+      - name: Commit result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add korea_dart_bulk_dev_probe_v1.json
+          git commit -m 'Probe OpenDART bulk Development schema' || exit 0
+          git pull --rebase origin main && git push
