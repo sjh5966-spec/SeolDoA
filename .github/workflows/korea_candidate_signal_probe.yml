@@ -1,0 +1,42 @@
+name: Korea Candidate DART Signal Probe
+
+on:
+  push:
+    paths:
+      - korea_candidate_signal_probe_v1.py
+      - .github/workflows/korea_candidate_signal_probe.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests
+      - name: Probe candidate disclosure content
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python korea_candidate_signal_probe_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-candidate-dart-signal-probe
+          path: korea_candidate_signal_probe_v1.json
+      - name: Commit result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add korea_candidate_signal_probe_v1.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Probe Korea candidate earliest DART signal content'
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep $((i*3))
+          done
+          echo 'Push race persisted; artifact preserves result'
