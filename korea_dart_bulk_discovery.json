@@ -880,6 +880,8 @@
     }
   ],
   "forms": [],
+  "download_ext002_function_snippets": [],
+  "download_endpoint_candidates": [],
   "scripts_with_download_terms": [
     "\r\n\tfunction fn_egov_downFile(atchFileId, fileSn){\r\n\t\twindow.open(\"/cmm/fms/FileDown.do?atchFileId=\"+atchFileId+\"&fileSn=\"+fileSn+\"\");\r\n\t}\r\n\t\r\n"
   ],
