@@ -1,0 +1,35 @@
+{
+  "checked_at_utc": "2026-09-09T07:53:10.588543+00:00",
+  "research_stage": "development_2015_historical_pit_xbrl_collection",
+  "collector_version": "2.0",
+  "modern_oos_protected": true,
+  "historical_universe_corps": 1696,
+  "chunk": 0,
+  "chunk_size": 50,
+  "chunk_corps": 50,
+  "output_rows": 200,
+  "source_status_counts": {
+    "Q1_ok": 46,
+    "Q2_ok": 47,
+    "Q3_ok": 47,
+    "Q4_ok": 48,
+    "Q1_no_receipt": 2,
+    "Q1_no_xbrl_zip": 2,
+    "Q2_no_xbrl_zip": 2,
+    "Q3_no_xbrl_zip": 2,
+    "Q4_no_xbrl_zip": 2,
+    "Q2_no_receipt": 1,
+    "Q3_no_receipt": 1
+  },
+  "basis_counts": {
+    "OFS": 27,
+    "CFS": 161
+  },
+  "negative_normalized_capex_delta_cases": 3,
+  "op_q_populated": 177,
+  "ni_q_populated": 180,
+  "cfo_q_populated": 167,
+  "fcf_q_populated": 74,
+  "signal_dates_assigned": 0,
+  "important_limitation": "Accounting PIT reconstruction only. Earliest signal disclosure can precede the periodic report and must be confirmed candidate-only. KRX universe/mcap/tradability remain separate."
+}
