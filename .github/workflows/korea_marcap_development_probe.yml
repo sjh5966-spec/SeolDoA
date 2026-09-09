@@ -1,0 +1,44 @@
+name: Korea Marcap Development Probe
+
+on:
+  push:
+    paths:
+      - korea_marcap_development_probe.py
+      - .github/workflows/korea_marcap_development_probe.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas pyarrow requests
+      - name: Download and validate 2015-2020 marcap
+        run: python korea_marcap_development_probe.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-marcap-development-2015-2020
+          retention-days: 14
+          path: |
+            korea_marcap_raw_2015_2020/*.parquet
+            korea_marcap_development_probe_summary.json
+            korea_marcap_dart_crosscheck_2015_2020.csv
+      - name: Commit compact validation outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add korea_marcap_development_probe_summary.json korea_marcap_dart_crosscheck_2015_2020.csv
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Validate KRX-free Korea historical marcap data'
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep $((i*3))
+          done
+          echo 'Push race persisted; artifact preserves outputs'
