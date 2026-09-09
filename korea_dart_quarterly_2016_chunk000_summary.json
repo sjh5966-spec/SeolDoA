@@ -1,0 +1,19 @@
+{
+  "checked_at_utc": "2026-09-09T06:02:52.532007+00:00",
+  "research_stage": "development_quarterly_accounting_collection",
+  "modern_oos_protected": true,
+  "year": 2016,
+  "chunk": 0,
+  "chunk_size": 20,
+  "seed_rows_in_year": 0,
+  "seed_rows_in_chunk": 0,
+  "output_rows": 0,
+  "basis_switch_rows": 0,
+  "api_status_counts": {},
+  "op_quarter_populated": 0,
+  "ni_quarter_populated": 0,
+  "cfo_quarter_populated": 0,
+  "fcf_quarter_populated": 0,
+  "signal_dates_assigned": 0,
+  "important_limitation": "Accounting-only Q1-Q3 collector. Signal dates require later candidate-only disclosure-content confirmation. No KRX prices/returns are used."
+}
