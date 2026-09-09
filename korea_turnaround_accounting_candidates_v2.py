@@ -20,16 +20,14 @@ def main():
     if not frames:raise SystemExit('no sequence-checked inputs')
     d=pd.concat(frames,ignore_index=True,sort=False);d=d[d.business_year.astype(int).between(2015,2020)].copy();d['corp_code']=d.corp_code.astype(str).str.zfill(8)
     if 'company_name' not in d:d['company_name']=''
-    d['company_name']=d['company_name'].fillna('');d['_q']=d.fiscal_quarter.map(Q);d=d[d._q.notna()];d['_seq']=d.business_year.astype(int)*4+d._q.astype(int)
-    # Prefer receipt-specific 2015 XBRL rows if accidental duplicates occur.
-    d['_priority']=d.source_file.str.contains('xbrl_2015').astype(int)
-    d=d.sort_values(['corp_code','_seq','_priority']).drop_duplicates(['corp_code','_seq'],keep='last')
+    d['company_name']=d['company_name'].fillna('');d['qord']=d.fiscal_quarter.map(Q);d=d[d.qord.notna()];d['seq']=d.business_year.astype(int)*4+d.qord.astype(int)
+    d['priority']=d.source_file.str.contains('xbrl_2015').astype(int)
+    d=d.sort_values(['corp_code','seq','priority']).drop_duplicates(['corp_code','seq'],keep='last')
     keyed={(r.corp_code,int(r.business_year),r.fiscal_quarter):r for r in d.itertuples(index=False)}
-    byseq={}
-    for r in d.itertuples(index=False):byseq[(r.corp_code,int(r._seq))]=r
+    byseq={(r.corp_code,int(r.seq)):r for r in d.itertuples(index=False)}
     rows=[]
     for r in d.itertuples(index=False):
-        corp=r.corp_code;y=int(r.business_year);q=r.fiscal_quarter;seq=int(r._seq);py=keyed.get((corp,y-1,q))
+        corp=r.corp_code;y=int(r.business_year);q=r.fiscal_quarter;seq=int(r.seq);py=keyed.get((corp,y-1,q))
         op=float(r.operating_profit_q) if pd.notna(r.operating_profit_q) else None;pop=float(py.operating_profit_q) if py is not None and pd.notna(py.operating_profit_q) else None
         four=[byseq.get((corp,s)) for s in range(seq-3,seq+1)];exact=all(x is not None for x in four)
         bases=[str(x.statement_basis or '') for x in four] if exact else [];same_basis=bool(exact and len(set(bases))==1 and bases[0])
