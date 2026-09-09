@@ -1,0 +1,18 @@
+{
+  "direct_endpoint": "https://opendart.fss.or.kr/cmm/downloadFnlttZip.do?fl_nm=",
+  "targets": [
+    {
+      "year": "2016",
+      "period": "FQ",
+      "role": "BS",
+      "filename": "2016_1Q_BS_20230119040459.zip",
+      "http_status": 200,
+      "bytes": 975,
+      "content_type": "text/html; charset=utf-8",
+      "content_disposition": "",
+      "zip_magic": false,
+      "entries": [],
+      "response_head": "\r\n\r\n\r\n\r\n<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<meta charset=\"utf-8\">\r\n<meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width\">\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r\n<meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\r\n<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/common.css\" />\r\n\r\n<script language=\"javascript\">\r\nfunction fncGoAfterErrorPage(){\r\n    history.back(-2);\r\n}\r\n</script>\r\n</head>\r\n\r\n<body>\r\n<div class=\"errorWrap\"> \r\n\t<div class=\"errorBox\"> \r\n\t\t<div class=\"errorLogo\"><a href=\"/index.do\">메인으로가기</a></div>\r\n\t\t<div class=\"cont\">\r\n\t\t\t<p class=\"alert\">서비스 이용에 불편을 드려 대단히 죄송합니다.</p>\r\n\t\t\t<p class=\"info\">잠시후에 다시 이용해 주시기 바랍니다.</p>\r\n\t\t\t<span class=\"btn_style1 blue\"><a href=\"javascript:fncGoAfterErrorPage();\">이전 페이지</a></span>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n</body>\r\n</html>\r\n"
+    }
+  ]
+}
