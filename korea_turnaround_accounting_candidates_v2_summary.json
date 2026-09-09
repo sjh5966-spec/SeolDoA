@@ -1,0 +1,21 @@
+{
+  "checked_at_utc": "2026-09-09T06:41:29.438642+00:00",
+  "research_stage": "development_sequence_checked_accounting_candidates",
+  "modern_oos_protected": true,
+  "source_files": [
+    "korea_dart_quarterly_xbrl_2015_sequence_checked.csv",
+    "korea_dart_quarterly_v2_2016_chunk000_sequence_checked.csv"
+  ],
+  "rows": 160,
+  "unique_corps": 22,
+  "op_turnaround_rows": 4,
+  "base_a_accounting_only_rows": 1,
+  "ttm_complete_same_basis_rows": 82,
+  "turnaround_by_year": {
+    "2016": 4
+  },
+  "base_a_by_year": {
+    "2016": 1
+  },
+  "important_limitation": "Only accounting screen on 20-corp smoke overlap. Not representative of Korean universe. Final Base A requires historical KRX universe/mcap and candidate signal-date confirmation."
+}
