@@ -1,0 +1,241 @@
+﻿year,period,statement,filename,status,bytes,zip_ok,entry_count,error
+2016,FQ,BS,2016_1Q_BS_20230119040459.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2016,FQ,CF,2016_1Q_CF_20230119040652.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2016,FQ,PL,2016_1Q_PL_20230119040600.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2016,FY,BS,2016_4Q_BS_20241115030222.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2016,FY,CF,2016_4Q_CF_20241115030611.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2016,FY,PL,2016_4Q_PL_20241115030423.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2016,HY,BS,2016_2Q_BS_20230119040915.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2016,HY,CF,2016_2Q_CF_20230119041107.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2016,HY,PL,2016_2Q_PL_20230119041014.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2016,TQ,BS,2016_3Q_BS_20230119041335.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2016,TQ,CF,2016_3Q_CF_20230119041528.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2016,TQ,PL,2016_3Q_PL_20230119041435.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2017,FQ,BS,2017_1Q_BS_20250605030303.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2017,FQ,CF,2017_1Q_CF_20250605030749.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2017,FQ,PL,2017_1Q_PL_20250605030534.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2017,FY,BS,2017_4Q_BS_20241115030959.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2017,FY,CF,2017_4Q_CF_20241115031346.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2017,FY,PL,2017_4Q_PL_20241115031200.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2017,HY,BS,2017_2Q_BS_20230301050228.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2017,HY,CF,2017_2Q_CF_20230301071420.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2017,HY,PL,2017_2Q_PL_20230301061140.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2017,TQ,BS,2017_3Q_BS_20230119042825.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2017,TQ,CF,2017_3Q_CF_20230119043002.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2017,TQ,PL,2017_3Q_PL_20230119042920.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2018,FQ,BS,2018_1Q_BS_20230301092144.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2018,FQ,CF,2018_1Q_CF_20230301113757.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2018,FQ,PL,2018_1Q_PL_20230301103329.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2018,FY,BS,2018_4Q_BS_20260430030309.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2018,FY,CF,2018_4Q_CF_20260430030810.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2018,FY,PL,2018_4Q_PL_20260430030552.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2018,HY,BS,2018_2Q_BS_20230301134738.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2018,HY,CF,2018_2Q_CF_20230301160448.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2018,HY,PL,2018_2Q_PL_20230301145949.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2018,TQ,BS,2018_3Q_BS_20230301181613.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2018,TQ,CF,2018_3Q_CF_20230301203410.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2018,TQ,PL,2018_3Q_PL_20230301192834.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2019,FQ,BS,2019_1Q_BS_20251219030238.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2019,FQ,CF,2019_1Q_CF_20251219030700.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2019,FQ,PL,2019_1Q_PL_20251219030459.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2019,FY,BS,2019_4Q_BS_20250820030238.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2019,FY,CF,2019_4Q_CF_20250820030701.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2019,FY,PL,2019_4Q_PL_20250820030457.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2019,HY,BS,2019_2Q_BS_20250605035930.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2019,HY,CF,2019_2Q_CF_20250605040335.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2019,HY,PL,2019_2Q_PL_20250605040142.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2019,TQ,BS,2019_3Q_BS_20250605041622.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2019,TQ,CF,2019_3Q_CF_20250605042027.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2019,TQ,PL,2019_3Q_PL_20250605041834.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2020,FQ,BS,2020_1Q_BS_20231117031456.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2020,FQ,CF,2020_1Q_CF_20231117055145.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2020,FQ,PL,2020_1Q_PL_20231117043703.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2020,FY,BS,2020_4Q_BS_20260403030235.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2020,FY,CF,2020_4Q_CF_20260403030714.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2020,FY,PL,2020_4Q_PL_20260403030506.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2020,HY,BS,2020_2Q_BS_20231117082257.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2020,HY,CF,2020_2Q_CF_20231117110148.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2020,HY,PL,2020_2Q_PL_20231117094532.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2020,TQ,BS,2020_3Q_BS_20240517032914.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2020,TQ,CF,2020_3Q_CF_20240517033345.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+2020,TQ,PL,2020_3Q_PL_20240517033136.zip,download_error,0,False,0,"Page.evaluate: ReferenceError: download_ext002 is not defined
+    at eval (eval at evaluate (:311:30), <anonymous>:1:16)
+    at UtilityScript.evaluate (<anonymous>:318:18)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)"

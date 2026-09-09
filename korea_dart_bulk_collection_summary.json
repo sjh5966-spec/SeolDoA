@@ -1,0 +1,17 @@
+{
+  "research_stage": "development_bulk_financial_collection",
+  "development_only": true,
+  "start_year": 2016,
+  "end_year": 2020,
+  "modern_oos_protected": true,
+  "expected_files": 60,
+  "manifest_rows": 60,
+  "zip_ok": 0,
+  "download_errors": 60,
+  "status_counts": {
+    "download_error": 60
+  },
+  "total_bytes": 0,
+  "schema_sample_groups": [],
+  "important_note": "Bulk files are current downloadable snapshots and may reflect later corrections; use for accounting reconstruction/QC, then confirm candidate PIT values and signal date from original disclosure."
+}
