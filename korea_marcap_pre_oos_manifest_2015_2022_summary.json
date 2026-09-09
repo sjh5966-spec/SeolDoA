@@ -1,0 +1,23 @@
+{
+  "checked_at_utc": "2026-09-09T07:27:21.434420+00:00",
+  "research_stage": "pre_oos_market_data_acquisition",
+  "development_years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020
+  ],
+  "validation_years": [
+    2021,
+    2022
+  ],
+  "modern_oos_protected": true,
+  "oos_start_year": 2023,
+  "files": 8,
+  "total_rows": 4662376,
+  "total_bytes": 166313184,
+  "source": "FinanceData/marcap annual parquet snapshots sourced from KRX all-security daily data",
+  "note": "No strategy returns or 2023+ data accessed."
+}
