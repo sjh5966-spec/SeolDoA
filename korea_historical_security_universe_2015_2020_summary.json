@@ -1,0 +1,28 @@
+{
+  "checked_at_utc": "2026-09-09T07:27:36.690079+00:00",
+  "research_stage": "development_historical_security_universe_bridge",
+  "modern_oos_protected": true,
+  "rows": 11421,
+  "matched_rows": 11018,
+  "matched_pct": 96.471,
+  "unmatched_rows": 403,
+  "unique_corps": 2124,
+  "status_counts": {
+    "MATCHED_COMMON_CANDIDATE": 10788,
+    "UNMATCHED_REVIEW": 402,
+    "EXCLUDE_FLAGGED": 231
+  },
+  "flag_counts": {
+    "flag_spac": 196,
+    "flag_reit": 23,
+    "flag_fund_etf_etn": 0,
+    "flag_preferred_name": 12
+  },
+  "market_observation_counts": {
+    "KOSDAQ": 6778,
+    "KOSPI": 4233,
+    "": 403,
+    "KOSDAQ|KOSPI": 7
+  },
+  "important_limitation": "Name-based flags are review aids, not a final legal/security-type classifier. Event-date tradability and PIT market cap must be joined on the signal/entry date."
+}
