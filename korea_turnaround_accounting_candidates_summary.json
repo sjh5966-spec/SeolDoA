@@ -1,0 +1,13 @@
+{
+  "checked_at_utc": "2026-09-09T06:31:43.598693+00:00",
+  "research_stage": "development_accounting_candidate_screen",
+  "modern_oos_protected": true,
+  "source_files": [
+    "korea_dart_quarterly_v2_2016_chunk000.csv"
+  ],
+  "rows": 80,
+  "op_turnaround_rows": 0,
+  "base_a_accounting_only_rows": 0,
+  "ttm_complete_same_basis_rows": 20,
+  "important_limitation": "Accounting-only. Base A is not final until contemporaneous market cap/universe filters and confirmed earliest disclosure signal dates are joined."
+}
