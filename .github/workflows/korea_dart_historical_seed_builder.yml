@@ -19,7 +19,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install pandas
-      - run: python korea_dart_historical_seed_builder.py
+      - name: Build historical filer seed from available Development universe files
+        run: python korea_dart_historical_seed_builder.py
       - uses: actions/upload-artifact@v4
         with:
           name: korea-dart-historical-seed
