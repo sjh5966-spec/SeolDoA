@@ -13,7 +13,7 @@ on:
         default: '0'
       chunk_size:
         required: true
-        default: '20'
+        default: '50'
 
 permissions:
   contents: write
@@ -38,7 +38,7 @@ jobs:
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
           DART_2015_XBRL_CHUNK: ${{ inputs.chunk || '0' }}
-          DART_2015_XBRL_CHUNK_SIZE: ${{ inputs.chunk_size || '20' }}
+          DART_2015_XBRL_CHUNK_SIZE: ${{ inputs.chunk_size || '50' }}
         run: python korea_dart_2015_xbrl_collector_v2.py
       - uses: actions/upload-artifact@v4
         with:
