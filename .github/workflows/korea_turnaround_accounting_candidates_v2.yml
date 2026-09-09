@@ -1,0 +1,40 @@
+name: Korea Turnaround Accounting Candidates V2
+
+on:
+  push:
+    paths:
+      - korea_turnaround_accounting_candidates_v2.py
+      - .github/workflows/korea_turnaround_accounting_candidates_v2.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas
+      - run: python korea_turnaround_accounting_candidates_v2.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-turnaround-accounting-candidates-v2
+          path: |
+            korea_turnaround_accounting_candidates_v2.csv
+            korea_turnaround_accounting_candidates_v2_summary.json
+      - name: Commit outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add korea_turnaround_accounting_candidates_v2.csv korea_turnaround_accounting_candidates_v2_summary.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Build sequence-checked Korea accounting candidates'
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep $((i*3))
+          done
+          echo 'Push race persisted; artifact preserves output'
