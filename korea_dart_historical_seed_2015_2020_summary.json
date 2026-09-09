@@ -1,0 +1,17 @@
+{
+  "checked_at_utc": "2026-09-09T06:47:03.071321+00:00",
+  "research_stage": "development_historical_seed_build",
+  "modern_oos_protected": true,
+  "source_files": [
+    "korea_dart_historical_universe_2020.csv"
+  ],
+  "rows": 2121,
+  "year_counts": {
+    "2020": 2121
+  },
+  "market_counts": {
+    "K": 1358,
+    "Y": 763
+  },
+  "important_limitation": "DART filer seed; KRX security-type exclusions and historical listing/tradability remain separate validation."
+}
