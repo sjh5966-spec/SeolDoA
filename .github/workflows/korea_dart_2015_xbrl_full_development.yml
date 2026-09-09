@@ -1,0 +1,103 @@
+name: Korea DART 2015 Full Development PIT XBRL
+
+on:
+  push:
+    paths:
+      - .github/workflows/korea_dart_2015_xbrl_full_development.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: '1'
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: plan
+        shell: python
+        run: |
+          import csv,json,os,math
+          corps=set()
+          with open('korea_dart_historical_universe_2015.csv',encoding='utf-8-sig',newline='') as f:
+              for r in csv.DictReader(f):
+                  if str(r.get('is_earliest_corp_period','')).lower()=='true' and r.get('period') in {'Q1','H1','Q3','FY'}:
+                      corps.add(str(r['corp_code']).zfill(8))
+          n=len(corps); size=50
+          items=[{'chunk':c,'size':size} for c in range((n+size-1)//size)]
+          assert n==1696 and len(items)<=256
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('matrix='+json.dumps({'include':items},separators=(',',':'))+'\n')
+          print('2015 historical corps',n,'jobs',len(items))
+      - run: echo 'Development 2015 only; no 2021+ or 2023+ data.'
+
+  collect:
+    needs: plan
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests lxml
+      - name: Collect one 2015 receipt-XBRL chunk
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          DART_2015_XBRL_CHUNK: ${{ matrix.chunk }}
+          DART_2015_XBRL_CHUNK_SIZE: ${{ matrix.size }}
+        run: python korea_dart_2015_xbrl_collector_v2.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qacct2015-${{ matrix.chunk }}
+          retention-days: 14
+          path: |
+            korea_dart_quarterly_xbrl_2015_chunk${{ format('{0:000}', matrix.chunk) }}.csv
+            korea_dart_quarterly_xbrl_2015_chunk${{ format('{0:000}', matrix.chunk) }}_summary.json
+
+  aggregate:
+    needs: collect
+    if: ${{ always() && !cancelled() }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: qacct2015-*
+          path: chunks
+          merge-multiple: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas
+      - name: Aggregate and deduplicate 2015 PIT accounting
+        shell: python
+        run: |
+          from pathlib import Path
+          import pandas as pd,json
+          fs=sorted(Path('chunks').glob('korea_dart_quarterly_xbrl_2015_chunk[0-9][0-9][0-9].csv'))
+          if not fs: raise SystemExit('no 2015 chunk outputs')
+          ds=[pd.read_csv(f,dtype={'corp_code':str}) for f in fs]
+          d=pd.concat(ds,ignore_index=True)
+          d['corp_code']=d.corp_code.astype(str).str.zfill(8)
+          d=d[d.business_year.astype(int).eq(2015)].copy()
+          d=d.sort_values(['corp_code','fiscal_quarter']).drop_duplicates(['corp_code','business_year','fiscal_quarter'],keep='last')
+          d.to_csv('korea_dart_quarterly_2015_full.csv',index=False)
+          s={'development_only':True,'modern_oos_protected':True,'files':len(fs),'rows':len(d),'unique_corps':int(d.corp_code.nunique()),'op_populated':int(d.operating_profit_q.notna().sum()),'ni_populated':int(d.net_income_q.notna().sum()),'equity_populated':int(d.equity_q_end.notna().sum()),'cfo_populated':int(d.cfo_q.notna().sum()),'fcf_populated':int(d.fcf_q.notna().sum()),'note':'2015 earliest-periodic-receipt XBRL accounting only; signal dates require candidate-level confirmation.'}
+          Path('korea_dart_quarterly_2015_full_summary.json').write_text(json.dumps(s,ensure_ascii=False,indent=2))
+          print(json.dumps(s,ensure_ascii=False,indent=2))
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-dart-quarterly-2015-full
+          retention-days: 14
+          path: |
+            korea_dart_quarterly_2015_full.csv
+            korea_dart_quarterly_2015_full_summary.json
