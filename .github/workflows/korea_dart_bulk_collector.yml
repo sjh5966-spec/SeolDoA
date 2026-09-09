@@ -1,0 +1,54 @@
+name: Korea DART Development Bulk Collector
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - korea_dart_bulk_collector_v1.py
+      - .github/workflows/korea_dart_bulk_collector.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: korea-dart-development-bulk-collector
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Collect 2016-2020 official OpenDART bulk financial files
+        run: python korea_dart_bulk_collector_v1.py
+      - name: Commit compact manifest and schema only
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add korea_dart_bulk_manifest_2016_2020.csv korea_dart_bulk_collection_summary.json korea_dart_bulk_schema_samples.json
+          if git diff --cached --quiet; then
+            echo "No metadata changes"
+          else
+            git commit -m "Update Korea DART development bulk manifest"
+            git push
+          fi
+      - name: Upload bulk files and metadata artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: korea-dart-development-bulk-2016-2020
+          retention-days: 14
+          path: |
+            korea_dart_bulk_raw_2016_2020/
+            korea_dart_bulk_manifest_2016_2020.csv
+            korea_dart_bulk_collection_summary.json
+            korea_dart_bulk_schema_samples.json
