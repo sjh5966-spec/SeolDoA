@@ -1,0 +1,3126 @@
+{
+  "research_stage": "development_2015_quarterly_xbrl_probe",
+  "modern_oos_protected": true,
+  "corp_count": 20,
+  "counts": {
+    "Q1_zip_ok": 17,
+    "H1_zip_ok": 18,
+    "Q3_zip_ok": 19,
+    "Q1_not_zip": 1,
+    "H1_not_zip": 1,
+    "Q3_not_zip": 1,
+    "Q1_no_receipt": 2,
+    "H1_no_receipt": 1
+  },
+  "detail": [
+    {
+      "corp_code": "00100601",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150515001283",
+          "rcept_dt": "20150515",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 80768,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00100601_2015-04-29.xbrl",
+            "00100601_entry_point_2015-04-29.xsd",
+            "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\dim_ifrs_for_00100601_2015-04-29.xml",
+            "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\cal_ifrs_for_00100601_2015-04-29.xml",
+            "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\pre_ifrs_for_00100601_2015-04-29.xml",
+            "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\role_ifrs_for_00100601-dim_2015-04-29.xsd",
+            "labels\\lab_00100601-ko_2015-04-29.xml",
+            "labels\\lab_00100601-en_2015-04-29.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00100601_2015-04-29.xbrl",
+              "size": 187437
+            },
+            {
+              "name": "00100601_entry_point_2015-04-29.xsd",
+              "size": 35644
+            },
+            {
+              "name": "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\dim_ifrs_for_00100601_2015-04-29.xml",
+              "size": 426729
+            },
+            {
+              "name": "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\cal_ifrs_for_00100601_2015-04-29.xml",
+              "size": 370618
+            },
+            {
+              "name": "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\pre_ifrs_for_00100601_2015-04-29.xml",
+              "size": 435590
+            },
+            {
+              "name": "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\role_ifrs_for_00100601-dim_2015-04-29.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00100601-ko_2015-04-29.xml",
+              "size": 151826
+            },
+            {
+              "name": "labels\\lab_00100601-en_2015-04-29.xml",
+              "size": 139844
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150817000816",
+          "rcept_dt": "20150817",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 82587,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00100601_2015-08-13.xbrl",
+            "00100601_entry_point_2015-08-13.xsd",
+            "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\dim_ifrs_for_00100601_2015-08-13.xml",
+            "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\cal_ifrs_for_00100601_2015-08-13.xml",
+            "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\pre_ifrs_for_00100601_2015-08-13.xml",
+            "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\role_ifrs_for_00100601-dim_2015-08-13.xsd",
+            "labels\\lab_00100601-ko_2015-08-13.xml",
+            "labels\\lab_00100601-en_2015-08-13.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00100601_2015-08-13.xbrl",
+              "size": 190573
+            },
+            {
+              "name": "00100601_entry_point_2015-08-13.xsd",
+              "size": 33318
+            },
+            {
+              "name": "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\dim_ifrs_for_00100601_2015-08-13.xml",
+              "size": 420440
+            },
+            {
+              "name": "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\cal_ifrs_for_00100601_2015-08-13.xml",
+              "size": 396239
+            },
+            {
+              "name": "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\pre_ifrs_for_00100601_2015-08-13.xml",
+              "size": 429161
+            },
+            {
+              "name": "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\role_ifrs_for_00100601-dim_2015-08-13.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00100601-ko_2015-08-13.xml",
+              "size": 136707
+            },
+            {
+              "name": "labels\\lab_00100601-en_2015-08-13.xml",
+              "size": 132398
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151116000261",
+          "rcept_dt": "20151116",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 150163,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00100601_2015-08-13.xbrl",
+            "00100601_entry_point_2015-08-13.xsd",
+            "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\dim_ifrs_for_00100601_2015-08-13.xml",
+            "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\cal_ifrs_for_00100601_2015-08-13.xml",
+            "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\pre_ifrs_for_00100601_2015-08-13.xml",
+            "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\role_ifrs_for_00100601-dim_2015-08-13.xsd",
+            "labels\\lab_00100601-ko_2015-08-13.xml",
+            "labels\\lab_00100601-en_2015-08-13.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00100601_2015-08-13.xbrl",
+              "size": 363119
+            },
+            {
+              "name": "00100601_entry_point_2015-08-13.xsd",
+              "size": 55691
+            },
+            {
+              "name": "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\dim_ifrs_for_00100601_2015-08-13.xml",
+              "size": 845505
+            },
+            {
+              "name": "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\cal_ifrs_for_00100601_2015-08-13.xml",
+              "size": 750174
+            },
+            {
+              "name": "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\pre_ifrs_for_00100601_2015-08-13.xml",
+              "size": 862983
+            },
+            {
+              "name": "ifrs_for_00100601\\dimensions_ifrs_for_00100601\\role_ifrs_for_00100601-dim_2015-08-13.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00100601-ko_2015-08-13.xml",
+              "size": 246693
+            },
+            {
+              "name": "labels\\lab_00100601-en_2015-08-13.xml",
+              "size": 241901
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00100717",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150514005164",
+          "rcept_dt": "20150514",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 129754,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00100717_2011-05-04.xbrl",
+            "00100717_entry_point_2011-05-04.xsd",
+            "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\dim_ifrs_for_00100717_2011-05-04.xml",
+            "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\cal_ifrs_for_00100717_2011-05-04.xml",
+            "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\pre_ifrs_for_00100717_2011-05-04.xml",
+            "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\role_ifrs_for_00100717-dim_2011-05-04.xsd",
+            "labels\\lab_00100717-ko_2011-05-04.xml",
+            "labels\\lab_00100717-en_2011-05-04.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00100717_2011-05-04.xbrl",
+              "size": 358654
+            },
+            {
+              "name": "00100717_entry_point_2011-05-04.xsd",
+              "size": 18241
+            },
+            {
+              "name": "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\dim_ifrs_for_00100717_2011-05-04.xml",
+              "size": 787694
+            },
+            {
+              "name": "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\cal_ifrs_for_00100717_2011-05-04.xml",
+              "size": 628696
+            },
+            {
+              "name": "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\pre_ifrs_for_00100717_2011-05-04.xml",
+              "size": 806928
+            },
+            {
+              "name": "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\role_ifrs_for_00100717-dim_2011-05-04.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00100717-ko_2011-05-04.xml",
+              "size": 99383
+            },
+            {
+              "name": "labels\\lab_00100717-en_2011-05-04.xml",
+              "size": 61224
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150813000358",
+          "rcept_dt": "20150813",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 132063,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00100717_2011-05-04.xbrl",
+            "00100717_entry_point_2011-05-04.xsd",
+            "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\dim_ifrs_for_00100717_2011-05-04.xml",
+            "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\cal_ifrs_for_00100717_2011-05-04.xml",
+            "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\pre_ifrs_for_00100717_2011-05-04.xml",
+            "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\role_ifrs_for_00100717-dim_2011-05-04.xsd",
+            "labels\\lab_00100717-ko_2011-05-04.xml",
+            "labels\\lab_00100717-en_2011-05-04.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00100717_2011-05-04.xbrl",
+              "size": 356962
+            },
+            {
+              "name": "00100717_entry_point_2011-05-04.xsd",
+              "size": 17983
+            },
+            {
+              "name": "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\dim_ifrs_for_00100717_2011-05-04.xml",
+              "size": 787928
+            },
+            {
+              "name": "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\cal_ifrs_for_00100717_2011-05-04.xml",
+              "size": 629805
+            },
+            {
+              "name": "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\pre_ifrs_for_00100717_2011-05-04.xml",
+              "size": 807187
+            },
+            {
+              "name": "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\role_ifrs_for_00100717-dim_2011-05-04.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00100717-ko_2011-05-04.xml",
+              "size": 100314
+            },
+            {
+              "name": "labels\\lab_00100717-en_2011-05-04.xml",
+              "size": 59940
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151113000903",
+          "rcept_dt": "20151113",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 132098,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00100717_2011-05-04.xbrl",
+            "00100717_entry_point_2011-05-04.xsd",
+            "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\dim_ifrs_for_00100717_2011-05-04.xml",
+            "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\cal_ifrs_for_00100717_2011-05-04.xml",
+            "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\pre_ifrs_for_00100717_2011-05-04.xml",
+            "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\role_ifrs_for_00100717-dim_2011-05-04.xsd",
+            "labels\\lab_00100717-ko_2011-05-04.xml",
+            "labels\\lab_00100717-en_2011-05-04.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00100717_2011-05-04.xbrl",
+              "size": 350473
+            },
+            {
+              "name": "00100717_entry_point_2011-05-04.xsd",
+              "size": 18390
+            },
+            {
+              "name": "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\dim_ifrs_for_00100717_2011-05-04.xml",
+              "size": 791557
+            },
+            {
+              "name": "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\cal_ifrs_for_00100717_2011-05-04.xml",
+              "size": 633010
+            },
+            {
+              "name": "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\pre_ifrs_for_00100717_2011-05-04.xml",
+              "size": 810811
+            },
+            {
+              "name": "ifrs_for_00100717\\dimensions_ifrs_for_00100717\\role_ifrs_for_00100717-dim_2011-05-04.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00100717-ko_2011-05-04.xml",
+              "size": 107269
+            },
+            {
+              "name": "labels\\lab_00100717-en_2011-05-04.xml",
+              "size": 61725
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00100957",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150515000632",
+          "rcept_dt": "20150515",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 147,
+          "zip_magic": false,
+          "status": "NOT_ZIP",
+          "response_head": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><result><status>014</status><message>파일이 존재하지 않습니다.</message></result>"
+        },
+        "H1": {
+          "rcept_no": "20150813001403",
+          "rcept_dt": "20150813",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 147,
+          "zip_magic": false,
+          "status": "NOT_ZIP",
+          "response_head": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><result><status>014</status><message>파일이 존재하지 않습니다.</message></result>"
+        },
+        "Q3": {
+          "rcept_no": "20151113001083",
+          "rcept_dt": "20151113",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 147,
+          "zip_magic": false,
+          "status": "NOT_ZIP",
+          "response_head": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><result><status>014</status><message>파일이 존재하지 않습니다.</message></result>"
+        }
+      }
+    },
+    {
+      "corp_code": "00101044",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150514002237",
+          "rcept_dt": "20150514",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 130151,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101044_2011-05-03.xbrl",
+            "00101044_entry_point_2011-05-03.xsd",
+            "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\dim_ifrs_for_00101044_2011-05-03.xml",
+            "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\cal_ifrs_for_00101044_2011-05-03.xml",
+            "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\pre_ifrs_for_00101044_2011-05-03.xml",
+            "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\role_ifrs_for_00101044-dim_2011-05-03.xsd",
+            "labels\\lab_00101044-ko_2011-05-03.xml",
+            "labels\\lab_00101044-en_2011-05-03.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101044_2011-05-03.xbrl",
+              "size": 354050
+            },
+            {
+              "name": "00101044_entry_point_2011-05-03.xsd",
+              "size": 30721
+            },
+            {
+              "name": "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\dim_ifrs_for_00101044_2011-05-03.xml",
+              "size": 776522
+            },
+            {
+              "name": "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\cal_ifrs_for_00101044_2011-05-03.xml",
+              "size": 686471
+            },
+            {
+              "name": "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\pre_ifrs_for_00101044_2011-05-03.xml",
+              "size": 794557
+            },
+            {
+              "name": "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\role_ifrs_for_00101044-dim_2011-05-03.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101044-ko_2011-05-03.xml",
+              "size": 111537
+            },
+            {
+              "name": "labels\\lab_00101044-en_2011-05-03.xml",
+              "size": 110753
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150728000163",
+          "rcept_dt": "20150728",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 134420,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101044_2011-05-03.xbrl",
+            "00101044_entry_point_2011-05-03.xsd",
+            "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\dim_ifrs_for_00101044_2011-05-03.xml",
+            "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\cal_ifrs_for_00101044_2011-05-03.xml",
+            "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\pre_ifrs_for_00101044_2011-05-03.xml",
+            "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\role_ifrs_for_00101044-dim_2011-05-03.xsd",
+            "labels\\lab_00101044-ko_2011-05-03.xml",
+            "labels\\lab_00101044-en_2011-05-03.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101044_2011-05-03.xbrl",
+              "size": 375833
+            },
+            {
+              "name": "00101044_entry_point_2011-05-03.xsd",
+              "size": 31295
+            },
+            {
+              "name": "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\dim_ifrs_for_00101044_2011-05-03.xml",
+              "size": 777712
+            },
+            {
+              "name": "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\cal_ifrs_for_00101044_2011-05-03.xml",
+              "size": 687477
+            },
+            {
+              "name": "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\pre_ifrs_for_00101044_2011-05-03.xml",
+              "size": 795726
+            },
+            {
+              "name": "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\role_ifrs_for_00101044-dim_2011-05-03.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101044-ko_2011-05-03.xml",
+              "size": 114187
+            },
+            {
+              "name": "labels\\lab_00101044-en_2011-05-03.xml",
+              "size": 113423
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151113000562",
+          "rcept_dt": "20151113",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 136817,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101044_2011-05-03.xbrl",
+            "00101044_entry_point_2011-05-03.xsd",
+            "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\dim_ifrs_for_00101044_2011-05-03.xml",
+            "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\cal_ifrs_for_00101044_2011-05-03.xml",
+            "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\pre_ifrs_for_00101044_2011-05-03.xml",
+            "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\role_ifrs_for_00101044-dim_2011-05-03.xsd",
+            "labels\\lab_00101044-ko_2011-05-03.xml",
+            "labels\\lab_00101044-en_2011-05-03.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101044_2011-05-03.xbrl",
+              "size": 381612
+            },
+            {
+              "name": "00101044_entry_point_2011-05-03.xsd",
+              "size": 34223
+            },
+            {
+              "name": "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\dim_ifrs_for_00101044_2011-05-03.xml",
+              "size": 783830
+            },
+            {
+              "name": "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\cal_ifrs_for_00101044_2011-05-03.xml",
+              "size": 691876
+            },
+            {
+              "name": "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\pre_ifrs_for_00101044_2011-05-03.xml",
+              "size": 801712
+            },
+            {
+              "name": "ifrs_for_00101044\\dimensions_ifrs_for_00101044\\role_ifrs_for_00101044-dim_2011-05-03.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101044-ko_2011-05-03.xml",
+              "size": 127753
+            },
+            {
+              "name": "labels\\lab_00101044-en_2011-05-03.xml",
+              "size": 127060
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00101220",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150515002644",
+          "rcept_dt": "20150515",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 147609,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101220_2012-05-09.xbrl",
+            "00101220_entry_point_2012-05-09.xsd",
+            "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\dim_ifrs_for_00101220_2012-05-09.xml",
+            "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\cal_ifrs_for_00101220_2012-05-09.xml",
+            "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\pre_ifrs_for_00101220_2012-05-09.xml",
+            "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\role_ifrs_for_00101220-dim_2012-05-09.xsd",
+            "labels\\lab_00101220-ko_2012-05-09.xml",
+            "labels\\lab_00101220-en_2012-05-09.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101220_2012-05-09.xbrl",
+              "size": 391221
+            },
+            {
+              "name": "00101220_entry_point_2012-05-09.xsd",
+              "size": 49753
+            },
+            {
+              "name": "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\dim_ifrs_for_00101220_2012-05-09.xml",
+              "size": 841293
+            },
+            {
+              "name": "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\cal_ifrs_for_00101220_2012-05-09.xml",
+              "size": 668719
+            },
+            {
+              "name": "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\pre_ifrs_for_00101220_2012-05-09.xml",
+              "size": 859341
+            },
+            {
+              "name": "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\role_ifrs_for_00101220-dim_2012-05-09.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101220-ko_2012-05-09.xml",
+              "size": 240613
+            },
+            {
+              "name": "labels\\lab_00101220-en_2012-05-09.xml",
+              "size": 204667
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150817001162",
+          "rcept_dt": "20150817",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 149071,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101220_2012-05-09.xbrl",
+            "00101220_entry_point_2012-05-09.xsd",
+            "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\dim_ifrs_for_00101220_2012-05-09.xml",
+            "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\cal_ifrs_for_00101220_2012-05-09.xml",
+            "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\pre_ifrs_for_00101220_2012-05-09.xml",
+            "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\role_ifrs_for_00101220-dim_2012-05-09.xsd",
+            "labels\\lab_00101220-ko_2012-05-09.xml",
+            "labels\\lab_00101220-en_2012-05-09.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101220_2012-05-09.xbrl",
+              "size": 395356
+            },
+            {
+              "name": "00101220_entry_point_2012-05-09.xsd",
+              "size": 46333
+            },
+            {
+              "name": "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\dim_ifrs_for_00101220_2012-05-09.xml",
+              "size": 841666
+            },
+            {
+              "name": "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\cal_ifrs_for_00101220_2012-05-09.xml",
+              "size": 656833
+            },
+            {
+              "name": "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\pre_ifrs_for_00101220_2012-05-09.xml",
+              "size": 859790
+            },
+            {
+              "name": "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\role_ifrs_for_00101220-dim_2012-05-09.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101220-ko_2012-05-09.xml",
+              "size": 223147
+            },
+            {
+              "name": "labels\\lab_00101220-en_2012-05-09.xml",
+              "size": 188351
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151116001327",
+          "rcept_dt": "20151116",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 151177,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101220_2012-05-09.xbrl",
+            "00101220_entry_point_2012-05-09.xsd",
+            "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\dim_ifrs_for_00101220_2012-05-09.xml",
+            "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\cal_ifrs_for_00101220_2012-05-09.xml",
+            "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\pre_ifrs_for_00101220_2012-05-09.xml",
+            "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\role_ifrs_for_00101220-dim_2012-05-09.xsd",
+            "labels\\lab_00101220-ko_2012-05-09.xml",
+            "labels\\lab_00101220-en_2012-05-09.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101220_2012-05-09.xbrl",
+              "size": 409001
+            },
+            {
+              "name": "00101220_entry_point_2012-05-09.xsd",
+              "size": 47887
+            },
+            {
+              "name": "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\dim_ifrs_for_00101220_2012-05-09.xml",
+              "size": 846835
+            },
+            {
+              "name": "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\cal_ifrs_for_00101220_2012-05-09.xml",
+              "size": 656193
+            },
+            {
+              "name": "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\pre_ifrs_for_00101220_2012-05-09.xml",
+              "size": 865084
+            },
+            {
+              "name": "ifrs_for_00101220\\dimensions_ifrs_for_00101220\\role_ifrs_for_00101220-dim_2012-05-09.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101220-ko_2012-05-09.xml",
+              "size": 229479
+            },
+            {
+              "name": "labels\\lab_00101220-en_2012-05-09.xml",
+              "size": 195719
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00101257",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150515002883",
+          "rcept_dt": "20150515",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 138145,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101257_2011-04-29.xbrl",
+            "00101257_entry_point_2011-04-29.xsd",
+            "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\dim_ifrs_for_00101257_2011-04-29.xml",
+            "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\cal_ifrs_for_00101257_2011-04-29.xml",
+            "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\pre_ifrs_for_00101257_2011-04-29.xml",
+            "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\role_ifrs_for_00101257-dim_2011-04-29.xsd",
+            "labels\\lab_00101257-ko_2011-04-29.xml",
+            "labels\\lab_00101257-en_2011-04-29.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101257_2011-04-29.xbrl",
+              "size": 271427
+            },
+            {
+              "name": "00101257_entry_point_2011-04-29.xsd",
+              "size": 43523
+            },
+            {
+              "name": "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\dim_ifrs_for_00101257_2011-04-29.xml",
+              "size": 804224
+            },
+            {
+              "name": "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\cal_ifrs_for_00101257_2011-04-29.xml",
+              "size": 714695
+            },
+            {
+              "name": "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\pre_ifrs_for_00101257_2011-04-29.xml",
+              "size": 821380
+            },
+            {
+              "name": "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\role_ifrs_for_00101257-dim_2011-04-29.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101257-ko_2011-04-29.xml",
+              "size": 217461
+            },
+            {
+              "name": "labels\\lab_00101257-en_2011-04-29.xml",
+              "size": 187378
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150817001771",
+          "rcept_dt": "20150817",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 142921,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101257_2011-04-29.xbrl",
+            "00101257_entry_point_2011-04-29.xsd",
+            "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\dim_ifrs_for_00101257_2011-04-29.xml",
+            "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\cal_ifrs_for_00101257_2011-04-29.xml",
+            "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\pre_ifrs_for_00101257_2011-04-29.xml",
+            "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\role_ifrs_for_00101257-dim_2011-04-29.xsd",
+            "labels\\lab_00101257-ko_2011-04-29.xml",
+            "labels\\lab_00101257-en_2011-04-29.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101257_2011-04-29.xbrl",
+              "size": 349079
+            },
+            {
+              "name": "00101257_entry_point_2011-04-29.xsd",
+              "size": 43608
+            },
+            {
+              "name": "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\dim_ifrs_for_00101257_2011-04-29.xml",
+              "size": 804422
+            },
+            {
+              "name": "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\cal_ifrs_for_00101257_2011-04-29.xml",
+              "size": 714376
+            },
+            {
+              "name": "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\pre_ifrs_for_00101257_2011-04-29.xml",
+              "size": 821576
+            },
+            {
+              "name": "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\role_ifrs_for_00101257-dim_2011-04-29.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101257-ko_2011-04-29.xml",
+              "size": 217964
+            },
+            {
+              "name": "labels\\lab_00101257-en_2011-04-29.xml",
+              "size": 187914
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151116000013",
+          "rcept_dt": "20151116",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 141872,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101257_2011-04-29.xbrl",
+            "00101257_entry_point_2011-04-29.xsd",
+            "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\dim_ifrs_for_00101257_2011-04-29.xml",
+            "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\cal_ifrs_for_00101257_2011-04-29.xml",
+            "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\pre_ifrs_for_00101257_2011-04-29.xml",
+            "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\role_ifrs_for_00101257-dim_2011-04-29.xsd",
+            "labels\\lab_00101257-ko_2011-04-29.xml",
+            "labels\\lab_00101257-en_2011-04-29.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101257_2011-04-29.xbrl",
+              "size": 344977
+            },
+            {
+              "name": "00101257_entry_point_2011-04-29.xsd",
+              "size": 42034
+            },
+            {
+              "name": "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\dim_ifrs_for_00101257_2011-04-29.xml",
+              "size": 802952
+            },
+            {
+              "name": "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\cal_ifrs_for_00101257_2011-04-29.xml",
+              "size": 715524
+            },
+            {
+              "name": "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\pre_ifrs_for_00101257_2011-04-29.xml",
+              "size": 820330
+            },
+            {
+              "name": "ifrs_for_00101257\\dimensions_ifrs_for_00101257\\role_ifrs_for_00101257-dim_2011-04-29.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101257-ko_2011-04-29.xml",
+              "size": 210053
+            },
+            {
+              "name": "labels\\lab_00101257-en_2011-04-29.xml",
+              "size": 179907
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00101336",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150514000343",
+          "rcept_dt": "20150514",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 127241,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101336_2011-04-27.xbrl",
+            "00101336_entry_point_2011-04-27.xsd",
+            "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\dim_ifrs_for_00101336_2011-04-27.xml",
+            "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\cal_ifrs_for_00101336_2011-04-27.xml",
+            "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\pre_ifrs_for_00101336_2011-04-27.xml",
+            "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\role_ifrs_for_00101336-dim_2011-04-27.xsd",
+            "labels\\lab_00101336-ko_2011-04-27.xml",
+            "labels\\lab_00101336-en_2011-04-27.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101336_2011-04-27.xbrl",
+              "size": 336615
+            },
+            {
+              "name": "00101336_entry_point_2011-04-27.xsd",
+              "size": 16970
+            },
+            {
+              "name": "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\dim_ifrs_for_00101336_2011-04-27.xml",
+              "size": 794991
+            },
+            {
+              "name": "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\cal_ifrs_for_00101336_2011-04-27.xml",
+              "size": 654104
+            },
+            {
+              "name": "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\pre_ifrs_for_00101336_2011-04-27.xml",
+              "size": 816172
+            },
+            {
+              "name": "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\role_ifrs_for_00101336-dim_2011-04-27.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101336-ko_2011-04-27.xml",
+              "size": 101951
+            },
+            {
+              "name": "labels\\lab_00101336-en_2011-04-27.xml",
+              "size": 48158
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150813000087",
+          "rcept_dt": "20150813",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 128592,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101336_2011-04-27.xbrl",
+            "00101336_entry_point_2011-04-27.xsd",
+            "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\dim_ifrs_for_00101336_2011-04-27.xml",
+            "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\cal_ifrs_for_00101336_2011-04-27.xml",
+            "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\pre_ifrs_for_00101336_2011-04-27.xml",
+            "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\role_ifrs_for_00101336-dim_2011-04-27.xsd",
+            "labels\\lab_00101336-ko_2011-04-27.xml",
+            "labels\\lab_00101336-en_2011-04-27.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101336_2011-04-27.xbrl",
+              "size": 337947
+            },
+            {
+              "name": "00101336_entry_point_2011-04-27.xsd",
+              "size": 15295
+            },
+            {
+              "name": "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\dim_ifrs_for_00101336_2011-04-27.xml",
+              "size": 795640
+            },
+            {
+              "name": "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\cal_ifrs_for_00101336_2011-04-27.xml",
+              "size": 649508
+            },
+            {
+              "name": "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\pre_ifrs_for_00101336_2011-04-27.xml",
+              "size": 816921
+            },
+            {
+              "name": "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\role_ifrs_for_00101336-dim_2011-04-27.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101336-ko_2011-04-27.xml",
+              "size": 93092
+            },
+            {
+              "name": "labels\\lab_00101336-en_2011-04-27.xml",
+              "size": 39832
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151113000536",
+          "rcept_dt": "20151113",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 129474,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101336_2011-04-27.xbrl",
+            "00101336_entry_point_2011-04-27.xsd",
+            "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\dim_ifrs_for_00101336_2011-04-27.xml",
+            "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\cal_ifrs_for_00101336_2011-04-27.xml",
+            "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\pre_ifrs_for_00101336_2011-04-27.xml",
+            "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\role_ifrs_for_00101336-dim_2011-04-27.xsd",
+            "labels\\lab_00101336-ko_2011-04-27.xml",
+            "labels\\lab_00101336-en_2011-04-27.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101336_2011-04-27.xbrl",
+              "size": 338164
+            },
+            {
+              "name": "00101336_entry_point_2011-04-27.xsd",
+              "size": 15295
+            },
+            {
+              "name": "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\dim_ifrs_for_00101336_2011-04-27.xml",
+              "size": 796651
+            },
+            {
+              "name": "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\cal_ifrs_for_00101336_2011-04-27.xml",
+              "size": 649105
+            },
+            {
+              "name": "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\pre_ifrs_for_00101336_2011-04-27.xml",
+              "size": 817922
+            },
+            {
+              "name": "ifrs_for_00101336\\dimensions_ifrs_for_00101336\\role_ifrs_for_00101336-dim_2011-04-27.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101336-ko_2011-04-27.xml",
+              "size": 93092
+            },
+            {
+              "name": "labels\\lab_00101336-en_2011-04-27.xml",
+              "size": 39832
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00101488",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150514002716",
+          "rcept_dt": "20150514",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 129464,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101488_2012-03-23.xbrl",
+            "00101488_entry_point_2012-03-23.xsd",
+            "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\dim_ifrs_for_00101488_2012-03-23.xml",
+            "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\cal_ifrs_for_00101488_2012-03-23.xml",
+            "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\pre_ifrs_for_00101488_2012-03-23.xml",
+            "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\role_ifrs_for_00101488-dim_2012-03-23.xsd",
+            "labels\\lab_00101488-ko_2012-03-23.xml",
+            "labels\\lab_00101488-en_2012-03-23.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101488_2012-03-23.xbrl",
+              "size": 297907
+            },
+            {
+              "name": "00101488_entry_point_2012-03-23.xsd",
+              "size": 25930
+            },
+            {
+              "name": "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\dim_ifrs_for_00101488_2012-03-23.xml",
+              "size": 780755
+            },
+            {
+              "name": "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\cal_ifrs_for_00101488_2012-03-23.xml",
+              "size": 704149
+            },
+            {
+              "name": "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\pre_ifrs_for_00101488_2012-03-23.xml",
+              "size": 799931
+            },
+            {
+              "name": "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\role_ifrs_for_00101488-dim_2012-03-23.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101488-ko_2012-03-23.xml",
+              "size": 122480
+            },
+            {
+              "name": "labels\\lab_00101488-en_2012-03-23.xml",
+              "size": 94766
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150813000964",
+          "rcept_dt": "20150813",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 129893,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101488_2012-03-23.xbrl",
+            "00101488_entry_point_2012-03-23.xsd",
+            "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\dim_ifrs_for_00101488_2012-03-23.xml",
+            "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\cal_ifrs_for_00101488_2012-03-23.xml",
+            "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\pre_ifrs_for_00101488_2012-03-23.xml",
+            "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\role_ifrs_for_00101488-dim_2012-03-23.xsd",
+            "labels\\lab_00101488-ko_2012-03-23.xml",
+            "labels\\lab_00101488-en_2012-03-23.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101488_2012-03-23.xbrl",
+              "size": 308012
+            },
+            {
+              "name": "00101488_entry_point_2012-03-23.xsd",
+              "size": 25567
+            },
+            {
+              "name": "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\dim_ifrs_for_00101488_2012-03-23.xml",
+              "size": 780562
+            },
+            {
+              "name": "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\cal_ifrs_for_00101488_2012-03-23.xml",
+              "size": 703016
+            },
+            {
+              "name": "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\pre_ifrs_for_00101488_2012-03-23.xml",
+              "size": 799740
+            },
+            {
+              "name": "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\role_ifrs_for_00101488-dim_2012-03-23.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101488-ko_2012-03-23.xml",
+              "size": 120004
+            },
+            {
+              "name": "labels\\lab_00101488-en_2012-03-23.xml",
+              "size": 93083
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151116000075",
+          "rcept_dt": "20151116",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 130671,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101488_2012-03-23.xbrl",
+            "00101488_entry_point_2012-03-23.xsd",
+            "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\dim_ifrs_for_00101488_2012-03-23.xml",
+            "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\cal_ifrs_for_00101488_2012-03-23.xml",
+            "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\pre_ifrs_for_00101488_2012-03-23.xml",
+            "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\role_ifrs_for_00101488-dim_2012-03-23.xsd",
+            "labels\\lab_00101488-ko_2012-03-23.xml",
+            "labels\\lab_00101488-en_2012-03-23.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101488_2012-03-23.xbrl",
+              "size": 303497
+            },
+            {
+              "name": "00101488_entry_point_2012-03-23.xsd",
+              "size": 26291
+            },
+            {
+              "name": "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\dim_ifrs_for_00101488_2012-03-23.xml",
+              "size": 781748
+            },
+            {
+              "name": "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\cal_ifrs_for_00101488_2012-03-23.xml",
+              "size": 704344
+            },
+            {
+              "name": "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\pre_ifrs_for_00101488_2012-03-23.xml",
+              "size": 800911
+            },
+            {
+              "name": "ifrs_for_00101488\\dimensions_ifrs_for_00101488\\role_ifrs_for_00101488-dim_2012-03-23.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101488-ko_2012-03-23.xml",
+              "size": 123383
+            },
+            {
+              "name": "labels\\lab_00101488-en_2012-03-23.xml",
+              "size": 96517
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00101549",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150515000051",
+          "rcept_dt": "20150515",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 133588,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101549_2011-05-11.xbrl",
+            "00101549_entry_point_2011-05-11.xsd",
+            "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\dim_ifrs_for_00101549_2011-05-11.xml",
+            "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\cal_ifrs_for_00101549_2011-05-11.xml",
+            "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\pre_ifrs_for_00101549_2011-05-11.xml",
+            "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\role_ifrs_for_00101549-dim_2011-05-11.xsd",
+            "labels\\lab_00101549-ko_2011-05-11.xml",
+            "labels\\lab_00101549-en_2011-05-11.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101549_2011-05-11.xbrl",
+              "size": 369074
+            },
+            {
+              "name": "00101549_entry_point_2011-05-11.xsd",
+              "size": 26397
+            },
+            {
+              "name": "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\dim_ifrs_for_00101549_2011-05-11.xml",
+              "size": 796109
+            },
+            {
+              "name": "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\cal_ifrs_for_00101549_2011-05-11.xml",
+              "size": 591885
+            },
+            {
+              "name": "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\pre_ifrs_for_00101549_2011-05-11.xml",
+              "size": 815452
+            },
+            {
+              "name": "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\role_ifrs_for_00101549-dim_2011-05-11.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101549-ko_2011-05-11.xml",
+              "size": 130261
+            },
+            {
+              "name": "labels\\lab_00101549-en_2011-05-11.xml",
+              "size": 94427
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150813000650",
+          "rcept_dt": "20150813",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 134920,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101549_2011-05-11.xbrl",
+            "00101549_entry_point_2011-05-11.xsd",
+            "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\dim_ifrs_for_00101549_2011-05-11.xml",
+            "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\cal_ifrs_for_00101549_2011-05-11.xml",
+            "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\pre_ifrs_for_00101549_2011-05-11.xml",
+            "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\role_ifrs_for_00101549-dim_2011-05-11.xsd",
+            "labels\\lab_00101549-ko_2011-05-11.xml",
+            "labels\\lab_00101549-en_2011-05-11.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101549_2011-05-11.xbrl",
+              "size": 379441
+            },
+            {
+              "name": "00101549_entry_point_2011-05-11.xsd",
+              "size": 26397
+            },
+            {
+              "name": "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\dim_ifrs_for_00101549_2011-05-11.xml",
+              "size": 796187
+            },
+            {
+              "name": "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\cal_ifrs_for_00101549_2011-05-11.xml",
+              "size": 591888
+            },
+            {
+              "name": "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\pre_ifrs_for_00101549_2011-05-11.xml",
+              "size": 815529
+            },
+            {
+              "name": "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\role_ifrs_for_00101549-dim_2011-05-11.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101549-ko_2011-05-11.xml",
+              "size": 130261
+            },
+            {
+              "name": "labels\\lab_00101549-en_2011-05-11.xml",
+              "size": 94427
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151116000278",
+          "rcept_dt": "20151116",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 136446,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101549_2011-05-11.xbrl",
+            "00101549_entry_point_2011-05-11.xsd",
+            "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\dim_ifrs_for_00101549_2011-05-11.xml",
+            "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\cal_ifrs_for_00101549_2011-05-11.xml",
+            "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\pre_ifrs_for_00101549_2011-05-11.xml",
+            "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\role_ifrs_for_00101549-dim_2011-05-11.xsd",
+            "labels\\lab_00101549-ko_2011-05-11.xml",
+            "labels\\lab_00101549-en_2011-05-11.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101549_2011-05-11.xbrl",
+              "size": 386170
+            },
+            {
+              "name": "00101549_entry_point_2011-05-11.xsd",
+              "size": 26397
+            },
+            {
+              "name": "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\dim_ifrs_for_00101549_2011-05-11.xml",
+              "size": 800443
+            },
+            {
+              "name": "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\cal_ifrs_for_00101549_2011-05-11.xml",
+              "size": 590692
+            },
+            {
+              "name": "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\pre_ifrs_for_00101549_2011-05-11.xml",
+              "size": 819724
+            },
+            {
+              "name": "ifrs_for_00101549\\dimensions_ifrs_for_00101549\\role_ifrs_for_00101549-dim_2011-05-11.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101549-ko_2011-05-11.xml",
+              "size": 131831
+            },
+            {
+              "name": "labels\\lab_00101549-en_2011-05-11.xml",
+              "size": 94362
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00101628",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150515001125",
+          "rcept_dt": "20150515",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 181826,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101628_2014-08-19.xbrl",
+            "00101628_entry_point_2014-08-19.xsd",
+            "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\dim_ifrs_for_00101628_2014-08-19.xml",
+            "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\cal_ifrs_for_00101628_2014-08-19.xml",
+            "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\pre_ifrs_for_00101628_2014-08-19.xml",
+            "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\role_ifrs_for_00101628-dim_2014-08-19.xsd",
+            "labels\\lab_00101628-ko_2014-08-19.xml",
+            "labels\\lab_00101628-en_2014-08-19.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101628_2014-08-19.xbrl",
+              "size": 572638
+            },
+            {
+              "name": "00101628_entry_point_2014-08-19.xsd",
+              "size": 99741
+            },
+            {
+              "name": "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\dim_ifrs_for_00101628_2014-08-19.xml",
+              "size": 919026
+            },
+            {
+              "name": "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\cal_ifrs_for_00101628_2014-08-19.xml",
+              "size": 760907
+            },
+            {
+              "name": "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\pre_ifrs_for_00101628_2014-08-19.xml",
+              "size": 933987
+            },
+            {
+              "name": "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\role_ifrs_for_00101628-dim_2014-08-19.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101628-ko_2014-08-19.xml",
+              "size": 467191
+            },
+            {
+              "name": "labels\\lab_00101628-en_2014-08-19.xml",
+              "size": 449256
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150817001163",
+          "rcept_dt": "20150817",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 180408,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101628_2014-08-19.xbrl",
+            "00101628_entry_point_2014-08-19.xsd",
+            "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\dim_ifrs_for_00101628_2014-08-19.xml",
+            "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\cal_ifrs_for_00101628_2014-08-19.xml",
+            "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\pre_ifrs_for_00101628_2014-08-19.xml",
+            "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\role_ifrs_for_00101628-dim_2014-08-19.xsd",
+            "labels\\lab_00101628-ko_2014-08-19.xml",
+            "labels\\lab_00101628-en_2014-08-19.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101628_2014-08-19.xbrl",
+              "size": 559460
+            },
+            {
+              "name": "00101628_entry_point_2014-08-19.xsd",
+              "size": 92315
+            },
+            {
+              "name": "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\dim_ifrs_for_00101628_2014-08-19.xml",
+              "size": 907523
+            },
+            {
+              "name": "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\cal_ifrs_for_00101628_2014-08-19.xml",
+              "size": 734619
+            },
+            {
+              "name": "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\pre_ifrs_for_00101628_2014-08-19.xml",
+              "size": 922759
+            },
+            {
+              "name": "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\role_ifrs_for_00101628-dim_2014-08-19.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101628-ko_2014-08-19.xml",
+              "size": 429365
+            },
+            {
+              "name": "labels\\lab_00101628-en_2014-08-19.xml",
+              "size": 410256
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151116001055",
+          "rcept_dt": "20151116",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 183123,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101628_2014-08-19.xbrl",
+            "00101628_entry_point_2014-08-19.xsd",
+            "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\dim_ifrs_for_00101628_2014-08-19.xml",
+            "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\cal_ifrs_for_00101628_2014-08-19.xml",
+            "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\pre_ifrs_for_00101628_2014-08-19.xml",
+            "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\role_ifrs_for_00101628-dim_2014-08-19.xsd",
+            "labels\\lab_00101628-ko_2014-08-19.xml",
+            "labels\\lab_00101628-en_2014-08-19.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101628_2014-08-19.xbrl",
+              "size": 566066
+            },
+            {
+              "name": "00101628_entry_point_2014-08-19.xsd",
+              "size": 94653
+            },
+            {
+              "name": "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\dim_ifrs_for_00101628_2014-08-19.xml",
+              "size": 912153
+            },
+            {
+              "name": "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\cal_ifrs_for_00101628_2014-08-19.xml",
+              "size": 739009
+            },
+            {
+              "name": "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\pre_ifrs_for_00101628_2014-08-19.xml",
+              "size": 927302
+            },
+            {
+              "name": "ifrs_for_00101628\\dimensions_ifrs_for_00101628\\role_ifrs_for_00101628-dim_2014-08-19.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101628-ko_2014-08-19.xml",
+              "size": 440298
+            },
+            {
+              "name": "labels\\lab_00101628-en_2014-08-19.xml",
+              "size": 421346
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00101664",
+      "quarters": {
+        "Q1": {
+          "status": "NO_RECEIPT"
+        },
+        "H1": {
+          "rcept_no": "20150817000564",
+          "rcept_dt": "20150817",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 73345,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101664_2015-06-30.xbrl",
+            "00101664_entry_point_2015-06-30.xsd",
+            "ifrs_for_00101664\\dimensions_ifrs_for_00101664\\dim_ifrs_for_00101664_2015-06-30.xml",
+            "ifrs_for_00101664\\dimensions_ifrs_for_00101664\\cal_ifrs_for_00101664_2015-06-30.xml",
+            "ifrs_for_00101664\\dimensions_ifrs_for_00101664\\pre_ifrs_for_00101664_2015-06-30.xml",
+            "ifrs_for_00101664\\dimensions_ifrs_for_00101664\\role_ifrs_for_00101664-dim_2015-06-30.xsd",
+            "labels\\lab_00101664-ko_2015-06-30.xml",
+            "labels\\lab_00101664-en_2015-06-30.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101664_2015-06-30.xbrl",
+              "size": 203013
+            },
+            {
+              "name": "00101664_entry_point_2015-06-30.xsd",
+              "size": 22460
+            },
+            {
+              "name": "ifrs_for_00101664\\dimensions_ifrs_for_00101664\\dim_ifrs_for_00101664_2015-06-30.xml",
+              "size": 388239
+            },
+            {
+              "name": "ifrs_for_00101664\\dimensions_ifrs_for_00101664\\cal_ifrs_for_00101664_2015-06-30.xml",
+              "size": 343331
+            },
+            {
+              "name": "ifrs_for_00101664\\dimensions_ifrs_for_00101664\\pre_ifrs_for_00101664_2015-06-30.xml",
+              "size": 397137
+            },
+            {
+              "name": "ifrs_for_00101664\\dimensions_ifrs_for_00101664\\role_ifrs_for_00101664-dim_2015-06-30.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101664-ko_2015-06-30.xml",
+              "size": 91989
+            },
+            {
+              "name": "labels\\lab_00101664-en_2015-06-30.xml",
+              "size": 78172
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151116001104",
+          "rcept_dt": "20151116",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 73227,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101664_2015-06-30.xbrl",
+            "00101664_entry_point_2015-06-30.xsd",
+            "ifrs_for_00101664\\dimensions_ifrs_for_00101664\\dim_ifrs_for_00101664_2015-06-30.xml",
+            "ifrs_for_00101664\\dimensions_ifrs_for_00101664\\cal_ifrs_for_00101664_2015-06-30.xml",
+            "ifrs_for_00101664\\dimensions_ifrs_for_00101664\\pre_ifrs_for_00101664_2015-06-30.xml",
+            "ifrs_for_00101664\\dimensions_ifrs_for_00101664\\role_ifrs_for_00101664-dim_2015-06-30.xsd",
+            "labels\\lab_00101664-ko_2015-06-30.xml",
+            "labels\\lab_00101664-en_2015-06-30.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101664_2015-06-30.xbrl",
+              "size": 201490
+            },
+            {
+              "name": "00101664_entry_point_2015-06-30.xsd",
+              "size": 22460
+            },
+            {
+              "name": "ifrs_for_00101664\\dimensions_ifrs_for_00101664\\dim_ifrs_for_00101664_2015-06-30.xml",
+              "size": 388201
+            },
+            {
+              "name": "ifrs_for_00101664\\dimensions_ifrs_for_00101664\\cal_ifrs_for_00101664_2015-06-30.xml",
+              "size": 343316
+            },
+            {
+              "name": "ifrs_for_00101664\\dimensions_ifrs_for_00101664\\pre_ifrs_for_00101664_2015-06-30.xml",
+              "size": 397103
+            },
+            {
+              "name": "ifrs_for_00101664\\dimensions_ifrs_for_00101664\\role_ifrs_for_00101664-dim_2015-06-30.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101664-ko_2015-06-30.xml",
+              "size": 91989
+            },
+            {
+              "name": "labels\\lab_00101664-en_2015-06-30.xml",
+              "size": 78172
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00101752",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150514004483",
+          "rcept_dt": "20150514",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 159280,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101752_2014-03-26.xbrl",
+            "00101752_entry_point_2014-03-26.xsd",
+            "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\dim_ifrs_for_00101752_2014-03-26.xml",
+            "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\cal_ifrs_for_00101752_2014-03-26.xml",
+            "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\pre_ifrs_for_00101752_2014-03-26.xml",
+            "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\role_ifrs_for_00101752-dim_2014-03-26.xsd",
+            "labels\\lab_00101752-ko_2014-03-26.xml",
+            "labels\\lab_00101752-en_2014-03-26.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101752_2014-03-26.xbrl",
+              "size": 524663
+            },
+            {
+              "name": "00101752_entry_point_2014-03-26.xsd",
+              "size": 78595
+            },
+            {
+              "name": "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\dim_ifrs_for_00101752_2014-03-26.xml",
+              "size": 855921
+            },
+            {
+              "name": "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\cal_ifrs_for_00101752_2014-03-26.xml",
+              "size": 832252
+            },
+            {
+              "name": "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\pre_ifrs_for_00101752_2014-03-26.xml",
+              "size": 872019
+            },
+            {
+              "name": "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\role_ifrs_for_00101752-dim_2014-03-26.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101752-ko_2014-03-26.xml",
+              "size": 359272
+            },
+            {
+              "name": "labels\\lab_00101752-en_2014-03-26.xml",
+              "size": 349734
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150813000507",
+          "rcept_dt": "20150813",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 156549,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101752_2014-03-26.xbrl",
+            "00101752_entry_point_2014-03-26.xsd",
+            "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\dim_ifrs_for_00101752_2014-03-26.xml",
+            "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\cal_ifrs_for_00101752_2014-03-26.xml",
+            "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\pre_ifrs_for_00101752_2014-03-26.xml",
+            "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\role_ifrs_for_00101752-dim_2014-03-26.xsd",
+            "labels\\lab_00101752-ko_2014-03-26.xml",
+            "labels\\lab_00101752-en_2014-03-26.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101752_2014-03-26.xbrl",
+              "size": 521818
+            },
+            {
+              "name": "00101752_entry_point_2014-03-26.xsd",
+              "size": 73825
+            },
+            {
+              "name": "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\dim_ifrs_for_00101752_2014-03-26.xml",
+              "size": 847391
+            },
+            {
+              "name": "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\cal_ifrs_for_00101752_2014-03-26.xml",
+              "size": 776085
+            },
+            {
+              "name": "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\pre_ifrs_for_00101752_2014-03-26.xml",
+              "size": 863650
+            },
+            {
+              "name": "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\role_ifrs_for_00101752-dim_2014-03-26.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101752-ko_2014-03-26.xml",
+              "size": 338510
+            },
+            {
+              "name": "labels\\lab_00101752-en_2014-03-26.xml",
+              "size": 326376
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151113000614",
+          "rcept_dt": "20151113",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 158232,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00101752_2014-03-26.xbrl",
+            "00101752_entry_point_2014-03-26.xsd",
+            "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\dim_ifrs_for_00101752_2014-03-26.xml",
+            "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\cal_ifrs_for_00101752_2014-03-26.xml",
+            "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\pre_ifrs_for_00101752_2014-03-26.xml",
+            "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\role_ifrs_for_00101752-dim_2014-03-26.xsd",
+            "labels\\lab_00101752-ko_2014-03-26.xml",
+            "labels\\lab_00101752-en_2014-03-26.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00101752_2014-03-26.xbrl",
+              "size": 517380
+            },
+            {
+              "name": "00101752_entry_point_2014-03-26.xsd",
+              "size": 74190
+            },
+            {
+              "name": "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\dim_ifrs_for_00101752_2014-03-26.xml",
+              "size": 848693
+            },
+            {
+              "name": "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\cal_ifrs_for_00101752_2014-03-26.xml",
+              "size": 776397
+            },
+            {
+              "name": "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\pre_ifrs_for_00101752_2014-03-26.xml",
+              "size": 864961
+            },
+            {
+              "name": "ifrs_for_00101752\\dimensions_ifrs_for_00101752\\role_ifrs_for_00101752-dim_2014-03-26.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00101752-ko_2014-03-26.xml",
+              "size": 340192
+            },
+            {
+              "name": "labels\\lab_00101752-en_2014-03-26.xml",
+              "size": 328118
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00102113",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150515000371",
+          "rcept_dt": "20150515",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 136357,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00102113_2011-05-06.xbrl",
+            "00102113_entry_point_2011-05-06.xsd",
+            "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\dim_ifrs_for_00102113_2011-05-06.xml",
+            "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\cal_ifrs_for_00102113_2011-05-06.xml",
+            "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\pre_ifrs_for_00102113_2011-05-06.xml",
+            "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\role_ifrs_for_00102113-dim_2011-05-06.xsd",
+            "labels\\lab_00102113-ko_2011-05-06.xml",
+            "labels\\lab_00102113-en_2011-05-06.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00102113_2011-05-06.xbrl",
+              "size": 431781
+            },
+            {
+              "name": "00102113_entry_point_2011-05-06.xsd",
+              "size": 22057
+            },
+            {
+              "name": "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\dim_ifrs_for_00102113_2011-05-06.xml",
+              "size": 801094
+            },
+            {
+              "name": "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\cal_ifrs_for_00102113_2011-05-06.xml",
+              "size": 612269
+            },
+            {
+              "name": "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\pre_ifrs_for_00102113_2011-05-06.xml",
+              "size": 820762
+            },
+            {
+              "name": "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\role_ifrs_for_00102113-dim_2011-05-06.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00102113-ko_2011-05-06.xml",
+              "size": 111501
+            },
+            {
+              "name": "labels\\lab_00102113-en_2011-05-06.xml",
+              "size": 73424
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150813001318",
+          "rcept_dt": "20150813",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 138231,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00102113_2011-05-06.xbrl",
+            "00102113_entry_point_2011-05-06.xsd",
+            "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\dim_ifrs_for_00102113_2011-05-06.xml",
+            "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\cal_ifrs_for_00102113_2011-05-06.xml",
+            "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\pre_ifrs_for_00102113_2011-05-06.xml",
+            "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\role_ifrs_for_00102113-dim_2011-05-06.xsd",
+            "labels\\lab_00102113-ko_2011-05-06.xml",
+            "labels\\lab_00102113-en_2011-05-06.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00102113_2011-05-06.xbrl",
+              "size": 443884
+            },
+            {
+              "name": "00102113_entry_point_2011-05-06.xsd",
+              "size": 21793
+            },
+            {
+              "name": "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\dim_ifrs_for_00102113_2011-05-06.xml",
+              "size": 801254
+            },
+            {
+              "name": "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\cal_ifrs_for_00102113_2011-05-06.xml",
+              "size": 612269
+            },
+            {
+              "name": "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\pre_ifrs_for_00102113_2011-05-06.xml",
+              "size": 820947
+            },
+            {
+              "name": "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\role_ifrs_for_00102113-dim_2011-05-06.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00102113-ko_2011-05-06.xml",
+              "size": 110167
+            },
+            {
+              "name": "labels\\lab_00102113-en_2011-05-06.xml",
+              "size": 72077
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151116000626",
+          "rcept_dt": "20151116",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 138193,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00102113_2011-05-06.xbrl",
+            "00102113_entry_point_2011-05-06.xsd",
+            "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\dim_ifrs_for_00102113_2011-05-06.xml",
+            "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\cal_ifrs_for_00102113_2011-05-06.xml",
+            "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\pre_ifrs_for_00102113_2011-05-06.xml",
+            "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\role_ifrs_for_00102113-dim_2011-05-06.xsd",
+            "labels\\lab_00102113-ko_2011-05-06.xml",
+            "labels\\lab_00102113-en_2011-05-06.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00102113_2011-05-06.xbrl",
+              "size": 439828
+            },
+            {
+              "name": "00102113_entry_point_2011-05-06.xsd",
+              "size": 21793
+            },
+            {
+              "name": "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\dim_ifrs_for_00102113_2011-05-06.xml",
+              "size": 801691
+            },
+            {
+              "name": "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\cal_ifrs_for_00102113_2011-05-06.xml",
+              "size": 612269
+            },
+            {
+              "name": "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\pre_ifrs_for_00102113_2011-05-06.xml",
+              "size": 821366
+            },
+            {
+              "name": "ifrs_for_00102113\\dimensions_ifrs_for_00102113\\role_ifrs_for_00102113-dim_2011-05-06.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00102113-ko_2011-05-06.xml",
+              "size": 110167
+            },
+            {
+              "name": "labels\\lab_00102113-en_2011-05-06.xml",
+              "size": 72077
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00102618",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150515002339",
+          "rcept_dt": "20150515",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 129603,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00102618_2011-05-06.xbrl",
+            "00102618_entry_point_2011-05-06.xsd",
+            "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\dim_ifrs_for_00102618_2011-05-06.xml",
+            "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\cal_ifrs_for_00102618_2011-05-06.xml",
+            "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\pre_ifrs_for_00102618_2011-05-06.xml",
+            "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\role_ifrs_for_00102618-dim_2011-05-06.xsd",
+            "labels\\lab_00102618-ko_2011-05-06.xml",
+            "labels\\lab_00102618-en_2011-05-06.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00102618_2011-05-06.xbrl",
+              "size": 304786
+            },
+            {
+              "name": "00102618_entry_point_2011-05-06.xsd",
+              "size": 29862
+            },
+            {
+              "name": "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\dim_ifrs_for_00102618_2011-05-06.xml",
+              "size": 787970
+            },
+            {
+              "name": "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\cal_ifrs_for_00102618_2011-05-06.xml",
+              "size": 702609
+            },
+            {
+              "name": "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\pre_ifrs_for_00102618_2011-05-06.xml",
+              "size": 806398
+            },
+            {
+              "name": "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\role_ifrs_for_00102618-dim_2011-05-06.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00102618-ko_2011-05-06.xml",
+              "size": 117675
+            },
+            {
+              "name": "labels\\lab_00102618-en_2011-05-06.xml",
+              "size": 114322
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150813000727",
+          "rcept_dt": "20150813",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 132421,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00102618_2011-05-06.xbrl",
+            "00102618_entry_point_2011-05-06.xsd",
+            "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\dim_ifrs_for_00102618_2011-05-06.xml",
+            "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\cal_ifrs_for_00102618_2011-05-06.xml",
+            "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\pre_ifrs_for_00102618_2011-05-06.xml",
+            "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\role_ifrs_for_00102618-dim_2011-05-06.xsd",
+            "labels\\lab_00102618-ko_2011-05-06.xml",
+            "labels\\lab_00102618-en_2011-05-06.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00102618_2011-05-06.xbrl",
+              "size": 305760
+            },
+            {
+              "name": "00102618_entry_point_2011-05-06.xsd",
+              "size": 31303
+            },
+            {
+              "name": "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\dim_ifrs_for_00102618_2011-05-06.xml",
+              "size": 791789
+            },
+            {
+              "name": "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\cal_ifrs_for_00102618_2011-05-06.xml",
+              "size": 709362
+            },
+            {
+              "name": "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\pre_ifrs_for_00102618_2011-05-06.xml",
+              "size": 810304
+            },
+            {
+              "name": "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\role_ifrs_for_00102618-dim_2011-05-06.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00102618-ko_2011-05-06.xml",
+              "size": 120399
+            },
+            {
+              "name": "labels\\lab_00102618-en_2011-05-06.xml",
+              "size": 120079
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151116000610",
+          "rcept_dt": "20151116",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 133354,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00102618_2011-05-06.xbrl",
+            "00102618_entry_point_2011-05-06.xsd",
+            "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\dim_ifrs_for_00102618_2011-05-06.xml",
+            "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\cal_ifrs_for_00102618_2011-05-06.xml",
+            "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\pre_ifrs_for_00102618_2011-05-06.xml",
+            "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\role_ifrs_for_00102618-dim_2011-05-06.xsd",
+            "labels\\lab_00102618-ko_2011-05-06.xml",
+            "labels\\lab_00102618-en_2011-05-06.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00102618_2011-05-06.xbrl",
+              "size": 305318
+            },
+            {
+              "name": "00102618_entry_point_2011-05-06.xsd",
+              "size": 33308
+            },
+            {
+              "name": "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\dim_ifrs_for_00102618_2011-05-06.xml",
+              "size": 795676
+            },
+            {
+              "name": "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\cal_ifrs_for_00102618_2011-05-06.xml",
+              "size": 712614
+            },
+            {
+              "name": "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\pre_ifrs_for_00102618_2011-05-06.xml",
+              "size": 814251
+            },
+            {
+              "name": "ifrs_for_00102618\\dimensions_ifrs_for_00102618\\role_ifrs_for_00102618-dim_2011-05-06.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00102618-ko_2011-05-06.xml",
+              "size": 130022
+            },
+            {
+              "name": "labels\\lab_00102618-en_2011-05-06.xml",
+              "size": 129905
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00102751",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150514001203",
+          "rcept_dt": "20150514",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 138175,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00102751_2011-12-31.xbrl",
+            "00102751_entry_point_2011-12-31.xsd",
+            "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\dim_ifrs_for_00102751_2011-12-31.xml",
+            "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\cal_ifrs_for_00102751_2011-12-31.xml",
+            "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\pre_ifrs_for_00102751_2011-12-31.xml",
+            "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\role_ifrs_for_00102751-dim_2011-12-31.xsd",
+            "labels\\lab_00102751-ko_2011-12-31.xml",
+            "labels\\lab_00102751-en_2011-12-31.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00102751_2011-12-31.xbrl",
+              "size": 429857
+            },
+            {
+              "name": "00102751_entry_point_2011-12-31.xsd",
+              "size": 26541
+            },
+            {
+              "name": "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\dim_ifrs_for_00102751_2011-12-31.xml",
+              "size": 824195
+            },
+            {
+              "name": "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\cal_ifrs_for_00102751_2011-12-31.xml",
+              "size": 657363
+            },
+            {
+              "name": "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\pre_ifrs_for_00102751_2011-12-31.xml",
+              "size": 843756
+            },
+            {
+              "name": "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\role_ifrs_for_00102751-dim_2011-12-31.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00102751-ko_2011-12-31.xml",
+              "size": 135082
+            },
+            {
+              "name": "labels\\lab_00102751-en_2011-12-31.xml",
+              "size": 98332
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150813000508",
+          "rcept_dt": "20150813",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 142092,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00102751_2011-12-31.xbrl",
+            "00102751_entry_point_2011-12-31.xsd",
+            "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\dim_ifrs_for_00102751_2011-12-31.xml",
+            "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\cal_ifrs_for_00102751_2011-12-31.xml",
+            "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\pre_ifrs_for_00102751_2011-12-31.xml",
+            "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\role_ifrs_for_00102751-dim_2011-12-31.xsd",
+            "labels\\lab_00102751-ko_2011-12-31.xml",
+            "labels\\lab_00102751-en_2011-12-31.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00102751_2011-12-31.xbrl",
+              "size": 437493
+            },
+            {
+              "name": "00102751_entry_point_2011-12-31.xsd",
+              "size": 26541
+            },
+            {
+              "name": "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\dim_ifrs_for_00102751_2011-12-31.xml",
+              "size": 823584
+            },
+            {
+              "name": "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\cal_ifrs_for_00102751_2011-12-31.xml",
+              "size": 678558
+            },
+            {
+              "name": "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\pre_ifrs_for_00102751_2011-12-31.xml",
+              "size": 843068
+            },
+            {
+              "name": "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\role_ifrs_for_00102751-dim_2011-12-31.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00102751-ko_2011-12-31.xml",
+              "size": 137739
+            },
+            {
+              "name": "labels\\lab_00102751-en_2011-12-31.xml",
+              "size": 98332
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151116000906",
+          "rcept_dt": "20151116",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 141959,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00102751_2011-12-31.xbrl",
+            "00102751_entry_point_2011-12-31.xsd",
+            "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\dim_ifrs_for_00102751_2011-12-31.xml",
+            "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\cal_ifrs_for_00102751_2011-12-31.xml",
+            "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\pre_ifrs_for_00102751_2011-12-31.xml",
+            "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\role_ifrs_for_00102751-dim_2011-12-31.xsd",
+            "labels\\lab_00102751-ko_2011-12-31.xml",
+            "labels\\lab_00102751-en_2011-12-31.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00102751_2011-12-31.xbrl",
+              "size": 440144
+            },
+            {
+              "name": "00102751_entry_point_2011-12-31.xsd",
+              "size": 26227
+            },
+            {
+              "name": "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\dim_ifrs_for_00102751_2011-12-31.xml",
+              "size": 824378
+            },
+            {
+              "name": "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\cal_ifrs_for_00102751_2011-12-31.xml",
+              "size": 676867
+            },
+            {
+              "name": "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\pre_ifrs_for_00102751_2011-12-31.xml",
+              "size": 843899
+            },
+            {
+              "name": "ifrs_for_00102751\\dimensions_ifrs_for_00102751\\role_ifrs_for_00102751-dim_2011-12-31.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00102751-ko_2011-12-31.xml",
+              "size": 134623
+            },
+            {
+              "name": "labels\\lab_00102751-en_2011-12-31.xml",
+              "size": 96835
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00102760",
+      "quarters": {
+        "Q1": {
+          "status": "NO_RECEIPT"
+        },
+        "H1": {
+          "status": "NO_RECEIPT"
+        },
+        "Q3": {
+          "rcept_no": "20151116000622",
+          "rcept_dt": "20151116",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 175179,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00102760_2015-03-31.xbrl",
+            "00102760_entry_point_2015-03-31.xsd",
+            "ifrs_for_00102760\\dimensions_ifrs_for_00102760\\dim_ifrs_for_00102760_2015-03-31.xml",
+            "ifrs_for_00102760\\dimensions_ifrs_for_00102760\\cal_ifrs_for_00102760_2015-03-31.xml",
+            "ifrs_for_00102760\\dimensions_ifrs_for_00102760\\pre_ifrs_for_00102760_2015-03-31.xml",
+            "ifrs_for_00102760\\dimensions_ifrs_for_00102760\\role_ifrs_for_00102760-dim_2015-03-31.xsd",
+            "labels\\lab_00102760-ko_2015-03-31.xml",
+            "labels\\lab_00102760-en_2015-03-31.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00102760_2015-03-31.xbrl",
+              "size": 810001
+            },
+            {
+              "name": "00102760_entry_point_2015-03-31.xsd",
+              "size": 81921
+            },
+            {
+              "name": "ifrs_for_00102760\\dimensions_ifrs_for_00102760\\dim_ifrs_for_00102760_2015-03-31.xml",
+              "size": 849339
+            },
+            {
+              "name": "ifrs_for_00102760\\dimensions_ifrs_for_00102760\\cal_ifrs_for_00102760_2015-03-31.xml",
+              "size": 812347
+            },
+            {
+              "name": "ifrs_for_00102760\\dimensions_ifrs_for_00102760\\pre_ifrs_for_00102760_2015-03-31.xml",
+              "size": 864602
+            },
+            {
+              "name": "ifrs_for_00102760\\dimensions_ifrs_for_00102760\\role_ifrs_for_00102760-dim_2015-03-31.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00102760-ko_2015-03-31.xml",
+              "size": 390247
+            },
+            {
+              "name": "labels\\lab_00102760-en_2015-03-31.xml",
+              "size": 372749
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00102858",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150515001430",
+          "rcept_dt": "20150515",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 149021,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00102858_2013-03-12.xbrl",
+            "00102858_entry_point_2013-03-12.xsd",
+            "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\dim_ifrs_for_00102858_2013-03-12.xml",
+            "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\cal_ifrs_for_00102858_2013-03-12.xml",
+            "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\pre_ifrs_for_00102858_2013-03-12.xml",
+            "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\role_ifrs_for_00102858-dim_2013-03-12.xsd",
+            "labels\\lab_00102858-ko_2013-03-12.xml",
+            "labels\\lab_00102858-en_2013-03-12.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00102858_2013-03-12.xbrl",
+              "size": 382714
+            },
+            {
+              "name": "00102858_entry_point_2013-03-12.xsd",
+              "size": 57447
+            },
+            {
+              "name": "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\dim_ifrs_for_00102858_2013-03-12.xml",
+              "size": 818936
+            },
+            {
+              "name": "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\cal_ifrs_for_00102858_2013-03-12.xml",
+              "size": 715611
+            },
+            {
+              "name": "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\pre_ifrs_for_00102858_2013-03-12.xml",
+              "size": 837054
+            },
+            {
+              "name": "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\role_ifrs_for_00102858-dim_2013-03-12.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00102858-ko_2013-03-12.xml",
+              "size": 260307
+            },
+            {
+              "name": "labels\\lab_00102858-en_2013-03-12.xml",
+              "size": 253670
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150817000784",
+          "rcept_dt": "20150817",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 134774,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00102858_2013-03-12.xbrl",
+            "00102858_entry_point_2013-03-12.xsd",
+            "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\dim_ifrs_for_00102858_2013-03-12.xml",
+            "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\cal_ifrs_for_00102858_2013-03-12.xml",
+            "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\pre_ifrs_for_00102858_2013-03-12.xml",
+            "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\role_ifrs_for_00102858-dim_2013-03-12.xsd",
+            "labels\\lab_00102858-ko_2013-03-12.xml",
+            "labels\\lab_00102858-en_2013-03-12.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00102858_2013-03-12.xbrl",
+              "size": 371617
+            },
+            {
+              "name": "00102858_entry_point_2013-03-12.xsd",
+              "size": 33755
+            },
+            {
+              "name": "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\dim_ifrs_for_00102858_2013-03-12.xml",
+              "size": 805202
+            },
+            {
+              "name": "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\cal_ifrs_for_00102858_2013-03-12.xml",
+              "size": 535675
+            },
+            {
+              "name": "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\pre_ifrs_for_00102858_2013-03-12.xml",
+              "size": 825101
+            },
+            {
+              "name": "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\role_ifrs_for_00102858-dim_2013-03-12.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00102858-ko_2013-03-12.xml",
+              "size": 174049
+            },
+            {
+              "name": "labels\\lab_00102858-en_2013-03-12.xml",
+              "size": 145643
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151116000577",
+          "rcept_dt": "20151116",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 136112,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00102858_2013-03-12.xbrl",
+            "00102858_entry_point_2013-03-12.xsd",
+            "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\dim_ifrs_for_00102858_2013-03-12.xml",
+            "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\cal_ifrs_for_00102858_2013-03-12.xml",
+            "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\pre_ifrs_for_00102858_2013-03-12.xml",
+            "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\role_ifrs_for_00102858-dim_2013-03-12.xsd",
+            "labels\\lab_00102858-ko_2013-03-12.xml",
+            "labels\\lab_00102858-en_2013-03-12.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00102858_2013-03-12.xbrl",
+              "size": 371445
+            },
+            {
+              "name": "00102858_entry_point_2013-03-12.xsd",
+              "size": 33445
+            },
+            {
+              "name": "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\dim_ifrs_for_00102858_2013-03-12.xml",
+              "size": 804257
+            },
+            {
+              "name": "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\cal_ifrs_for_00102858_2013-03-12.xml",
+              "size": 537370
+            },
+            {
+              "name": "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\pre_ifrs_for_00102858_2013-03-12.xml",
+              "size": 824092
+            },
+            {
+              "name": "ifrs_for_00102858\\dimensions_ifrs_for_00102858\\role_ifrs_for_00102858-dim_2013-03-12.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00102858-ko_2013-03-12.xml",
+              "size": 173041
+            },
+            {
+              "name": "labels\\lab_00102858-en_2013-03-12.xml",
+              "size": 144123
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00103006",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150515001128",
+          "rcept_dt": "20150515",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 133015,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00103006_2011-05-03.xbrl",
+            "00103006_entry_point_2011-05-03.xsd",
+            "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\dim_ifrs_for_00103006_2011-05-03.xml",
+            "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\cal_ifrs_for_00103006_2011-05-03.xml",
+            "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\pre_ifrs_for_00103006_2011-05-03.xml",
+            "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\role_ifrs_for_00103006-dim_2011-05-03.xsd",
+            "labels\\lab_00103006-ko_2011-05-03.xml",
+            "labels\\lab_00103006-en_2011-05-03.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00103006_2011-05-03.xbrl",
+              "size": 348439
+            },
+            {
+              "name": "00103006_entry_point_2011-05-03.xsd",
+              "size": 46072
+            },
+            {
+              "name": "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\dim_ifrs_for_00103006_2011-05-03.xml",
+              "size": 736364
+            },
+            {
+              "name": "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\cal_ifrs_for_00103006_2011-05-03.xml",
+              "size": 672200
+            },
+            {
+              "name": "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\pre_ifrs_for_00103006_2011-05-03.xml",
+              "size": 753898
+            },
+            {
+              "name": "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\role_ifrs_for_00103006-dim_2011-05-03.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00103006-ko_2011-05-03.xml",
+              "size": 204338
+            },
+            {
+              "name": "labels\\lab_00103006-en_2011-05-03.xml",
+              "size": 188122
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150813000409",
+          "rcept_dt": "20150813",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 134805,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00103006_2011-05-03.xbrl",
+            "00103006_entry_point_2011-05-03.xsd",
+            "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\dim_ifrs_for_00103006_2011-05-03.xml",
+            "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\cal_ifrs_for_00103006_2011-05-03.xml",
+            "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\pre_ifrs_for_00103006_2011-05-03.xml",
+            "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\role_ifrs_for_00103006-dim_2011-05-03.xsd",
+            "labels\\lab_00103006-ko_2011-05-03.xml",
+            "labels\\lab_00103006-en_2011-05-03.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00103006_2011-05-03.xbrl",
+              "size": 355531
+            },
+            {
+              "name": "00103006_entry_point_2011-05-03.xsd",
+              "size": 46244
+            },
+            {
+              "name": "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\dim_ifrs_for_00103006_2011-05-03.xml",
+              "size": 739065
+            },
+            {
+              "name": "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\cal_ifrs_for_00103006_2011-05-03.xml",
+              "size": 664889
+            },
+            {
+              "name": "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\pre_ifrs_for_00103006_2011-05-03.xml",
+              "size": 756673
+            },
+            {
+              "name": "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\role_ifrs_for_00103006-dim_2011-05-03.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00103006-ko_2011-05-03.xml",
+              "size": 205198
+            },
+            {
+              "name": "labels\\lab_00103006-en_2011-05-03.xml",
+              "size": 188909
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151113000519",
+          "rcept_dt": "20151113",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 135484,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00103006_2011-05-03.xbrl",
+            "00103006_entry_point_2011-05-03.xsd",
+            "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\dim_ifrs_for_00103006_2011-05-03.xml",
+            "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\cal_ifrs_for_00103006_2011-05-03.xml",
+            "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\pre_ifrs_for_00103006_2011-05-03.xml",
+            "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\role_ifrs_for_00103006-dim_2011-05-03.xsd",
+            "labels\\lab_00103006-ko_2011-05-03.xml",
+            "labels\\lab_00103006-en_2011-05-03.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00103006_2011-05-03.xbrl",
+              "size": 357381
+            },
+            {
+              "name": "00103006_entry_point_2011-05-03.xsd",
+              "size": 46785
+            },
+            {
+              "name": "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\dim_ifrs_for_00103006_2011-05-03.xml",
+              "size": 741158
+            },
+            {
+              "name": "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\cal_ifrs_for_00103006_2011-05-03.xml",
+              "size": 665878
+            },
+            {
+              "name": "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\pre_ifrs_for_00103006_2011-05-03.xml",
+              "size": 758730
+            },
+            {
+              "name": "ifrs_for_00103006\\dimensions_ifrs_for_00103006\\role_ifrs_for_00103006-dim_2011-05-03.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00103006-ko_2011-05-03.xml",
+              "size": 208406
+            },
+            {
+              "name": "labels\\lab_00103006-en_2011-05-03.xml",
+              "size": 191457
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00103042",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150515002375",
+          "rcept_dt": "20150515",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 140100,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00103042_2012-03-15.xbrl",
+            "00103042_entry_point_2012-03-15.xsd",
+            "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\dim_ifrs_for_00103042_2012-03-15.xml",
+            "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\cal_ifrs_for_00103042_2012-03-15.xml",
+            "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\pre_ifrs_for_00103042_2012-03-15.xml",
+            "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\role_ifrs_for_00103042-dim_2012-03-15.xsd",
+            "labels\\lab_00103042-ko_2012-03-15.xml",
+            "labels\\lab_00103042-en_2012-03-15.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00103042_2012-03-15.xbrl",
+              "size": 310873
+            },
+            {
+              "name": "00103042_entry_point_2012-03-15.xsd",
+              "size": 31121
+            },
+            {
+              "name": "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\dim_ifrs_for_00103042_2012-03-15.xml",
+              "size": 834558
+            },
+            {
+              "name": "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\cal_ifrs_for_00103042_2012-03-15.xml",
+              "size": 716307
+            },
+            {
+              "name": "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\pre_ifrs_for_00103042_2012-03-15.xml",
+              "size": 854892
+            },
+            {
+              "name": "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\role_ifrs_for_00103042-dim_2012-03-15.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00103042-ko_2012-03-15.xml",
+              "size": 168822
+            },
+            {
+              "name": "labels\\lab_00103042-en_2012-03-15.xml",
+              "size": 122395
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150813000958",
+          "rcept_dt": "20150813",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 139083,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00103042_2012-03-15.xbrl",
+            "00103042_entry_point_2012-03-15.xsd",
+            "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\dim_ifrs_for_00103042_2012-03-15.xml",
+            "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\cal_ifrs_for_00103042_2012-03-15.xml",
+            "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\pre_ifrs_for_00103042_2012-03-15.xml",
+            "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\role_ifrs_for_00103042-dim_2012-03-15.xsd",
+            "labels\\lab_00103042-ko_2012-03-15.xml",
+            "labels\\lab_00103042-en_2012-03-15.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00103042_2012-03-15.xbrl",
+              "size": 318197
+            },
+            {
+              "name": "00103042_entry_point_2012-03-15.xsd",
+              "size": 29514
+            },
+            {
+              "name": "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\dim_ifrs_for_00103042_2012-03-15.xml",
+              "size": 834705
+            },
+            {
+              "name": "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\cal_ifrs_for_00103042_2012-03-15.xml",
+              "size": 663666
+            },
+            {
+              "name": "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\pre_ifrs_for_00103042_2012-03-15.xml",
+              "size": 855185
+            },
+            {
+              "name": "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\role_ifrs_for_00103042-dim_2012-03-15.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00103042-ko_2012-03-15.xml",
+              "size": 161094
+            },
+            {
+              "name": "labels\\lab_00103042-en_2012-03-15.xml",
+              "size": 114275
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151116000455",
+          "rcept_dt": "20151116",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 139791,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00103042_2012-03-15.xbrl",
+            "00103042_entry_point_2012-03-15.xsd",
+            "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\dim_ifrs_for_00103042_2012-03-15.xml",
+            "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\cal_ifrs_for_00103042_2012-03-15.xml",
+            "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\pre_ifrs_for_00103042_2012-03-15.xml",
+            "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\role_ifrs_for_00103042-dim_2012-03-15.xsd",
+            "labels\\lab_00103042-ko_2012-03-15.xml",
+            "labels\\lab_00103042-en_2012-03-15.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00103042_2012-03-15.xbrl",
+              "size": 320535
+            },
+            {
+              "name": "00103042_entry_point_2012-03-15.xsd",
+              "size": 29514
+            },
+            {
+              "name": "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\dim_ifrs_for_00103042_2012-03-15.xml",
+              "size": 834964
+            },
+            {
+              "name": "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\cal_ifrs_for_00103042_2012-03-15.xml",
+              "size": 663682
+            },
+            {
+              "name": "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\pre_ifrs_for_00103042_2012-03-15.xml",
+              "size": 855435
+            },
+            {
+              "name": "ifrs_for_00103042\\dimensions_ifrs_for_00103042\\role_ifrs_for_00103042-dim_2012-03-15.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00103042-ko_2012-03-15.xml",
+              "size": 161094
+            },
+            {
+              "name": "labels\\lab_00103042-en_2012-03-15.xml",
+              "size": 114275
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    },
+    {
+      "corp_code": "00103130",
+      "quarters": {
+        "Q1": {
+          "rcept_no": "20150515001113",
+          "rcept_dt": "20150515",
+          "report_nm": "분기보고서 (2015.03)",
+          "http_status": 200,
+          "bytes": 126461,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00103130_2011-05-12.xbrl",
+            "00103130_entry_point_2011-05-12.xsd",
+            "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\dim_ifrs_for_00103130_2011-05-12.xml",
+            "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\cal_ifrs_for_00103130_2011-05-12.xml",
+            "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\pre_ifrs_for_00103130_2011-05-12.xml",
+            "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\role_ifrs_for_00103130-dim_2011-05-12.xsd",
+            "labels\\lab_00103130-ko_2011-05-12.xml",
+            "labels\\lab_00103130-en_2011-05-12.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00103130_2011-05-12.xbrl",
+              "size": 302931
+            },
+            {
+              "name": "00103130_entry_point_2011-05-12.xsd",
+              "size": 31469
+            },
+            {
+              "name": "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\dim_ifrs_for_00103130_2011-05-12.xml",
+              "size": 788409
+            },
+            {
+              "name": "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\cal_ifrs_for_00103130_2011-05-12.xml",
+              "size": 693808
+            },
+            {
+              "name": "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\pre_ifrs_for_00103130_2011-05-12.xml",
+              "size": 806856
+            },
+            {
+              "name": "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\role_ifrs_for_00103130-dim_2011-05-12.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00103130-ko_2011-05-12.xml",
+              "size": 125184
+            },
+            {
+              "name": "labels\\lab_00103130-en_2011-05-12.xml",
+              "size": 116262
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "H1": {
+          "rcept_no": "20150817000637",
+          "rcept_dt": "20150817",
+          "report_nm": "반기보고서 (2015.06)",
+          "http_status": 200,
+          "bytes": 117922,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00103130_2011-05-12.xbrl",
+            "00103130_entry_point_2011-05-12.xsd",
+            "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\dim_ifrs_for_00103130_2011-05-12.xml",
+            "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\cal_ifrs_for_00103130_2011-05-12.xml",
+            "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\pre_ifrs_for_00103130_2011-05-12.xml",
+            "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\role_ifrs_for_00103130-dim_2011-05-12.xsd",
+            "labels\\lab_00103130-ko_2011-05-12.xml",
+            "labels\\lab_00103130-en_2011-05-12.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00103130_2011-05-12.xbrl",
+              "size": 325900
+            },
+            {
+              "name": "00103130_entry_point_2011-05-12.xsd",
+              "size": 10789
+            },
+            {
+              "name": "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\dim_ifrs_for_00103130_2011-05-12.xml",
+              "size": 747899
+            },
+            {
+              "name": "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\cal_ifrs_for_00103130_2011-05-12.xml",
+              "size": 638484
+            },
+            {
+              "name": "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\pre_ifrs_for_00103130_2011-05-12.xml",
+              "size": 767211
+            },
+            {
+              "name": "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\role_ifrs_for_00103130-dim_2011-05-12.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00103130-ko_2011-05-12.xml",
+              "size": 20232
+            },
+            {
+              "name": "labels\\lab_00103130-en_2011-05-12.xml",
+              "size": 17315
+            }
+          ],
+          "status": "ZIP_OK"
+        },
+        "Q3": {
+          "rcept_no": "20151111000103",
+          "rcept_dt": "20151111",
+          "report_nm": "분기보고서 (2015.09)",
+          "http_status": 200,
+          "bytes": 117638,
+          "zip_magic": true,
+          "zip_entries": 8,
+          "entry_names": [
+            "00103130_2011-05-12.xbrl",
+            "00103130_entry_point_2011-05-12.xsd",
+            "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\dim_ifrs_for_00103130_2011-05-12.xml",
+            "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\cal_ifrs_for_00103130_2011-05-12.xml",
+            "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\pre_ifrs_for_00103130_2011-05-12.xml",
+            "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\role_ifrs_for_00103130-dim_2011-05-12.xsd",
+            "labels\\lab_00103130-ko_2011-05-12.xml",
+            "labels\\lab_00103130-en_2011-05-12.xml"
+          ],
+          "xbrl_like_entries": 8,
+          "entry_sample": [
+            {
+              "name": "00103130_2011-05-12.xbrl",
+              "size": 327661
+            },
+            {
+              "name": "00103130_entry_point_2011-05-12.xsd",
+              "size": 10789
+            },
+            {
+              "name": "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\dim_ifrs_for_00103130_2011-05-12.xml",
+              "size": 748265
+            },
+            {
+              "name": "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\cal_ifrs_for_00103130_2011-05-12.xml",
+              "size": 640353
+            },
+            {
+              "name": "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\pre_ifrs_for_00103130_2011-05-12.xml",
+              "size": 767578
+            },
+            {
+              "name": "ifrs_for_00103130\\dimensions_ifrs_for_00103130\\role_ifrs_for_00103130-dim_2011-05-12.xsd",
+              "size": 649
+            },
+            {
+              "name": "labels\\lab_00103130-ko_2011-05-12.xml",
+              "size": 20232
+            },
+            {
+              "name": "labels\\lab_00103130-en_2011-05-12.xml",
+              "size": 17315
+            }
+          ],
+          "status": "ZIP_OK"
+        }
+      }
+    }
+  ]
+}
