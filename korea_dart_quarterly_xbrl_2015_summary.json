@@ -1,0 +1,30 @@
+{
+  "checked_at_utc": "2026-09-09T06:37:52.477587+00:00",
+  "research_stage": "development_2015_pit_xbrl_accounting_collection",
+  "modern_oos_protected": true,
+  "corp_count": 20,
+  "output_rows": 80,
+  "source_status_counts": {
+    "Q1_ok": 17,
+    "H1_ok": 18,
+    "Q3_ok": 19,
+    "Q4_ok": 19,
+    "Q1_no_xbrl_zip": 1,
+    "H1_no_xbrl_zip": 1,
+    "Q3_no_xbrl_zip": 1,
+    "Q4_no_data": 1,
+    "Q1_no_receipt": 2,
+    "H1_no_receipt": 1
+  },
+  "basis_counts": {
+    "OFS": 4,
+    "CFS": 50
+  },
+  "op_q_populated": 70,
+  "ni_q_populated": 70,
+  "cfo_q_populated": 68,
+  "fcf_q_populated": 68,
+  "q4_op_populated": 19,
+  "signal_dates_assigned": 0,
+  "important_limitation": "2015 sample collector. Q1-Q3 are receipt-specific PIT XBRL; Q4 uses FY full API accounting snapshot and still requires candidate-only original filing/disclosure confirmation."
+}
