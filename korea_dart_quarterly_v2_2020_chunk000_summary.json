@@ -1,0 +1,32 @@
+{
+  "checked_at_utc": "2026-09-09T06:57:57.654193+00:00",
+  "research_stage": "development_quarterly_accounting_collection",
+  "collector_version": "2.1",
+  "modern_oos_protected": true,
+  "year": 2020,
+  "chunk": 0,
+  "chunk_size": 20,
+  "seed_file": "korea_dart_historical_seed_2015_2020.csv",
+  "seed_rows_in_year": 2121,
+  "seed_rows_in_chunk": 20,
+  "output_rows": 80,
+  "basis_switch_rows": 0,
+  "negative_normalized_capex_delta_cases": 12,
+  "api_status_counts": {
+    "ok": 80,
+    "no_data": 8
+  },
+  "quarter_counts": {
+    "Q1": 20,
+    "Q2": 20,
+    "Q3": 20,
+    "Q4": 20
+  },
+  "op_quarter_populated": 80,
+  "ni_quarter_populated": 76,
+  "cfo_quarter_populated": 80,
+  "fcf_quarter_populated": 50,
+  "q4_op_populated": 20,
+  "signal_dates_assigned": 0,
+  "important_limitation": "Accounting reconstruction only. Earliest disclosure containing the relevant quarterly operating-profit information must be confirmed candidate-by-candidate before signal dating."
+}
