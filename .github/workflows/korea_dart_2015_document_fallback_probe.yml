@@ -16,15 +16,24 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install pandas requests
+      - run: pip install requests
       - name: Probe 2015 original quarterly filings
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: python korea_dart_2015_document_fallback_probe.py
+      - name: Upload probe result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: korea-dart-2015-document-fallback-probe
+          path: korea_dart_2015_document_fallback_probe.json
       - name: Commit probe result
+        if: success()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -33,5 +42,9 @@ jobs:
             echo "No result changes"
           else
             git commit -m "Probe Korea DART 2015 original quarterly documents"
-            git push
+            for attempt in 1 2 3; do
+              git pull --rebase origin main && git push && exit 0
+              sleep $((attempt * 2))
+            done
+            exit 1
           fi
