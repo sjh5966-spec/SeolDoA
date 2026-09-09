@@ -22,18 +22,20 @@ jobs:
       - id: plan
         shell: python
         run: |
-          import json, os, pandas as pd
-          d=pd.read_csv('korea_dart_historical_seed_2015_2020.csv',dtype=str)
-          items=[]
-          size=100
+          import csv, json, os, collections
+          counts=collections.Counter()
+          with open('korea_dart_historical_seed_2015_2020.csv',encoding='utf-8-sig',newline='') as f:
+              for r in csv.DictReader(f):
+                  y=int(r['fiscal_year'])
+                  if 2016<=y<=2020: counts[y]+=1
+          items=[]; size=100
           for y in range(2016,2021):
-              n=int((d.fiscal_year.astype(str)==str(y)).sum())
-              for c in range((n+size-1)//size):
+              for c in range((counts[y]+size-1)//size):
                   items.append({'year':y,'chunk':c,'size':size})
-          assert len(items)<=256
+          assert len(items)<=256 and sum(counts.values())>0
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:
               f.write('matrix='+json.dumps({'include':items},separators=(',',':'))+'\n')
-          print('jobs',len(items),items[:3],items[-3:])
+          print('corp-years',dict(counts),'jobs',len(items))
       - run: echo 'Development only; 2023+ OOS is not accessed.'
 
   collect:
@@ -67,7 +69,7 @@ jobs:
 
   aggregate:
     needs: collect
-    if: ${{ always() && !cancelled() }}
+    if: ${{ always() && needs.collect.result != 'skipped' && !cancelled() }}
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/download-artifact@v4
@@ -86,21 +88,10 @@ jobs:
           import pandas as pd, json
           fs=sorted(Path('chunks').glob('korea_dart_quarterly_v2_*_chunk*.csv'))
           if not fs: raise SystemExit('no chunk outputs')
-          ds=[pd.read_csv(f,dtype={'corp_code':str}) for f in fs]
-          d=pd.concat(ds,ignore_index=True)
+          d=pd.concat([pd.read_csv(f,dtype={'corp_code':str}) for f in fs],ignore_index=True)
           d=d[d.business_year.astype(int).between(2016,2020)].copy()
           d.to_csv('korea_dart_quarterly_2016_2020_full.csv',index=False)
-          s={
-            'development_only':True,'modern_oos_protected':True,'files':len(fs),'rows':len(d),
-            'unique_corps':int(d.corp_code.nunique()),
-            'year_counts':d.business_year.value_counts().sort_index().to_dict(),
-            'op_populated':int(d.operating_profit_q.notna().sum()),
-            'ni_populated':int(d.net_income_q.notna().sum()),
-            'equity_populated':int(d.equity_q_end.notna().sum()),
-            'cfo_populated':int(d.cfo_q.notna().sum()),
-            'fcf_populated':int(d.fcf_q.notna().sum()),
-            'basis_switch_or_noncomparable':int((~d.basis_comparable_to_immediate_predecessor.astype(bool)).sum()),
-            'note':'Accounting reconstruction only; no signal dates, returns, or 2023+ data.'}
+          s={'development_only':True,'modern_oos_protected':True,'files':len(fs),'rows':len(d),'unique_corps':int(d.corp_code.nunique()),'year_counts':d.business_year.value_counts().sort_index().to_dict(),'op_populated':int(d.operating_profit_q.notna().sum()),'ni_populated':int(d.net_income_q.notna().sum()),'equity_populated':int(d.equity_q_end.notna().sum()),'cfo_populated':int(d.cfo_q.notna().sum()),'fcf_populated':int(d.fcf_q.notna().sum()),'basis_noncomparable_rows':int((~d.basis_comparable_to_immediate_predecessor.astype(bool)).sum()),'note':'Accounting reconstruction only; no signal dates, returns, or 2023+ data.'}
           Path('korea_dart_quarterly_2016_2020_full_summary.json').write_text(json.dumps(s,ensure_ascii=False,indent=2))
           print(json.dumps(s,ensure_ascii=False,indent=2))
       - uses: actions/upload-artifact@v4
