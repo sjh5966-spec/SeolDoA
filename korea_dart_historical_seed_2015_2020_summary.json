@@ -1,17 +1,27 @@
 {
-  "checked_at_utc": "2026-09-09T06:47:03.071321+00:00",
+  "checked_at_utc": "2026-09-09T07:21:00.597600+00:00",
   "research_stage": "development_historical_seed_build",
   "modern_oos_protected": true,
   "source_files": [
+    "korea_dart_historical_universe_2015.csv",
+    "korea_dart_historical_universe_2016.csv",
+    "korea_dart_historical_universe_2017.csv",
+    "korea_dart_historical_universe_2018.csv",
+    "korea_dart_historical_universe_2019.csv",
     "korea_dart_historical_universe_2020.csv"
   ],
-  "rows": 2121,
+  "rows": 11421,
   "year_counts": {
+    "2015": 1696,
+    "2016": 1772,
+    "2017": 1858,
+    "2018": 1944,
+    "2019": 2030,
     "2020": 2121
   },
   "market_counts": {
-    "K": 1358,
-    "Y": 763
+    "K": 7059,
+    "Y": 4362
   },
   "important_limitation": "DART filer seed; KRX security-type exclusions and historical listing/tradability remain separate validation."
 }
