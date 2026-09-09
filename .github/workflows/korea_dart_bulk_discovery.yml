@@ -26,7 +26,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add korea_dart_bulk_discovery.json
+          git add korea_dart_bulk_discovery.json korea_dart_bulk_endpoint_summary.json
           if git diff --cached --quiet; then
             echo "No changes"
           else
@@ -36,4 +36,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: korea-dart-bulk-discovery
-          path: korea_dart_bulk_discovery.json
+          path: |
+            korea_dart_bulk_discovery.json
+            korea_dart_bulk_endpoint_summary.json
