@@ -36,6 +36,8 @@ jobs:
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -48,7 +50,16 @@ jobs:
           DART_QUARTER_CHUNK: ${{ inputs.chunk || '0' }}
           DART_QUARTER_CHUNK_SIZE: ${{ inputs.chunk_size || '20' }}
         run: python korea_dart_quarterly_collector_v1.py
+      - name: Upload chunk artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: korea-dart-quarterly-${{ inputs.year || '2016' }}-chunk-${{ inputs.chunk || '0' }}
+          path: |
+            korea_dart_quarterly_${{ inputs.year || '2016' }}_chunk*.csv
+            korea_dart_quarterly_${{ inputs.year || '2016' }}_chunk*_summary.json
       - name: Commit chunk outputs
+        if: success()
         run: |
           YEAR="${{ inputs.year || '2016' }}"
           CHUNK="${{ inputs.chunk || '0' }}"
@@ -60,12 +71,9 @@ jobs:
             echo "No output changes"
           else
             git commit -m "Collect Korea DART quarterly ${YEAR} chunk ${CHUNK}"
-            git push
+            for attempt in 1 2 3; do
+              git pull --rebase origin main && git push && exit 0
+              sleep $((attempt * 2))
+            done
+            exit 1
           fi
-      - name: Upload chunk artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: korea-dart-quarterly-${{ inputs.year || '2016' }}-chunk-${{ inputs.chunk || '0' }}
-          path: |
-            korea_dart_quarterly_${{ inputs.year || '2016' }}_chunk*.csv
-            korea_dart_quarterly_${{ inputs.year || '2016' }}_chunk*_summary.json
