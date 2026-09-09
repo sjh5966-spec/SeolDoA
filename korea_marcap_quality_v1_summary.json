@@ -1,0 +1,92 @@
+{
+  "checked_at_utc": "2026-09-09T07:25:32.200269+00:00",
+  "research_stage": "development_marcap_integrity_and_corporate_actions",
+  "modern_oos_protected": true,
+  "rows_kospi_kosdaq": 3179916,
+  "unique_codes": 2610,
+  "duplicate_date_code_rows": 0,
+  "marcap_equals_close_times_stocks_share": 1.0,
+  "marcap_ratio_median": 1.0,
+  "zero_open_rows": 74547,
+  "zero_close_rows": 0,
+  "zero_volume_rows": 74527,
+  "zero_amount_rows": 74527,
+  "large_share_count_change_rows": 1568,
+  "split_like_rows": 262,
+  "samsung_2018_split_window": [
+    {
+      "Date": "2018-04-25T00:00:00",
+      "Open": 2461000.0,
+      "Close": 2520000.0,
+      "Stocks": 128386494,
+      "Marcap": 323533964880000.0
+    },
+    {
+      "Date": "2018-04-26T00:00:00",
+      "Open": 2521000.0,
+      "Close": 2607000.0,
+      "Stocks": 128386494,
+      "Marcap": 334703589858000.0
+    },
+    {
+      "Date": "2018-04-27T00:00:00",
+      "Open": 2669000.0,
+      "Close": 2650000.0,
+      "Stocks": 128386494,
+      "Marcap": 340224209100000.0
+    },
+    {
+      "Date": "2018-04-30T00:00:00",
+      "Open": 0.0,
+      "Close": 2650000.0,
+      "Stocks": 128386494,
+      "Marcap": 340224209100000.0
+    },
+    {
+      "Date": "2018-05-02T00:00:00",
+      "Open": 0.0,
+      "Close": 2650000.0,
+      "Stocks": 128386494,
+      "Marcap": 340224209100000.0
+    },
+    {
+      "Date": "2018-05-03T00:00:00",
+      "Open": 0.0,
+      "Close": 2650000.0,
+      "Stocks": 128386494,
+      "Marcap": 340224209100000.0
+    },
+    {
+      "Date": "2018-05-04T00:00:00",
+      "Open": 53000.0,
+      "Close": 51900.0,
+      "Stocks": 6419324700,
+      "Marcap": 333162951930000.0
+    },
+    {
+      "Date": "2018-05-08T00:00:00",
+      "Open": 52600.0,
+      "Close": 52600.0,
+      "Stocks": 6419324700,
+      "Marcap": 337656479220000.0
+    },
+    {
+      "Date": "2018-05-09T00:00:00",
+      "Open": 52600.0,
+      "Close": 50900.0,
+      "Stocks": 6419324700,
+      "Marcap": 326743627230000.0
+    },
+    {
+      "Date": "2018-05-10T00:00:00",
+      "Open": 51700.0,
+      "Close": 51600.0,
+      "Stocks": 6419324700,
+      "Marcap": 331237154520000.0
+    }
+  ],
+  "policy_recommendation": "Use raw open/close for ordinary windows. Any holding window crossing a large share-count change must be corporate-action flagged; do not compute naive raw-price return across the event until adjustment classification is validated.",
+  "files": [
+    "korea_marcap_corporate_action_flags_2015_2020.csv"
+  ]
+}
