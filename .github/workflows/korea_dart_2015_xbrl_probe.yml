@@ -1,0 +1,46 @@
+name: Korea DART 2015 XBRL Probe
+
+on:
+  push:
+    paths:
+      - korea_dart_2015_xbrl_probe.py
+      - .github/workflows/korea_dart_2015_xbrl_probe.yml
+      - korea_dart_2015_document_fallback_probe.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe original XBRL files
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python korea_dart_2015_xbrl_probe.py
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: korea-dart-2015-xbrl-probe
+          path: korea_dart_2015_xbrl_probe.json
+      - name: Commit result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add korea_dart_2015_xbrl_probe.json
+          if git diff --cached --quiet; then
+            echo "No result changes"
+            exit 0
+          fi
+          git commit -m "Probe Korea DART 2015 quarterly XBRL originals"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep $((i*3))
+          done
+          echo "Push race persisted; artifact already preserves result"
