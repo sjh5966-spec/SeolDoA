@@ -1,10 +1,11 @@
 name: Korea DART Historical Seed Builder
 
 on:
+  workflow_dispatch:
   push:
     paths:
-      - 'korea_dart_historical_universe_20??.csv'
-  workflow_dispatch:
+      - korea_dart_historical_universe_2020.csv
+      - .github/workflows/korea_dart_historical_seed_builder.yml
 
 permissions:
   contents: write
