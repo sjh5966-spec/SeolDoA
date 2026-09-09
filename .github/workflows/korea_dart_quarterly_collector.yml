@@ -17,12 +17,17 @@ on:
         description: "Corp-year rows per run; 300 is conservative"
         required: true
         default: "300"
+  push:
+    paths:
+      - korea_dart_quarterly_seed_2015_2020.csv
+      - korea_dart_quarterly_collector_v1.py
+      - .github/workflows/korea_dart_quarterly_collector.yml
 
 permissions:
   contents: write
 
 concurrency:
-  group: korea-dart-quarterly-${{ inputs.year }}-${{ inputs.chunk }}
+  group: korea-dart-quarterly-${{ inputs.year || '2015' }}-${{ inputs.chunk || '0' }}
   cancel-in-progress: false
 
 jobs:
@@ -39,26 +44,28 @@ jobs:
       - name: Collect Development quarterly accounting
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
-          DART_QUARTER_YEAR: ${{ inputs.year }}
-          DART_QUARTER_CHUNK: ${{ inputs.chunk }}
-          DART_QUARTER_CHUNK_SIZE: ${{ inputs.chunk_size }}
+          DART_QUARTER_YEAR: ${{ inputs.year || '2015' }}
+          DART_QUARTER_CHUNK: ${{ inputs.chunk || '0' }}
+          DART_QUARTER_CHUNK_SIZE: ${{ inputs.chunk_size || '20' }}
         run: python korea_dart_quarterly_collector_v1.py
       - name: Commit chunk outputs
         run: |
+          YEAR="${{ inputs.year || '2015' }}"
+          CHUNK="${{ inputs.chunk || '0' }}"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "korea_dart_quarterly_${{ inputs.year }}_chunk"*.csv
-          git add "korea_dart_quarterly_${{ inputs.year }}_chunk"*_summary.json
+          git add "korea_dart_quarterly_${YEAR}_chunk"*.csv
+          git add "korea_dart_quarterly_${YEAR}_chunk"*_summary.json
           if git diff --cached --quiet; then
             echo "No output changes"
           else
-            git commit -m "Collect Korea DART quarterly ${{ inputs.year }} chunk ${{ inputs.chunk }}"
+            git commit -m "Collect Korea DART quarterly ${YEAR} chunk ${CHUNK}"
             git push
           fi
       - name: Upload chunk artifact
         uses: actions/upload-artifact@v4
         with:
-          name: korea-dart-quarterly-${{ inputs.year }}-chunk-${{ inputs.chunk }}
+          name: korea-dart-quarterly-${{ inputs.year || '2015' }}-chunk-${{ inputs.chunk || '0' }}
           path: |
-            korea_dart_quarterly_${{ inputs.year }}_chunk*.csv
-            korea_dart_quarterly_${{ inputs.year }}_chunk*_summary.json
+            korea_dart_quarterly_${{ inputs.year || '2015' }}_chunk*.csv
+            korea_dart_quarterly_${{ inputs.year || '2015' }}_chunk*_summary.json
