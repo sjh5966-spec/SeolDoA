@@ -1,0 +1,39 @@
+name: Korea DART Bulk Development Collector V1
+
+on:
+  push:
+    paths:
+      - korea_dart_bulk_development_collector_v1.py
+      - .github/workflows/korea_dart_bulk_development_collector_v1.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests
+      - name: Build Development accounting discovery set from bulk ZIPs
+        run: python korea_dart_bulk_development_collector_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-dart-bulk-development-v1
+          retention-days: 14
+          path: |
+            korea_dart_bulk_quarterly_2016_2020.csv
+            korea_dart_bulk_quarterly_2016_2020_summary.json
+      - name: Commit compact outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add korea_dart_bulk_quarterly_2016_2020.csv korea_dart_bulk_quarterly_2016_2020_summary.json
+          git commit -m 'Build Korea bulk Development accounting discovery set' || exit 0
+          for i in 1 2 3; do git pull --rebase origin main && git push && exit 0; sleep $((i*3)); done
+          echo 'Artifact preserves result if push race persists'
