@@ -1,0 +1,60 @@
+name: Korea DART 2015 Historical PIT XBRL V2
+
+on:
+  push:
+    paths:
+      - korea_dart_historical_universe_2015.csv
+      - korea_dart_2015_xbrl_collector_v2.py
+      - .github/workflows/korea_dart_2015_xbrl_collector_v2.yml
+  workflow_dispatch:
+    inputs:
+      chunk:
+        required: true
+        default: '0'
+      chunk_size:
+        required: true
+        default: '20'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: korea-dart-2015-historical-xbrl-v2-${{ inputs.chunk || '0' }}
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests lxml
+      - name: Require completed 2015 historical universe
+        run: test -f korea_dart_historical_universe_2015.csv
+      - name: Collect receipt-specific 2015 PIT XBRL smoke
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          DART_2015_XBRL_CHUNK: ${{ inputs.chunk || '0' }}
+          DART_2015_XBRL_CHUNK_SIZE: ${{ inputs.chunk_size || '20' }}
+        run: python korea_dart_2015_xbrl_collector_v2.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-dart-2015-historical-xbrl-v2-${{ inputs.chunk || '0' }}
+          path: |
+            korea_dart_quarterly_xbrl_2015_chunk*.csv
+            korea_dart_quarterly_xbrl_2015_chunk*_summary.json
+      - name: Commit smoke output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add korea_dart_quarterly_xbrl_2015_chunk*.csv korea_dart_quarterly_xbrl_2015_chunk*_summary.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Collect Korea 2015 historical PIT XBRL v2 smoke'
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep $((i*3))
+          done
+          echo 'Push race persisted; artifact preserves result'
