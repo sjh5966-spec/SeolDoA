@@ -1,0 +1,1735 @@
+{
+  "research_stage": "development_2015_original_document_fallback_probe",
+  "version": "1.1",
+  "modern_oos_protected": true,
+  "corp_count": 20,
+  "counts": {
+    "list_status_000": 20,
+    "Q1_zip_ok": 18,
+    "H1_zip_ok": 19,
+    "Q3_zip_ok": 20,
+    "Q1_no_match": 2,
+    "H1_no_match": 1
+  },
+  "detail": [
+    {
+      "corp_code": "00100601",
+      "list_status": "000",
+      "list_rows": 63,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150515001283",
+              "rcept_dt": "20150515",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150515001283",
+          "chosen_rcept_dt": "20150515",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 106377,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150515001283.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150515001283.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00100601\">(주)웰크론강원</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\""
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150817000816",
+              "rcept_dt": "20150817",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150817000816",
+          "chosen_rcept_dt": "20150817",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 97667,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150817000816.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150817000816.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00100601\">주식회사 웰크론강원</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\""
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151116000261",
+              "rcept_dt": "20151116",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151116000261",
+          "chosen_rcept_dt": "20151116",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 157996,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151116000261.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151116000261.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00100601\">주식회사 웰크론강원</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNO"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00100717",
+      "list_status": "000",
+      "list_rows": 85,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150514005164",
+              "rcept_dt": "20150514",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150514005164",
+          "chosen_rcept_dt": "20150514",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 144176,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150514005164.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150514005164.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00100717\">인테그레이티드에너지(주)</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P USERMARK=\"F-GL\"></P>\n"
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150813000358",
+              "rcept_dt": "20150813",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150813000358",
+          "chosen_rcept_dt": "20150813",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 131369,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150813000358.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150813000358.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00100717\">인테그레이티드에너지(주)</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P USERMARK=\"F-GL\"></P>\n"
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151113000903",
+              "rcept_dt": "20151113",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151113000903",
+          "chosen_rcept_dt": "20151113",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 132682,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151113000903.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151113000903.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00100717\">인테그레이티드에너지(주)</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSO"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00100957",
+      "list_status": "000",
+      "list_rows": 13,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150515000632",
+              "rcept_dt": "20150515",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150515000632",
+          "chosen_rcept_dt": "20150515",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 67867,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150515000632.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150515000632.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00100957\">주식회사 건영</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" "
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150813001403",
+              "rcept_dt": "20150813",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150813001403",
+          "chosen_rcept_dt": "20150813",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 69927,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150813001403.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150813001403.xml",
+              "head": ""
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 3,
+          "candidates": [
+            {
+              "rcept_no": "20151113001083",
+              "rcept_dt": "20151113",
+              "report_nm": "분기보고서 (2015.09)"
+            },
+            {
+              "rcept_no": "20151207000082",
+              "rcept_dt": "20151207",
+              "report_nm": "[기재정정]분기보고서 (2015.09)"
+            },
+            {
+              "rcept_no": "20151211000191",
+              "rcept_dt": "20151211",
+              "report_nm": "[기재정정]분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151113001083",
+          "chosen_rcept_dt": "20151113",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 71295,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151113001083.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151113001083.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00100957\">주식회사 건영</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOTE="
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00101044",
+      "list_status": "000",
+      "list_rows": 70,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150514002237",
+              "rcept_dt": "20150514",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150514002237",
+          "chosen_rcept_dt": "20150514",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 143426,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150514002237.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150514002237.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101044\">슈넬생명과학(주)</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y"
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150728000163",
+              "rcept_dt": "20150728",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150728000163",
+          "chosen_rcept_dt": "20150728",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 144212,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150728000163.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150728000163.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101044\">슈넬생명과학(주)</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y"
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 2,
+          "candidates": [
+            {
+              "rcept_no": "20151113000562",
+              "rcept_dt": "20151113",
+              "report_nm": "분기보고서 (2015.09)"
+            },
+            {
+              "rcept_no": "20160106000043",
+              "rcept_dt": "20160106",
+              "report_nm": "[기재정정]분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151113000562",
+          "chosen_rcept_dt": "20151113",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 146981,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151113000562.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151113000562.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101044\">슈넬생명과학(주)</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOT"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00101220",
+      "list_status": "000",
+      "list_rows": 56,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150515002644",
+              "rcept_dt": "20150515",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150515002644",
+          "chosen_rcept_dt": "20150515",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 182149,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150515002644.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150515002644.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101220\">KG케미칼</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AA"
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150817001162",
+              "rcept_dt": "20150817",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150817001162",
+          "chosen_rcept_dt": "20150817",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 162246,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150817001162.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150817001162.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101220\">KG케미칼</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AA"
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151116001327",
+              "rcept_dt": "20151116",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151116001327",
+          "chosen_rcept_dt": "20151116",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 159599,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151116001327.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151116001327.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101220\">KG케미칼</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P USERMARK=\"F-GL\"></P>\n<COVER-TITLE ATOC=\""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00101257",
+      "list_status": "000",
+      "list_rows": 53,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150515002883",
+              "rcept_dt": "20150515",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150515002883",
+          "chosen_rcept_dt": "20150515",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 76326,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150515002883.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150515002883.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101257\">경남기업</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOTE=\"CO"
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150817001771",
+              "rcept_dt": "20150817",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150817001771",
+          "chosen_rcept_dt": "20150817",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 199060,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150817001771.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150817001771.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101257\">경남기업(주)</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOTE="
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151116000013",
+              "rcept_dt": "20151116",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151116000013",
+          "chosen_rcept_dt": "20151116",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 75731,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151116000013.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151116000013.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101257\">경남기업</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOTE=\"CO"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00101336",
+      "list_status": "000",
+      "list_rows": 56,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150514000343",
+              "rcept_dt": "20150514",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150514000343",
+          "chosen_rcept_dt": "20150514",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 132854,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150514000343.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150514000343.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101336\">경남에너지주식회사</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y"
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150813000087",
+              "rcept_dt": "20150813",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150813000087",
+          "chosen_rcept_dt": "20150813",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 138822,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150813000087.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150813000087.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101336\">경남에너지주식회사</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y"
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151113000536",
+              "rcept_dt": "20151113",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151113000536",
+          "chosen_rcept_dt": "20151113",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 141067,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151113000536.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151113000536.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101336\">경남에너지주식회사</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOT"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00101488",
+      "list_status": "000",
+      "list_rows": 78,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150514002716",
+              "rcept_dt": "20150514",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150514002716",
+          "chosen_rcept_dt": "20150514",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 140469,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150514002716.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150514002716.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101488\">주식회사 경동나비엔</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\""
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150813000964",
+              "rcept_dt": "20150813",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150813000964",
+          "chosen_rcept_dt": "20150813",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 149020,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150813000964.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150813000964.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101488\">주식회사 경동나비엔</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\""
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151116000075",
+              "rcept_dt": "20151116",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151116000075",
+          "chosen_rcept_dt": "20151116",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 149311,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151116000075.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151116000075.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101488\">주식회사 경동나비엔</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNO"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00101549",
+      "list_status": "000",
+      "list_rows": 34,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150515000051",
+              "rcept_dt": "20150515",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150515000051",
+          "chosen_rcept_dt": "20150515",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 103748,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150515000051.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150515000051.xml",
+              "head": ""
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150813000650",
+              "rcept_dt": "20150813",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150813000650",
+          "chosen_rcept_dt": "20150813",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 107148,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150813000650.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150813000650.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101549\">경동제약</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AAS"
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151116000278",
+              "rcept_dt": "20151116",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151116000278",
+          "chosen_rcept_dt": "20151116",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 109158,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151116000278.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151116000278.xml",
+              "head": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00101628",
+      "list_status": "000",
+      "list_rows": 39,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150515001125",
+              "rcept_dt": "20150515",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150515001125",
+          "chosen_rcept_dt": "20150515",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 137821,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150515001125.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150515001125.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101628\">경방</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSO"
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150817001163",
+              "rcept_dt": "20150817",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150817001163",
+          "chosen_rcept_dt": "20150817",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 140430,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150817001163.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150817001163.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101628\">(주)경방</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P> </P>\n<COVER-TITLE ATOC=\"Y\" A"
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151116001055",
+              "rcept_dt": "20151116",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151116001055",
+          "chosen_rcept_dt": "20151116",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 141906,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151116001055.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151116001055.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101628\">(주)경방</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOTE=\"C"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00101664",
+      "list_status": "000",
+      "list_rows": 35,
+      "quarters": {
+        "Q1": {
+          "match_method": "none",
+          "match_count": 0,
+          "candidates": []
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 2,
+          "candidates": [
+            {
+              "rcept_no": "20150817000564",
+              "rcept_dt": "20150817",
+              "report_nm": "반기보고서 (2015.06)"
+            },
+            {
+              "rcept_no": "20151116000389",
+              "rcept_dt": "20151116",
+              "report_nm": "[기재정정]반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150817000564",
+          "chosen_rcept_dt": "20150817",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 112502,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150817000564.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150817000564.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101664\">(주) 경보제약</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P>&cr;</P>\n<COVER-TITLE ATOC"
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151116001104",
+              "rcept_dt": "20151116",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151116001104",
+          "chosen_rcept_dt": "20151116",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 111304,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151116001104.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151116001104.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101664\">(주) 경보제약</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P USERMARK=\"F-DU\"></P>\n<COVER-TITLE ATO"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00101752",
+      "list_status": "000",
+      "list_rows": 26,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150514004483",
+              "rcept_dt": "20150514",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150514004483",
+          "chosen_rcept_dt": "20150514",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 123998,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150514004483.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150514004483.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101752\">케이씨피드</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AA"
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150813000507",
+              "rcept_dt": "20150813",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150813000507",
+          "chosen_rcept_dt": "20150813",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 109198,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150813000507.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150813000507.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101752\">케이씨피드</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AA"
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151113000614",
+              "rcept_dt": "20151113",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151113000614",
+          "chosen_rcept_dt": "20151113",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 111798,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151113000614.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151113000614.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00101752\">케이씨피드</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOTE=\"C"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00102113",
+      "list_status": "000",
+      "list_rows": 49,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150515000371",
+              "rcept_dt": "20150515",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150515000371",
+          "chosen_rcept_dt": "20150515",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 175597,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150515000371.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150515000371.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00102113\">(주)경인양행</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOTE="
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150813001318",
+              "rcept_dt": "20150813",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150813001318",
+          "chosen_rcept_dt": "20150813",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 178963,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150813001318.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150813001318.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00102113\">(주)경인양행</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" "
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151116000626",
+              "rcept_dt": "20151116",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151116000626",
+          "chosen_rcept_dt": "20151116",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 181081,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151116000626.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151116000626.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00102113\">(주)경인양행</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOTE="
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00102618",
+      "list_status": "000",
+      "list_rows": 36,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150515002339",
+              "rcept_dt": "20150515",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150515002339",
+          "chosen_rcept_dt": "20150515",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 65901,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150515002339.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150515002339.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00102618\">계양전기주식회사</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\""
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150813000727",
+              "rcept_dt": "20150813",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150813000727",
+          "chosen_rcept_dt": "20150813",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 67605,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150813000727.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150813000727.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00102618\">계양전기주식회사</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\""
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151116000610",
+              "rcept_dt": "20151116",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151116000610",
+          "chosen_rcept_dt": "20151116",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 69656,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151116000610.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151116000610.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00102618\">계양전기주식회사</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOTE"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00102751",
+      "list_status": "000",
+      "list_rows": 29,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150514001203",
+              "rcept_dt": "20150514",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150514001203",
+          "chosen_rcept_dt": "20150514",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 110678,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150514001203.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150514001203.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00102751\">고려산업주식회사</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\""
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 2,
+          "candidates": [
+            {
+              "rcept_no": "20150813000508",
+              "rcept_dt": "20150813",
+              "report_nm": "반기보고서 (2015.06)"
+            },
+            {
+              "rcept_no": "20150813001589",
+              "rcept_dt": "20150817",
+              "report_nm": "[첨부정정]반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150813000508",
+          "chosen_rcept_dt": "20150813",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 98866,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150813000508.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150813000508.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00102751\">고려산업주식회사</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\""
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151116000906",
+              "rcept_dt": "20151116",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151116000906",
+          "chosen_rcept_dt": "20151116",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 100244,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151116000906.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151116000906.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00102751\">고려산업주식회사</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOTE"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00102760",
+      "list_status": "000",
+      "list_rows": 100,
+      "quarters": {
+        "Q1": {
+          "match_method": "none",
+          "match_count": 0,
+          "candidates": []
+        },
+        "H1": {
+          "match_method": "none",
+          "match_count": 0,
+          "candidates": []
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151116000622",
+              "rcept_dt": "20151116",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151116000622",
+          "chosen_rcept_dt": "20151116",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 235375,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151116000622.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151116000622.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00102760\">두산건설(주)</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOTE="
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00102858",
+      "list_status": "000",
+      "list_rows": 74,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150515001430",
+              "rcept_dt": "20150515",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150515001430",
+          "chosen_rcept_dt": "20150515",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 168240,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150515001430.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150515001430.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00102858\">고려아연(주)</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" "
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150817000784",
+              "rcept_dt": "20150817",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150817000784",
+          "chosen_rcept_dt": "20150817",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 173656,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150817000784.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150817000784.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00102858\">고려아연(주)</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" "
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151116000577",
+              "rcept_dt": "20151116",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151116000577",
+          "chosen_rcept_dt": "20151116",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 176433,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151116000577.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151116000577.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00102858\">고려아연(주)</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOTE="
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00103006",
+      "list_status": "000",
+      "list_rows": 43,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150515001128",
+              "rcept_dt": "20150515",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150515001128",
+          "chosen_rcept_dt": "20150515",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 95078,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150515001128.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150515001128.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00103006\">고려제강</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AAS"
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150813000409",
+              "rcept_dt": "20150813",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150813000409",
+          "chosen_rcept_dt": "20150813",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 102712,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150813000409.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150813000409.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00103006\">고려제강</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AAS"
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151113000519",
+              "rcept_dt": "20151113",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151113000519",
+          "chosen_rcept_dt": "20151113",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 105268,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151113000519.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151113000519.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00103006\">고려제강</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOTE=\"CO"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00103042",
+      "list_status": "000",
+      "list_rows": 25,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150515002375",
+              "rcept_dt": "20150515",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150515002375",
+          "chosen_rcept_dt": "20150515",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 127851,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150515002375.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150515002375.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00103042\">(주)케이씨티시</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\""
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150813000958",
+              "rcept_dt": "20150813",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150813000958",
+          "chosen_rcept_dt": "20150813",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 126649,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150813000958.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150813000958.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00103042\">케이씨티시</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AA"
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151116000455",
+              "rcept_dt": "20151116",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151116000455",
+          "chosen_rcept_dt": "20151116",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 125951,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151116000455.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151116000455.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00103042\">(주)케이씨티시</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOTE"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "corp_code": "00103130",
+      "list_status": "000",
+      "list_rows": 42,
+      "quarters": {
+        "Q1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150515001113",
+              "rcept_dt": "20150515",
+              "report_nm": "분기보고서 (2015.03)"
+            }
+          ],
+          "chosen_rcept_no": "20150515001113",
+          "chosen_rcept_dt": "20150515",
+          "chosen_report_nm": "분기보고서 (2015.03)",
+          "document_http": 200,
+          "document_bytes": 154617,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150515001113.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150515001113.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00103130\">(주)고려포리머</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\""
+            }
+          ]
+        },
+        "H1": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20150817000637",
+              "rcept_dt": "20150817",
+              "report_nm": "반기보고서 (2015.06)"
+            }
+          ],
+          "chosen_rcept_no": "20150817000637",
+          "chosen_rcept_dt": "20150817",
+          "chosen_report_nm": "반기보고서 (2015.06)",
+          "document_http": 200,
+          "document_bytes": 167507,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20150817000637.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20150817000637.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11012\">반기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION SUBVER=\"1\" ADATE=\"20150303\">2.5</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00103130\">(주)고려포리머</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\""
+            }
+          ]
+        },
+        "Q3": {
+          "match_method": "period_text",
+          "match_count": 1,
+          "candidates": [
+            {
+              "rcept_no": "20151111000103",
+              "rcept_dt": "20151111",
+              "report_nm": "분기보고서 (2015.09)"
+            }
+          ],
+          "chosen_rcept_no": "20151111000103",
+          "chosen_rcept_dt": "20151111",
+          "chosen_report_nm": "분기보고서 (2015.09)",
+          "document_http": 200,
+          "document_bytes": 166384,
+          "zip_magic": true,
+          "zip_entries": 1,
+          "entry_names": [
+            "/20151111000103.xml"
+          ],
+          "entry_samples": [
+            {
+              "name": "/20151111000103.xml",
+              "head": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n\r\n\r\n<DOCUMENT xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"dart3.xsd\">\n\n<DOCUMENT-HEADER AEXT-CLASS=\"Y\">\n<DOCUMENT-NAME ACODE=\"11013\">분기보고서</DOCUMENT-NAME>\n<FORMULA-VERSION ADATE=\"20151103\">2.7</FORMULA-VERSION>\n<COMPANY-NAME AREGCIK=\"00103130\">(주)고려포리머</COMPANY-NAME>\n</DOCUMENT-HEADER>\n\n<BODY>\n\n<INSERTION ABASISNUMBER=\"SE1\" AFREQUENCY=\"0\" ADUPLICATION=\"N\">\n<COMMENT>◆click◆ 정정문서 작성시 『정오표』 삽입</COMMENT>\n<LIBRARYLIST>정정신고(보고)-대표이사등의확인.LCommon</LIBRARYLIST>\n</INSERTION>\n\n<COVER>\n<P></P>\n<COVER-TITLE ATOC=\"Y\" AASSOCNOTE"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
