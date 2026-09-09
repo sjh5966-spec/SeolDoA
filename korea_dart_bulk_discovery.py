@@ -7,73 +7,43 @@ from bs4 import BeautifulSoup
 
 URL="https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/list.do"
 HEADERS={"User-Agent":"Mozilla/5.0 SeolDoA research"}
-r=requests.get(URL,timeout=60,headers=HEADERS)
-r.raise_for_status()
-html=r.text
-soup=BeautifulSoup(html,"html.parser")
+r=requests.get(URL,timeout=60,headers=HEADERS); r.raise_for_status()
+soup=BeautifulSoup(r.text,"html.parser")
 
-anchors=[]
-for a in soup.find_all("a"):
-    text=" ".join(a.stripped_strings)
-    href=a.get("href")
-    onclick=a.get("onclick")
-    if text or href or onclick:
-        anchors.append({"text":text,"href":href,"onclick":onclick})
-
-buttons=[]
-for b in soup.find_all(["button","input"]):
-    buttons.append({"tag":b.name,"text":" ".join(b.stripped_strings),"type":b.get("type"),"value":b.get("value"),"name":b.get("name"),"onclick":b.get("onclick")})
-
-forms=[]
-for f in soup.find_all("form"):
-    forms.append({"action":f.get("action"),"method":f.get("method"),"id":f.get("id"),"name":f.get("name"),"inputs":[{"name":x.get("name"),"value":x.get("value"),"type":x.get("type")} for x in f.find_all("input")]})
-
-patterns=[r"function\s+download_ext002\s*\(", r"download_ext002\s*=\s*function\s*\("]
-function_snippets=[]
-endpoint_candidates=[]
-script_sources=[]
-scripts=[]
-
-def inspect_js(label, txt):
-    if re.search(r"down|dwld|excel|zip|file",txt,re.I):
-        scripts.append({"source":label,"text":txt[:30000]})
-    for pat in patterns:
-        for m in re.finditer(pat,txt,re.I):
-            snip=txt[max(0,m.start()-1000):min(len(txt),m.start()+10000)]
-            function_snippets.append({"source":label,"text":snip})
-            for em in re.finditer(r"['\"]([^'\"]*(?:down|dwld|download|file)[^'\"]*)['\"]",snip,re.I):
-                v=em.group(1).strip()
-                if v and v not in endpoint_candidates: endpoint_candidates.append(v)
-
-for s in soup.find_all("script"):
-    src=s.get("src")
+sources=[]; snippets=[]; endpoints=[]
+pat=re.compile(r"function\s+download_ext002\s*\(([^)]*)\)\s*\{",re.I)
+for tag in soup.find_all("script"):
+    src=tag.get("src")
     if src:
-        full=urljoin(URL,src)
-        rec={"src":src,"url":full}
+        u=urljoin(URL,src)
         try:
-            jr=requests.get(full,timeout=60,headers=HEADERS)
-            rec["status"]=jr.status_code
-            rec["length"]=len(jr.text)
-            rec["contains_download_ext002"]="download_ext002" in jr.text
-            if jr.ok: inspect_js(full,jr.text)
+            jr=requests.get(u,timeout=60,headers=HEADERS)
+            txt=jr.text if jr.ok else ""
+            sources.append({"url":u,"status":jr.status_code,"length":len(txt),"contains":"download_ext002" in txt})
         except Exception as e:
-            rec["error"]=str(e)
-        script_sources.append(rec)
+            sources.append({"url":u,"error":str(e)}); txt=""
     else:
-        inspect_js("inline",s.get_text("\n"))
+        u="inline"; txt=tag.get_text("\n")
+    m=pat.search(txt)
+    if m:
+        start=m.start(); body=txt[start:start+6000]
+        snippets.append({"source":u,"text":body})
+        for em in re.finditer(r"['\"]([^'\"]*(?:down|dwld|download|file|zip)[^'\"]*)['\"]",body,re.I):
+            v=em.group(1).strip()
+            if v and v not in endpoints: endpoints.append(v)
 
-inspect_js("raw_html",html)
+# Keep only development-era bulk call metadata; never inspect/download 2023+ payloads.
+calls=[]
+rx=re.compile(r"download_ext002\('(20\d{2})','(FQ|HY|TQ|FY)',\s*'(BS|PL|CF|CE)',\s*'([^']+\.zip)'\)")
+for a in soup.find_all("a",onclick=True):
+    m=rx.search(a.get("onclick", ""))
+    if not m: continue
+    y=int(m.group(1))
+    if 2015 <= y <= 2020:
+        calls.append({"year":y,"period":m.group(2),"statement":m.group(3),"filename":m.group(4)})
 
-interesting_lines=[]
-for line in html.splitlines():
-    if re.search(r"download_ext002|down|dwld|zip|file|fnltt",line,re.I):
-        interesting_lines.append(line.strip()[:6000])
-
-out={"url":r.url,"status":r.status_code,"html_length":len(html),"anchors":anchors,"buttons":buttons,"forms":forms,
-     "script_sources":script_sources,"download_ext002_function_snippets":function_snippets,
-     "download_endpoint_candidates":endpoint_candidates,"scripts_with_download_terms":scripts,
-     "interesting_html_lines":interesting_lines[:1200]}
-Path("korea_dart_bulk_discovery.json").write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
-print(json.dumps({"status":r.status_code,"html_length":len(html),"script_sources":len(script_sources),
-                  "sources_with_download_ext002":[x.get("url") for x in script_sources if x.get("contains_download_ext002")],
-                  "download_function_snippets":len(function_snippets),"download_endpoint_candidates":endpoint_candidates},ensure_ascii=False,indent=2))
+full={"url":r.url,"status":r.status_code,"script_sources":sources,"download_ext002_function_snippets":snippets,"download_endpoint_candidates":endpoints,"development_calls":calls}
+Path("korea_dart_bulk_discovery.json").write_text(json.dumps(full,ensure_ascii=False,indent=2),encoding="utf-8")
+compact={"status":r.status_code,"sources_with_download_ext002":[x.get("url") for x in sources if x.get("contains")],"download_endpoint_candidates":endpoints,"function_snippets":snippets[:2],"development_call_count":len(calls),"counts_by_year":{str(y):sum(1 for x in calls if x['year']==y) for y in range(2015,2021)}}
+Path("korea_dart_bulk_endpoint_summary.json").write_text(json.dumps(compact,ensure_ascii=False,indent=2),encoding="utf-8")
+print(json.dumps(compact,ensure_ascii=False,indent=2))
