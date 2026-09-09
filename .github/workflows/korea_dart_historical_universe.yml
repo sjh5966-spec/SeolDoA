@@ -1,0 +1,54 @@
+name: Korea DART Historical Universe
+
+on:
+  push:
+    paths:
+      - korea_dart_historical_universe_v1.py
+      - .github/workflows/korea_dart_historical_universe.yml
+  workflow_dispatch:
+    inputs:
+      year:
+        description: 'Development year 2015-2020'
+        required: true
+        default: '2020'
+        type: choice
+        options: ['2015','2016','2017','2018','2019','2020']
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests
+      - name: Reconstruct historical DART filing universe
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          DART_UNIVERSE_YEAR: ${{ inputs.year || '2020' }}
+        run: python korea_dart_historical_universe_v1.py
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: korea-dart-historical-universe-${{ inputs.year || '2020' }}
+          path: |
+            korea_dart_historical_universe_${{ inputs.year || '2020' }}.csv
+            korea_dart_historical_universe_${{ inputs.year || '2020' }}_summary.json
+      - name: Commit compact outputs
+        run: |
+          Y="${{ inputs.year || '2020' }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "korea_dart_historical_universe_${Y}.csv" "korea_dart_historical_universe_${Y}_summary.json"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Collect Korea DART historical universe ${Y}"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep $((i*3))
+          done
+          echo 'Push race persisted; artifact preserves result'
