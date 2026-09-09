@@ -1,0 +1,952 @@
+{
+  "research_stage": "development_seed_identifier_diagnostic",
+  "modern_oos_protected": true,
+  "year": 2015,
+  "seed_rows": 20,
+  "counts": {
+    "seed_code_in_registry": 20,
+    "Q1_CFS_status_013": 20,
+    "Q1_OFS_status_013": 20,
+    "H1_CFS_status_013": 20,
+    "H1_OFS_status_013": 20,
+    "Q3_CFS_status_013": 20,
+    "Q3_OFS_status_013": 20,
+    "FY_CFS_status_000": 18,
+    "FY_any_data": 19,
+    "FY_CFS_status_013": 2,
+    "FY_OFS_status_013": 1,
+    "FY_OFS_status_000": 1
+  },
+  "detail": [
+    {
+      "seed_corp_code": "00100601",
+      "company_name": "주식회사 웰크론강원",
+      "seed_code_in_registry": true,
+      "registry_name": "강원에너지",
+      "exact_name_match_count": 0,
+      "resolved_corp_code": "00100601",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 181,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00100717",
+      "company_name": "인테그레이티드에너지(주)",
+      "seed_code_in_registry": true,
+      "registry_name": "아이이",
+      "exact_name_match_count": 0,
+      "resolved_corp_code": "00100717",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 158,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00100957",
+      "company_name": "주식회사 건영",
+      "seed_code_in_registry": true,
+      "registry_name": "건영",
+      "exact_name_match_count": 1,
+      "resolved_corp_code": "00100957",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00101044",
+      "company_name": "슈넬생명과학(주)",
+      "seed_code_in_registry": true,
+      "registry_name": "에이프로젠바이오로직스",
+      "exact_name_match_count": 0,
+      "resolved_corp_code": "00101044",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 204,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00101220",
+      "company_name": "KG케미칼",
+      "seed_code_in_registry": true,
+      "registry_name": "KG케미칼",
+      "exact_name_match_count": 1,
+      "resolved_corp_code": "00101220",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 221,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00101257",
+      "company_name": "경남기업",
+      "seed_code_in_registry": true,
+      "registry_name": "경남기업",
+      "exact_name_match_count": 2,
+      "resolved_corp_code": "00101257",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 149,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00101336",
+      "company_name": "경남에너지주식회사",
+      "seed_code_in_registry": true,
+      "registry_name": "경남에너지",
+      "exact_name_match_count": 1,
+      "resolved_corp_code": "00101336",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 141,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00101488",
+      "company_name": "주식회사 경동나비엔",
+      "seed_code_in_registry": true,
+      "registry_name": "경동나비엔",
+      "exact_name_match_count": 1,
+      "resolved_corp_code": "00101488",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 131,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00101549",
+      "company_name": "경동제약",
+      "seed_code_in_registry": true,
+      "registry_name": "경동제약",
+      "exact_name_match_count": 1,
+      "resolved_corp_code": "00101549",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 183,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00101628",
+      "company_name": "(주)경방",
+      "seed_code_in_registry": true,
+      "registry_name": "경방",
+      "exact_name_match_count": 1,
+      "resolved_corp_code": "00101628",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 266,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00101664",
+      "company_name": "경보제약",
+      "seed_code_in_registry": true,
+      "registry_name": "경보제약",
+      "exact_name_match_count": 1,
+      "resolved_corp_code": "00101664",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_OFS": {
+          "status": "000",
+          "rows": 132,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00101752",
+      "company_name": "케이씨피드",
+      "seed_code_in_registry": true,
+      "registry_name": "케이씨피드",
+      "exact_name_match_count": 1,
+      "resolved_corp_code": "00101752",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 202,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00102113",
+      "company_name": "(주)경인양행",
+      "seed_code_in_registry": true,
+      "registry_name": "경인양행",
+      "exact_name_match_count": 1,
+      "resolved_corp_code": "00102113",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 209,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00102618",
+      "company_name": "계양전기주식회사",
+      "seed_code_in_registry": true,
+      "registry_name": "계양전기",
+      "exact_name_match_count": 1,
+      "resolved_corp_code": "00102618",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 133,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00102751",
+      "company_name": "고려산업주식회사",
+      "seed_code_in_registry": true,
+      "registry_name": "고려산업",
+      "exact_name_match_count": 2,
+      "resolved_corp_code": "00102751",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 207,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00102760",
+      "company_name": "두산건설(주)",
+      "seed_code_in_registry": true,
+      "registry_name": "두산건설",
+      "exact_name_match_count": 3,
+      "resolved_corp_code": "00102760",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 328,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00102858",
+      "company_name": "고려아연(주)",
+      "seed_code_in_registry": true,
+      "registry_name": "고려아연",
+      "exact_name_match_count": 1,
+      "resolved_corp_code": "00102858",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 167,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00103006",
+      "company_name": "고려제강",
+      "seed_code_in_registry": true,
+      "registry_name": "고려제강",
+      "exact_name_match_count": 1,
+      "resolved_corp_code": "00103006",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 171,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00103042",
+      "company_name": "(주)케이씨티시",
+      "seed_code_in_registry": true,
+      "registry_name": "케이씨티시",
+      "exact_name_match_count": 1,
+      "resolved_corp_code": "00103042",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 150,
+          "message": "정상"
+        }
+      }
+    },
+    {
+      "seed_corp_code": "00103130",
+      "company_name": "(주)고려포리머",
+      "seed_code_in_registry": true,
+      "registry_name": "MDS스피어",
+      "exact_name_match_count": 0,
+      "resolved_corp_code": "00103130",
+      "resolved_differs": false,
+      "reports": {
+        "Q1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "H1_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_CFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "Q3_OFS": {
+          "status": "013",
+          "rows": 0,
+          "message": "조회된 데이타가 없습니다."
+        },
+        "FY_CFS": {
+          "status": "000",
+          "rows": 153,
+          "message": "정상"
+        }
+      }
+    }
+  ]
+}
