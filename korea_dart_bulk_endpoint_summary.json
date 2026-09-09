@@ -1,8 +1,5 @@
 {
   "status": 200,
-  "sources_with_download_ext002": [],
-  "download_endpoint_candidates": [],
-  "function_snippets": [],
   "development_call_count": 84,
   "counts_by_year": {
     "2015": 4,
@@ -11,5 +8,478 @@
     "2018": 16,
     "2019": 16,
     "2020": 16
-  }
+  },
+  "sample": {
+    "year": 2016,
+    "period": "FQ",
+    "statement": "BS",
+    "filename": "2016_1Q_BS_20230119040459.zip"
+  },
+  "winner": null,
+  "attempt_count": 162,
+  "inline_hints": [],
+  "top_attempts": [
+    {
+      "method": "GET",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "year": "2016",
+        "reprtCode": "FQ",
+        "fsDiv": "BS",
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "POST",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "year": "2016",
+        "reprtCode": "FQ",
+        "fsDiv": "BS",
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "GET",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "year": "2016",
+        "reprt_code": "FQ",
+        "fs_div": "BS",
+        "file_nm": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "POST",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "year": "2016",
+        "reprt_code": "FQ",
+        "fs_div": "BS",
+        "file_nm": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "GET",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "bsns_year": "2016",
+        "reprt_code": "FQ",
+        "sj_div": "BS",
+        "file_nm": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "POST",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "bsns_year": "2016",
+        "reprt_code": "FQ",
+        "sj_div": "BS",
+        "file_nm": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "GET",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "bsns_year": "2016",
+        "reprtCode": "FQ",
+        "sjDiv": "BS",
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "POST",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "bsns_year": "2016",
+        "reprtCode": "FQ",
+        "sjDiv": "BS",
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "GET",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "year": "2016",
+        "reportType": "FQ",
+        "statementType": "BS",
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "POST",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "year": "2016",
+        "reportType": "FQ",
+        "statementType": "BS",
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "GET",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "year": "2016",
+        "reprtCode": "FQ",
+        "sjDiv": "BS",
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "POST",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "year": "2016",
+        "reprtCode": "FQ",
+        "sjDiv": "BS",
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "GET",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "POST",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "GET",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "file_nm": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "POST",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "file_nm": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "GET",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "filename": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "POST",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/download.do",
+      "params": {
+        "filename": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "GET",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/downloadExt.do",
+      "params": {
+        "year": "2016",
+        "reprtCode": "FQ",
+        "fsDiv": "BS",
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "POST",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/downloadExt.do",
+      "params": {
+        "year": "2016",
+        "reprtCode": "FQ",
+        "fsDiv": "BS",
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "GET",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/downloadExt.do",
+      "params": {
+        "year": "2016",
+        "reprt_code": "FQ",
+        "fs_div": "BS",
+        "file_nm": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "POST",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/downloadExt.do",
+      "params": {
+        "year": "2016",
+        "reprt_code": "FQ",
+        "fs_div": "BS",
+        "file_nm": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "GET",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/downloadExt.do",
+      "params": {
+        "bsns_year": "2016",
+        "reprt_code": "FQ",
+        "sj_div": "BS",
+        "file_nm": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "POST",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/downloadExt.do",
+      "params": {
+        "bsns_year": "2016",
+        "reprt_code": "FQ",
+        "sj_div": "BS",
+        "file_nm": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "GET",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/downloadExt.do",
+      "params": {
+        "bsns_year": "2016",
+        "reprtCode": "FQ",
+        "sjDiv": "BS",
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "POST",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/downloadExt.do",
+      "params": {
+        "bsns_year": "2016",
+        "reprtCode": "FQ",
+        "sjDiv": "BS",
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "GET",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/downloadExt.do",
+      "params": {
+        "year": "2016",
+        "reportType": "FQ",
+        "statementType": "BS",
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "POST",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/downloadExt.do",
+      "params": {
+        "year": "2016",
+        "reportType": "FQ",
+        "statementType": "BS",
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "GET",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/downloadExt.do",
+      "params": {
+        "year": "2016",
+        "reprtCode": "FQ",
+        "sjDiv": "BS",
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    },
+    {
+      "method": "POST",
+      "url": "https://opendart.fss.or.kr/disclosureinfo/fnltt/dwld/downloadExt.do",
+      "params": {
+        "year": "2016",
+        "reprtCode": "FQ",
+        "sjDiv": "BS",
+        "fileName": "2016_1Q_BS_20230119040459.zip"
+      },
+      "status": 200,
+      "bytes": 4694,
+      "content_type": "text/html",
+      "content_disposition": "",
+      "head_hex": "3c21444f43545950",
+      "zip_magic": false
+    }
+  ]
 }
