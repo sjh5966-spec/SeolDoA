@@ -40,15 +40,32 @@ for f in soup.find_all("form"):
     })
 
 scripts=[]
+function_snippets=[]
 for s in soup.find_all("script"):
     txt=s.get_text("\n")
     if re.search(r"down|dwld|excel|zip|file",txt,re.I):
-        scripts.append(txt[:12000])
+        scripts.append(txt[:20000])
+    for pat in [r"function\s+download_ext002\s*\(", r"download_ext002\s*=\s*function\s*\("]:
+        for m in re.finditer(pat,txt,re.I):
+            function_snippets.append(txt[max(0,m.start()-500):min(len(txt),m.start()+8000)])
+
+# Also search raw HTML in case the JS parser changes whitespace/escaping.
+for pat in [r"function\s+download_ext002\s*\(", r"download_ext002\s*=\s*function\s*\("]:
+    for m in re.finditer(pat,html,re.I):
+        function_snippets.append(html[max(0,m.start()-500):min(len(html),m.start()+8000)])
+
+# Capture candidate endpoint strings adjacent to the function name.
+endpoint_candidates=[]
+for snip in function_snippets:
+    for match in re.finditer(r"['\"]([^'\"]*(?:down|dwld|download|file)[^'\"]*)['\"]",snip,re.I):
+        value=match.group(1).strip()
+        if value and value not in endpoint_candidates:
+            endpoint_candidates.append(value)
 
 interesting_lines=[]
 for line in html.splitlines():
-    if re.search(r"down|dwld|zip|file|fnltt",line,re.I):
-        interesting_lines.append(line.strip()[:4000])
+    if re.search(r"download_ext002|down|dwld|zip|file|fnltt",line,re.I):
+        interesting_lines.append(line.strip()[:6000])
 
 out={
     "url":r.url,
@@ -57,8 +74,10 @@ out={
     "anchors":anchors,
     "buttons":buttons,
     "forms":forms,
+    "download_ext002_function_snippets":function_snippets,
+    "download_endpoint_candidates":endpoint_candidates,
     "scripts_with_download_terms":scripts,
-    "interesting_html_lines":interesting_lines[:1000],
+    "interesting_html_lines":interesting_lines[:1200],
 }
 Path("korea_dart_bulk_discovery.json").write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding="utf-8")
 print(json.dumps({
@@ -67,6 +86,8 @@ print(json.dumps({
     "anchors":len(anchors),
     "buttons":len(buttons),
     "forms":len(forms),
+    "download_function_snippets":len(function_snippets),
+    "download_endpoint_candidates":endpoint_candidates,
     "scripts_with_download_terms":len(scripts),
     "interesting_lines":len(interesting_lines),
 },ensure_ascii=False,indent=2))
