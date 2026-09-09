@@ -1,0 +1,25 @@
+{
+  "checked_at_utc": "2026-09-09T06:43:32.255584+00:00",
+  "research_stage": "development_historical_dart_universe",
+  "modern_oos_protected": true,
+  "year": 2020,
+  "search_end": "20210430",
+  "api_calls": 483,
+  "api_status_counts": {
+    "000": 483
+  },
+  "filing_rows": 26991,
+  "unique_corps": 2121,
+  "earliest_corp_period_rows": 8173,
+  "period_counts": {
+    "FY": 2118,
+    "Q3": 2043,
+    "H1": 2013,
+    "Q1": 1999
+  },
+  "market_counts": {
+    "K": 5153,
+    "Y": 3020
+  },
+  "important_limitation": "DART filing universe only. Security-type exclusions, listing/delisting history, market cap and tradability still require KRX/history validation."
+}
