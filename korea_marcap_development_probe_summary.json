@@ -1,0 +1,251 @@
+{
+  "checked_at_utc": "2026-09-09T07:23:48.984248+00:00",
+  "research_stage": "development_krx_free_historical_market_data_probe",
+  "modern_oos_protected": true,
+  "source": "FinanceData/marcap GitHub annual parquet files",
+  "source_years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020
+  ],
+  "download_status_counts": {
+    "downloaded": 6
+  },
+  "schema_columns": [
+    "Amount",
+    "ChangeCode",
+    "Changes",
+    "ChangesRatio",
+    "Close",
+    "Code",
+    "Date",
+    "Dept",
+    "High",
+    "Low",
+    "Marcap",
+    "Market",
+    "MarketId",
+    "Name",
+    "Open",
+    "Rank",
+    "Stocks",
+    "Volume"
+  ],
+  "yearly": [
+    {
+      "year": 2015,
+      "rows": 510433,
+      "unique_codes": 2206,
+      "first_date": "2015-01-02",
+      "last_date": "2015-12-30",
+      "bytes": 18238264,
+      "market_counts": {
+        "KOSDAQ": 270544,
+        "KOSPI": 219643,
+        "KONEX": 20246
+      },
+      "missing_open": 0,
+      "missing_close": 0,
+      "missing_amount": 0,
+      "missing_marcap": 0,
+      "zero_or_missing_volume_rows": 17477,
+      "nonpositive_marcap_rows": 0
+    },
+    {
+      "year": 2016,
+      "rows": 537665,
+      "unique_codes": 2279,
+      "first_date": "2016-01-04",
+      "last_date": "2016-12-29",
+      "bytes": 19050581,
+      "market_counts": {
+        "KOSDAQ": 288882,
+        "KOSPI": 218616,
+        "KONEX": 30167
+      },
+      "missing_open": 0,
+      "missing_close": 0,
+      "missing_amount": 0,
+      "missing_marcap": 0,
+      "zero_or_missing_volume_rows": 16593,
+      "nonpositive_marcap_rows": 0
+    },
+    {
+      "year": 2017,
+      "rows": 551285,
+      "unique_codes": 2372,
+      "first_date": "2017-01-02",
+      "last_date": "2017-12-28",
+      "bytes": 19462081,
+      "market_counts": {
+        "KOSDAQ": 300479,
+        "KOSPI": 215214,
+        "KONEX": 35592
+      },
+      "missing_open": 0,
+      "missing_close": 0,
+      "missing_amount": 0,
+      "missing_marcap": 0,
+      "zero_or_missing_volume_rows": 18269,
+      "nonpositive_marcap_rows": 0
+    },
+    {
+      "year": 2018,
+      "rows": 567521,
+      "unique_codes": 2436,
+      "first_date": "2018-01-02",
+      "last_date": "2018-12-28",
+      "bytes": 20271735,
+      "market_counts": {
+        "KOSDAQ": 312398,
+        "KOSPI": 218601,
+        "KONEX": 36522
+      },
+      "missing_open": 0,
+      "missing_close": 0,
+      "missing_amount": 0,
+      "missing_marcap": 0,
+      "zero_or_missing_volume_rows": 16846,
+      "nonpositive_marcap_rows": 0
+    },
+    {
+      "year": 2019,
+      "rows": 592396,
+      "unique_codes": 2506,
+      "first_date": "2019-01-02",
+      "last_date": "2019-12-30",
+      "bytes": 20985480,
+      "market_counts": {
+        "KOSDAQ": 332986,
+        "KOSPI": 222301,
+        "KONEX": 37109
+      },
+      "missing_open": 0,
+      "missing_close": 0,
+      "missing_amount": 0,
+      "missing_marcap": 0,
+      "zero_or_missing_volume_rows": 25669,
+      "nonpositive_marcap_rows": 0
+    },
+    {
+      "year": 2020,
+      "rows": 616593,
+      "unique_codes": 2580,
+      "first_date": "2020-01-02",
+      "last_date": "2020-12-30",
+      "bytes": 22181764,
+      "market_counts": {
+        "KOSDAQ": 353662,
+        "KOSPI": 226590,
+        "KONEX": 36341
+      },
+      "missing_open": 0,
+      "missing_close": 0,
+      "missing_amount": 0,
+      "missing_marcap": 0,
+      "zero_or_missing_volume_rows": 31137,
+      "nonpositive_marcap_rows": 0
+    }
+  ],
+  "dart_crosscheck": [
+    {
+      "year": 2015,
+      "dart_stock_codes": 1696,
+      "marcap_codes": 2206,
+      "matched_codes": 1668,
+      "coverage_pct": 98.349,
+      "dart_only_codes": 28,
+      "marcap_only_codes": 538
+    },
+    {
+      "year": 2016,
+      "dart_stock_codes": 1772,
+      "marcap_codes": 2279,
+      "matched_codes": 1741,
+      "coverage_pct": 98.251,
+      "dart_only_codes": 31,
+      "marcap_only_codes": 538
+    },
+    {
+      "year": 2017,
+      "dart_stock_codes": 1858,
+      "marcap_codes": 2372,
+      "matched_codes": 1820,
+      "coverage_pct": 97.955,
+      "dart_only_codes": 38,
+      "marcap_only_codes": 552
+    },
+    {
+      "year": 2018,
+      "dart_stock_codes": 1944,
+      "marcap_codes": 2436,
+      "matched_codes": 1911,
+      "coverage_pct": 98.302,
+      "dart_only_codes": 33,
+      "marcap_only_codes": 525
+    },
+    {
+      "year": 2019,
+      "dart_stock_codes": 2030,
+      "marcap_codes": 2506,
+      "matched_codes": 2002,
+      "coverage_pct": 98.621,
+      "dart_only_codes": 28,
+      "marcap_only_codes": 504
+    },
+    {
+      "year": 2020,
+      "dart_stock_codes": 2121,
+      "marcap_codes": 2580,
+      "matched_codes": 2075,
+      "coverage_pct": 97.831,
+      "dart_only_codes": 46,
+      "marcap_only_codes": 505
+    }
+  ],
+  "codes_seen_2015_2019_but_absent_2020": 238,
+  "example_disappeared_codes": [
+    "000030",
+    "000327",
+    "000360",
+    "000365",
+    "000420",
+    "000425",
+    "000687",
+    "000800",
+    "000830",
+    "000835",
+    "000895",
+    "000997",
+    "001689",
+    "002000",
+    "002005",
+    "002250",
+    "002550",
+    "003419",
+    "003450",
+    "003457",
+    "003600",
+    "003605",
+    "003640",
+    "003940",
+    "003945"
+  ],
+  "total_raw_bytes": 120189905,
+  "usable_for": [
+    "next-trading-day open",
+    "R5/R10/R20/R60/R120 price path",
+    "ADV20 traded value",
+    "PIT daily market cap",
+    "shares outstanding",
+    "zero-volume diagnostics"
+  ],
+  "limitations": [
+    "third-party reconstruction sourced from KRX rather than official API",
+    "security-type filtering still must be applied",
+    "corporate actions and raw-vs-adjusted price behavior require explicit validation before returns are frozen"
+  ]
+}
