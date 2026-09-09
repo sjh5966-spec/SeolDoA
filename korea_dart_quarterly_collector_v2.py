@@ -118,7 +118,6 @@ def capex_aggregate(items,metric,q):
     vals=[]; audit=[]
     for x in uniq:
         v,m=flow_cumulative(x,metric,q)
-        # Acquisition cash flows can be reported with either sign. Normalize cumulative spend first.
         spend=abs(v) if v is not None else None
         if spend is not None: vals.append(spend)
         audit.append({'account_id':x.get('account_id'),'account_nm':x.get('account_nm'),'raw_cumulative':v,'normalized_cumulative_spend':spend,'method':m})
@@ -154,7 +153,7 @@ def main():
                     x,rule=choose_single(items,m) if items else (None,'missing_statement')
                     v,method=flow_cumulative(x,m,q)
                     metrics[m]={'cumulative':v,'selection_rule':rule,'amount_method':method,'account_id':x.get('account_id') if x else None,'account_nm':x.get('account_nm') if x else None,'sj_div':x.get('sj_div') if x else None}
-            comparable=(q=='Q1') or (basis and prev_basis==basis)
+            comparable=(q=='Q1') or bool(basis and prev_basis==basis)
             pure={}; methods={}
             for m in PREFERRED:
                 cur=metrics[m]['cumulative']
@@ -184,9 +183,9 @@ def main():
                          'cfo_pure_method':methods['cfo'],'capex_ppe_pure_method':methods['capex_ppe'],'capex_intangible_pure_method':methods['capex_intangible'],
                          'metric_selection_json':json.dumps(metrics,ensure_ascii=False),
                          'signal_date_status':'NOT_ASSIGNED_ACCOUNTING_STAGE','seed_source':seed_path.name,'modern_oos_protected':True})
-            for m in FLOW:
-                if metrics[m]['cumulative'] is not None: prev[m]=metrics[m]['cumulative']
-            if basis: prev_basis=basis
+            # Immediate-predecessor discipline: never carry an older metric through a missing period.
+            for m in FLOW: prev[m]=metrics[m]['cumulative']
+            prev_basis=basis or None
     df=pd.DataFrame(rows)
     out=Path(f'korea_dart_quarterly_v2_{year}_chunk{chunk:03d}.csv'); summ=Path(f'korea_dart_quarterly_v2_{year}_chunk{chunk:03d}_summary.json')
     df.to_csv(out,index=False)
