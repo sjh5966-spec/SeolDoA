@@ -4,7 +4,8 @@ on:
   push:
     paths:
       - korea_turnaround_accounting_candidates_v1.py
-      - 'korea_dart_quarterly_v2_20??_chunk*.csv'
+      - .github/workflows/korea_turnaround_accounting_candidates.yml
+      - korea_dart_quarterly_v2_2016_chunk000.csv
   workflow_dispatch:
 
 permissions:
