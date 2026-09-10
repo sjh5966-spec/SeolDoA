@@ -22,7 +22,7 @@ jobs:
       - id: plan
         shell: python
         run: |
-          import csv,json,os,math
+          import csv,json,os
           corps=set()
           with open('korea_dart_historical_universe_2015.csv',encoding='utf-8-sig',newline='') as f:
               for r in csv.DictReader(f):
@@ -56,13 +56,18 @@ jobs:
           DART_2015_XBRL_CHUNK: ${{ matrix.chunk }}
           DART_2015_XBRL_CHUNK_SIZE: ${{ matrix.size }}
         run: python korea_dart_2015_xbrl_collector_v2.py
+      - name: Stage chunk outputs
+        shell: bash
+        run: |
+          mkdir -p artifact
+          cp korea_dart_quarterly_xbrl_2015_chunk*.csv artifact/ 2>/dev/null || true
+          cp korea_dart_quarterly_xbrl_2015_chunk*_summary.json artifact/ 2>/dev/null || true
+          test -n "$(find artifact -type f -maxdepth 1 -print -quit)"
       - uses: actions/upload-artifact@v4
         with:
           name: qacct2015-${{ matrix.chunk }}
           retention-days: 14
-          path: |
-            korea_dart_quarterly_xbrl_2015_chunk${{ format('{0:000}', matrix.chunk) }}.csv
-            korea_dart_quarterly_xbrl_2015_chunk${{ format('{0:000}', matrix.chunk) }}_summary.json
+          path: artifact/
 
   aggregate:
     needs: collect
