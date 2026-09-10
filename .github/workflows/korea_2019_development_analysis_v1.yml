@@ -1,0 +1,53 @@
+name: Korea 2019 Development Analysis V1
+
+on:
+  push:
+    paths:
+      - korea_2019_development_analysis_v1.py
+      - .github/workflows/korea_2019_development_analysis_v1.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+env:
+  PYTHONUNBUFFERED: '1'
+
+jobs:
+  analyze:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests pyarrow
+      - name: Download completed 2016-2020 accounting aggregate
+        uses: actions/download-artifact@v4
+        with:
+          name: korea-dart-quarterly-2016-2020-full
+          path: accounting_artifact
+          repository: sjh5966-spec/SeolDoA
+          run-id: 34325367757
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: cp accounting_artifact/korea_dart_quarterly_2016_2020_full.csv .
+      - name: Run 2019 complete-year Development analysis
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python korea_2019_development_analysis_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-2019-development-analysis-v1
+          retention-days: 30
+          path: |
+            korea_2019_development_base_a_events_v1.csv
+            korea_2019_development_analysis_v1_summary.json
+      - name: Commit compact outputs
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add korea_2019_development_base_a_events_v1.csv korea_2019_development_analysis_v1_summary.json
+          git commit -m 'Add 2019 Development Base A event analysis' || exit 0
+          git push
