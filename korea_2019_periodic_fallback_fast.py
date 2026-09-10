@@ -1,21 +1,18 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import json, os, re
+import json, re
 from pathlib import Path
-from concurrent.futures import ThreadPoolExecutor, as_completed
 import numpy as np
 import pandas as pd
 import requests
 
 QFILE=Path('korea_dart_quarterly_2016_2020_full.csv')
 SEC=Path('korea_historical_security_universe_2015_2020.csv')
+UNI=Path('korea_dart_historical_universe_2019.csv')
 OUT=Path('korea_2019_periodic_fallback_events.csv')
 SUM=Path('korea_2019_periodic_fallback_summary.json')
-API='https://opendart.fss.or.kr/api/list.json'
 MARCAP='https://raw.githubusercontent.com/FinanceData/marcap/master/data/marcap-{year}.parquet'
-QORD={'Q1':1,'Q2':2,'Q3':3,'Q4':4}
-TOK={'Q1':('분기보고서','2019.03'),'Q2':('반기보고서','2019.06'),'Q3':('분기보고서','2019.09'),'Q4':('사업보고서','2019.12')}
-DATES={'Q1':('20190401','20190630'),'Q2':('20190701','20190930'),'Q3':('20191001','20191231'),'Q4':('20200101','20200430')}
+QORD={'Q1':1,'Q2':2,'Q3':3,'Q4':4}; SRC_PERIOD={'Q1':'Q1','Q2':'H1','Q3':'Q3','Q4':'FY'}
 
 def accounting():
  d=pd.read_csv(QFILE,dtype={'corp_code':str},low_memory=False);d=d[d.business_year.astype(int).isin([2018,2019])].copy();d['corp_code']=d.corp_code.astype(str).str.zfill(8);d['qord']=d.fiscal_quarter.map(QORD);d['seq']=d.business_year.astype(int)*4+d.qord.astype(int);d=d.sort_values(['corp_code','seq']).drop_duplicates(['corp_code','business_year','fiscal_quarter'],keep='last')
@@ -27,24 +24,14 @@ def accounting():
  return pd.DataFrame(rows)
 
 def securities(x):
- s=pd.read_csv(SEC,dtype=str).fillna('');fy='fiscal_year' if 'fiscal_year' in s else ('year' if 'year' in s else None)
- if fy:s=s[pd.to_numeric(s[fy],errors='coerce').eq(2019)]
- s['corp_code']=s.corp_code.astype(str).str.zfill(8);cc=next((c for c in ('matched_stock_code','stock_code','Code','code') if c in s),None);sc=next((c for c in ('status','security_status','match_status') if c in s),None);cols=['corp_code']+[c for c in (cc,sc) if c];s=s[cols].drop_duplicates('corp_code');o=x.merge(s,on='corp_code',how='left');o['stock_code']=o[cc].astype(str).str.replace(r'\.0$','',regex=True).str.zfill(6) if cc else '';o['security_status']=o[sc] if sc else '';return o
+ s=pd.read_csv(SEC,dtype=str).fillna('');s=s[pd.to_numeric(s['fiscal_year'],errors='coerce').eq(2019)].copy();s['corp_code']=s.corp_code.astype(str).str.zfill(8);s=s[['corp_code','stock_code','marcap_matched','security_review_status','observed_markets']].drop_duplicates('corp_code');o=x.merge(s,on='corp_code',how='left');o['stock_code']=o.stock_code.fillna('').astype(str).str.replace(r'\.0$','',regex=True).str.zfill(6);return o
 
-def one_signal(key,row):
- q=row['quarter'];b,e=DATES[q];p={'crtfc_key':key,'corp_code':row['corp_code'],'bgn_de':b,'end_de':e,'page_count':'100'}
- try:
-  d=requests.get(API,params=p,timeout=45).json();items=sorted(d.get('list') or [],key=lambda z:(str(z.get('rcept_dt','')),str(z.get('rcept_no',''))));a,b2=TOK[q];hits=[z for z in items if a in str(z.get('report_nm','')) and b2 in str(z.get('report_nm',''))];z=hits[0] if hits else None;return row['corp_code'],q,str(z.get('rcept_dt','')) if z else '',str(z.get('rcept_no','')) if z else '',str(z.get('report_nm','')) if z else '',str(d.get('status',''))
- except Exception as ex:return row['corp_code'],q,'','','','ERR_'+type(ex).__name__
-
-def signals(x,key):
- vals=[]
- with ThreadPoolExecutor(max_workers=8) as ex:
-  fs=[ex.submit(one_signal,key,r) for r in x[['corp_code','quarter']].to_dict('records')]
-  for i,f in enumerate(as_completed(fs),1):
-   vals.append(f.result());
-   if i%50==0:print('signals',i,'/',len(fs),flush=True)
- m=pd.DataFrame(vals,columns=['corp_code','quarter','signal_date','signal_receipt_no','signal_report_name','list_status']);return x.merge(m,on=['corp_code','quarter'],how='left')
+def signals(x):
+ u=pd.read_csv(UNI,dtype=str).fillna('');u['corp_code']=u.corp_code.astype(str).str.zfill(8)
+ if 'is_earliest_corp_period' in u.columns:u=u[u.is_earliest_corp_period.astype(str).str.lower().eq('true')].copy()
+ else:u=u.sort_values(['corp_code','period','rcept_dt','rcept_no']).drop_duplicates(['corp_code','period'],keep='first')
+ u=u[u.period.isin(['Q1','H1','Q3','FY'])][['corp_code','period','rcept_dt','rcept_no','report_nm']].copy();u=u.rename(columns={'rcept_dt':'signal_date','rcept_no':'signal_receipt_no','report_nm':'signal_report_name'})
+ x=x.copy();x['period']=x.quarter.map(SRC_PERIOD);o=x.merge(u,on=['corp_code','period'],how='left');o['signal_date']=o.signal_date.fillna('');return o
 
 def marcap():
  ds=[]
@@ -56,8 +43,9 @@ def marcap():
 
 def market(x):
  m=marcap();rows=[]
+ defaults={'mcap_pre_signal':np.nan,'mcap_date':'','entry_date':'','entry_open':np.nan,'adv20':np.nan,'R5':np.nan,'R10':np.nan,'R20':np.nan,'R60':np.nan,'R120':np.nan,'R5_raw':np.nan,'R10_raw':np.nan,'R20_raw':np.nan,'R60_raw':np.nan,'R120_raw':np.nan,'CA_R5':np.nan,'CA_R10':np.nan,'CA_R20':np.nan,'CA_R60':np.nan,'CA_R120':np.nan,'MFE20':np.nan,'MAE20':np.nan,'fcf_pct':np.nan,'fcf_yoy_pct':np.nan,'loss_pct':np.nan}
  for r in x.itertuples(index=False):
-  d=r._asdict();sd=pd.to_datetime(str(r.signal_date),format='%Y%m%d',errors='coerce');code=str(r.stock_code).zfill(6);z=m[(m.Code==code)&(m.Market.isin(['KOSPI','KOSDAQ']))].sort_values('Date').reset_index(drop=True)
+  d={**r._asdict(),**defaults};sd=pd.to_datetime(str(r.signal_date),format='%Y%m%d',errors='coerce');code=str(r.stock_code).zfill(6);z=m[(m.Code==code)&(m.Market.isin(['KOSPI','KOSDAQ']))].sort_values('Date').reset_index(drop=True)
   if pd.isna(sd) or z.empty:d['status']='NO_SIGNAL_OR_MARKET';rows.append(d);continue
   pre=z[z.Date<sd];d['mcap_pre_signal']=float(pre.iloc[-1].Marcap) if len(pre) else np.nan;d['mcap_date']=pre.iloc[-1].Date.date().isoformat() if len(pre) else ''
   elig=z[(z.Date>sd)&(z.Open>0)&(z.Volume>0)&(z.Amount>0)]
@@ -77,5 +65,5 @@ def st(s):
  s=pd.to_numeric(s,errors='coerce').dropna();return {'n':int(len(s)),'median':float(s.median()),'mean':float(s.mean()),'win':float((s>0).mean()),'ge20':float((s>=20).mean()),'le_m20':float((s<=-20).mean()),'p10':float(s.quantile(.1)),'p25':float(s.quantile(.25)),'p75':float(s.quantile(.75)),'p90':float(s.quantile(.9))} if len(s) else {'n':0}
 
 def main():
- key=os.environ['DART_API_KEY'];x=accounting();print('base',len(x));x=securities(x);x=signals(x,key);x=market(x);x.to_csv(OUT,index=False);mc=pd.to_numeric(x.mcap_pre_signal,errors='coerce').dropna();s={'development_only':True,'modern_oos_protected':True,'year':2019,'accounting_base_a':len(x),'signals_found':int(x.signal_date.astype(bool).sum()),'market_ok':int((x.status=='OK').sum()),'r20':st(x.R20),'r5':st(x.R5),'r10':st(x.R10),'r60':st(x.R60),'r120':st(x.R120),'mcap_krw':{'n':len(mc),'p10':float(mc.quantile(.1)) if len(mc) else None,'p25':float(mc.quantile(.25)) if len(mc) else None,'median':float(mc.median()) if len(mc) else None,'p75':float(mc.quantile(.75)) if len(mc) else None,'p90':float(mc.quantile(.9)) if len(mc) else None},'fcf_pct':st(x.fcf_pct),'fcf_yoy_pct':st(x.fcf_yoy_pct),'loss_pct':st(x.loss_pct),'ca_r20':int(pd.Series(x.CA_R20).fillna(False).astype(bool).sum()),'limitation':'Periodic-report fallback signal only. Preliminary/earnings disclosures may move signal earlier. Use for Development directional evidence, not frozen strategy efficacy. PIT mcap is last trading-day close strictly before signal; entry is first tradable open strictly after signal. 2023+ OOS untouched.'};SUM.write_text(json.dumps(s,ensure_ascii=False,indent=2));print(json.dumps(s,ensure_ascii=False,indent=2))
+ x=accounting();print('base',len(x));x=securities(x);print('matched security',int(x.marcap_matched.astype(str).str.lower().eq('true').sum()));x=signals(x);print('signals',int(x.signal_date.astype(bool).sum()));x=market(x);x.to_csv(OUT,index=False);mc=pd.to_numeric(x.mcap_pre_signal,errors='coerce').dropna();clean=x[x.security_review_status.eq('MATCHED_COMMON_CANDIDATE')].copy();s={'development_only':True,'modern_oos_protected':True,'year':2019,'accounting_base_a':int(len(x)),'matched_common_candidate':int((x.security_review_status=='MATCHED_COMMON_CANDIDATE').sum()),'excluded_flagged':int((x.security_review_status=='EXCLUDE_FLAGGED').sum()),'signals_found':int(x.signal_date.astype(bool).sum()),'market_ok':int((x.status=='OK').sum()),'research_clean_market_ok':int(((x.status=='OK')&(x.security_review_status=='MATCHED_COMMON_CANDIDATE')).sum()),'r20':st(clean.R20),'r5':st(clean.R5),'r10':st(clean.R10),'r60':st(clean.R60),'r120':st(clean.R120),'mcap_krw':{'n':int(len(mc)),'p10':float(mc.quantile(.1)) if len(mc) else None,'p25':float(mc.quantile(.25)) if len(mc) else None,'median':float(mc.median()) if len(mc) else None,'p75':float(mc.quantile(.75)) if len(mc) else None,'p90':float(mc.quantile(.9)) if len(mc) else None},'fcf_pct':st(clean.fcf_pct),'fcf_yoy_pct':st(clean.fcf_yoy_pct),'loss_pct':st(clean.loss_pct),'ca_r20':int(pd.Series(clean.CA_R20).fillna(False).astype(bool).sum()),'limitation':'Periodic-report fallback signal from the previously reconstructed historical DART receipt universe; no new DART API signal calls. Preliminary/earnings disclosures may move signal earlier. Directional Development evidence only, not frozen efficacy. PIT mcap is last trading-day close strictly before signal; entry is first tradable open strictly after signal. 2023+ OOS untouched.'};SUM.write_text(json.dumps(s,ensure_ascii=False,indent=2));print(json.dumps(s,ensure_ascii=False,indent=2))
 if __name__=='__main__':main()
