@@ -1,0 +1,177 @@
+name: Korea Validation Accounting Recovery
+
+on:
+  push:
+    paths:
+      - 'korea_validation_historical_universe_v1.py'
+      - 'korea_validation_quarterly_collector_v1.py'
+      - '.github/workflows/korea_validation_accounting_recovery.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: '1'
+
+jobs:
+  universe:
+    strategy:
+      fail-fast: false
+      matrix:
+        year: [2021, 2022]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests
+      - name: Build survivor-resistant DART filing universe
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          DART_UNIVERSE_YEAR: ${{ matrix.year }}
+        run: python korea_validation_historical_universe_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: validation-universe-${{ matrix.year }}
+          retention-days: 14
+          path: |
+            korea_dart_historical_universe_${{ matrix.year }}.csv
+            korea_dart_historical_universe_${{ matrix.year }}_summary.json
+
+  seed:
+    needs: universe
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: validation-universe-*
+          path: universes
+          merge-multiple: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas
+      - id: plan
+        shell: python
+        run: |
+          import glob, json, os
+          import pandas as pd
+          fs=sorted(glob.glob('universes/korea_dart_historical_universe_20??.csv'))
+          frames=[]
+          for f in fs:
+              d=pd.read_csv(f,dtype=str).fillna('')
+              if d.empty: continue
+              d=d[d['target_year'].astype(int).isin([2021,2022])].copy()
+              d=d.sort_values(['target_year','corp_code','rcept_dt','rcept_no'])
+              first=d.groupby(['target_year','corp_code'],as_index=False).first()
+              frames.append(first)
+          if not frames: raise SystemExit('no validation universe rows')
+          x=pd.concat(frames,ignore_index=True)
+          out=pd.DataFrame({
+              'corp_code':x['corp_code'].astype(str).str.zfill(8),
+              'fiscal_year':x['target_year'].astype(str),
+              'company_name':x.get('corp_name',''),
+              'basis':'',
+              'filing_date':x.get('rcept_dt',''),
+              'receipt_no':x.get('rcept_no',''),
+              'period_to':'',
+              'stock_code':x.get('stock_code',''),
+              'corp_cls':x.get('corp_cls',''),
+              'first_period':x.get('period',''),
+              'seed_source':'validation_historical_dart_periodic_filing_universe',
+          }).sort_values(['fiscal_year','corp_code'])
+          out.to_csv('korea_validation_historical_seed_2021_2022.csv',index=False)
+          items=[]; size=100
+          for y in [2021,2022]:
+              n=int((out.fiscal_year.astype(str)==str(y)).sum())
+              for c in range((n+size-1)//size): items.append({'year':y,'chunk':c,'size':size})
+          if not items or len(items)>256: raise SystemExit(f'unsafe matrix size {len(items)}')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('matrix='+json.dumps({'include':items},separators=(',',':'))+'\n')
+          print('seed rows',len(out),'matrix jobs',len(items))
+      - uses: actions/upload-artifact@v4
+        with:
+          name: validation-accounting-seed
+          retention-days: 14
+          path: korea_validation_historical_seed_2021_2022.csv
+
+  collect:
+    needs: seed
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix: ${{ fromJSON(needs.seed.outputs.matrix) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: validation-accounting-seed
+          path: .
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests
+      - name: Collect validation accounting chunk
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          DART_QUARTER_YEAR: ${{ matrix.year }}
+          DART_QUARTER_CHUNK: ${{ matrix.chunk }}
+          DART_QUARTER_CHUNK_SIZE: ${{ matrix.size }}
+        run: python korea_validation_quarterly_collector_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: validation-qacct-${{ matrix.year }}-${{ matrix.chunk }}
+          retention-days: 14
+          path: |
+            korea_dart_quarterly_v2_${{ matrix.year }}_chunk*.csv
+            korea_dart_quarterly_v2_${{ matrix.year }}_chunk*_summary.json
+
+  aggregate:
+    needs: collect
+    if: ${{ always() && needs.collect.result != 'skipped' && !cancelled() }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: validation-qacct-*
+          path: chunks
+          merge-multiple: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas
+      - name: Aggregate validation accounting and QC
+        shell: python
+        run: |
+          from pathlib import Path
+          import json, pandas as pd
+          fs=sorted(Path('chunks').glob('korea_dart_quarterly_v2_*_chunk*.csv'))
+          if not fs: raise SystemExit('no validation chunk outputs')
+          d=pd.concat([pd.read_csv(f,dtype={'corp_code':str},low_memory=False) for f in fs],ignore_index=True)
+          d=d[d.business_year.astype(int).isin([2021,2022])].copy()
+          # 2022 Q4 is forbidden before OOS gate because its annual disclosure occurs in 2023.
+          if ((d.business_year.astype(int)==2022)&d.fiscal_quarter.eq('Q4')).any(): raise SystemExit('OOS guard: 2022 Q4 unexpectedly present')
+          d.to_csv('korea_validation_quarterly_2021_2022_full.csv',index=False)
+          s={'validation_only':True,'modern_oos_protected':True,'files':len(fs),'rows':len(d),
+             'unique_corps':int(d.corp_code.nunique()),'year_counts':d.business_year.value_counts().sort_index().to_dict(),
+             'quarter_counts':d.groupby(['business_year','fiscal_quarter']).size().to_dict(),
+             'op_populated':int(d.operating_profit_q.notna().sum()),'ni_populated':int(d.net_income_q.notna().sum()),
+             'equity_populated':int(d.equity_q_end.notna().sum()),'cfo_populated':int(d.cfo_q.notna().sum()),
+             'fcf_populated':int(d.fcf_q.notna().sum()),
+             'note':'Accounting only. 2023+ filings/prices/returns not accessed; 2022 Q4 intentionally excluded.'}
+          Path('korea_validation_quarterly_2021_2022_full_summary.json').write_text(json.dumps(s,ensure_ascii=False,indent=2,default=str),encoding='utf-8')
+          print(json.dumps(s,ensure_ascii=False,indent=2,default=str))
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-validation-quarterly-2021-2022-full
+          retention-days: 30
+          path: |
+            korea_validation_quarterly_2021_2022_full.csv
+            korea_validation_quarterly_2021_2022_full_summary.json
