@@ -1,0 +1,48 @@
+name: Korea Development Multiyear Analysis V2
+
+on:
+  push:
+    paths:
+      - 'korea_development_multiyear_analysis_v2.py'
+      - '.github/workflows/korea_development_multiyear_analysis_v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas numpy requests pyarrow
+      - name: Download current 2016-2020 accounting aggregate
+        uses: actions/download-artifact@v4
+        with:
+          name: korea-dart-quarterly-2016-2020-full
+          path: accounting_artifact
+          repository: sjh5966-spec/SeolDoA
+          run-id: 34325367757
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: cp accounting_artifact/korea_dart_quarterly_2016_2020_full.csv .
+      - name: Run fixed Development multiyear analysis
+        run: python korea_development_multiyear_analysis_v2.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-development-multiyear-analysis-v2
+          path: |
+            korea_development_multiyear_events_v1.csv
+            korea_development_multiyear_summary_v1.json
+          retention-days: 30
+      - name: Commit compact summary
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add korea_development_multiyear_summary_v1.json
+          git commit -m 'Update Korea Development multiyear summary v2' || exit 0
+          git push
