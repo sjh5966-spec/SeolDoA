@@ -21,36 +21,19 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install pandas requests pyarrow
-      - name: Download recovered accounting chunks
+      - name: Download recovered accounting aggregate
         uses: actions/download-artifact@v4
         with:
-          pattern: qacct-*
-          path: chunks
-          merge-multiple: true
+          name: korea-dart-quarterly-2016-2020-recovered
+          path: recovered
           repository: sjh5966-spec/SeolDoA
-          run-id: 34325367757
+          run-id: 34545260411
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build recovered aggregate safely
-        shell: python
+      - name: Stage recovered aggregate
         run: |
-          from pathlib import Path
-          import pandas as pd, json
-          fs=sorted(Path('chunks').glob('korea_dart_quarterly_v2_*_chunk*.csv'))
-          if len(fs)<90: raise SystemExit(f'too few chunk outputs: {len(fs)}')
-          ds=[]
-          for f in fs:
-              z=pd.read_csv(f,dtype={'corp_code':str},low_memory=False)
-              z['business_year']=pd.to_numeric(z.get('business_year'),errors='coerce')
-              z=z[z.business_year.between(2016,2020)].copy()
-              ds.append(z)
-          d=pd.concat(ds,ignore_index=True)
-          d['business_year']=pd.to_numeric(d.business_year,errors='coerce').astype('Int64')
-          d=d.dropna(subset=['business_year','corp_code','fiscal_quarter']).copy()
-          d['business_year']=d.business_year.astype(int)
-          d=d.sort_values(['corp_code','business_year','fiscal_quarter']).drop_duplicates(['corp_code','business_year','fiscal_quarter'],keep='last')
-          d.to_csv('korea_dart_quarterly_2016_2020_recovered.csv',index=False)
-          s={'development_only':True,'oos_2023_plus_untouched':True,'files':len(fs),'rows':len(d),'unique_corps':int(d.corp_code.nunique()),'year_counts':{str(k):int(v) for k,v in d.business_year.value_counts().sort_index().items()}}
-          Path('korea_dart_quarterly_2016_2020_recovered_summary.json').write_text(json.dumps(s,ensure_ascii=False,indent=2)); print(json.dumps(s,ensure_ascii=False,indent=2))
+          cp recovered/korea_dart_quarterly_2016_2020_recovered.csv .
+          cp recovered/korea_dart_quarterly_2016_2020_recovered_summary.json .
+          cat korea_dart_quarterly_2016_2020_recovered_summary.json
       - name: Run multiyear Development analysis
         run: python korea_development_multiyear_v1.py
       - uses: actions/upload-artifact@v4
