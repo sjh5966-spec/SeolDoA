@@ -86,7 +86,7 @@ jobs:
               'seed_source':'validation_historical_dart_periodic_filing_universe',
           }).sort_values(['fiscal_year','corp_code'])
           out.to_csv('korea_validation_historical_seed_2021_2022.csv',index=False)
-          items=[]; size=100
+          items=[]; size=20
           for y in [2021,2022]:
               n=int((out.fiscal_year.astype(str)==str(y)).sum())
               for c in range((n+size-1)//size): items.append({'year':y,'chunk':c,'size':size})
