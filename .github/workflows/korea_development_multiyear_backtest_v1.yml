@@ -1,0 +1,69 @@
+name: Korea Development Multiyear Backtest v1
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'korea_development_multiyear_backtest_v1.py'
+      - '.github/workflows/korea_development_multiyear_backtest_v1.yml'
+permissions:
+  actions: read
+  contents: write
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pandas numpy pyarrow requests
+      - name: Download latest full accounting aggregate
+        uses: actions/download-artifact@v4
+        with:
+          name: korea-dart-quarterly-2016-2020-full
+          path: inputs/accounting
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 34325367757
+      - name: Download historical security bridge
+        uses: actions/download-artifact@v4
+        with:
+          name: korea-historical-security-universe-v1
+          path: inputs/security
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 34323833001
+      - name: Download historical DART universe
+        uses: actions/download-artifact@v4
+        with:
+          name: korea-dart-historical-universe-development
+          path: inputs/universe
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 34320651415
+      - name: Download pre-OOS marcap
+        uses: actions/download-artifact@v4
+        with:
+          name: korea-marcap-pre-oos-2015-2022
+          path: inputs/marcap
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: 34323880223
+      - name: Run multiyear Development analysis
+        run: python korea_development_multiyear_backtest_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-development-multiyear-backtest-v1
+          path: |
+            korea_development_multiyear_events_v1.csv
+            korea_development_multiyear_grid_v1.csv
+            korea_development_multiyear_summary_v1.json
+          retention-days: 30
+      - name: Commit compact outputs
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add korea_development_multiyear_grid_v1.csv korea_development_multiyear_summary_v1.json
+          git diff --cached --quiet || git commit -m 'Update Korea Development multiyear backtest results'
+          git push
