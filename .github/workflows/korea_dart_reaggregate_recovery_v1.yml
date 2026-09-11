@@ -1,0 +1,48 @@
+name: Korea DART Recovery Reaggregate V1
+
+on:
+  push:
+    paths:
+      - 'korea_dart_reaggregate_recovery_v1.py'
+      - '.github/workflows/korea_dart_reaggregate_recovery_v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  aggregate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas
+      - name: Download all current qacct chunk artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: qacct-*
+          path: recovery_chunks
+          merge-multiple: false
+          repository: sjh5966-spec/SeolDoA
+          run-id: 34325367757
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Reaggregate recovered chunks
+        run: python korea_dart_reaggregate_recovery_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-dart-quarterly-2016-2020-recovered
+          path: |
+            korea_dart_quarterly_2016_2020_recovered.csv
+            korea_dart_quarterly_2016_2020_recovered_summary.json
+          retention-days: 30
+      - name: Commit recovery summary
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add korea_dart_quarterly_2016_2020_recovered_summary.json
+          git commit -m 'Update Korea Development accounting recovery summary' || exit 0
+          git push
