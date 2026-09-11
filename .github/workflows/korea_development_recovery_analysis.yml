@@ -1,0 +1,71 @@
+name: Korea Development Recovery Analysis
+
+on:
+  push:
+    paths:
+      - .github/workflows/korea_development_recovery_analysis.yml
+      - korea_development_multiyear_v1.py
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests pyarrow
+      - name: Download recovered accounting chunks
+        uses: actions/download-artifact@v4
+        with:
+          pattern: qacct-*
+          path: chunks
+          merge-multiple: true
+          repository: sjh5966-spec/SeolDoA
+          run-id: 34325367757
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build recovered aggregate safely
+        shell: python
+        run: |
+          from pathlib import Path
+          import pandas as pd, json
+          fs=sorted(Path('chunks').glob('korea_dart_quarterly_v2_*_chunk*.csv'))
+          if len(fs)<90: raise SystemExit(f'too few chunk outputs: {len(fs)}')
+          ds=[]
+          for f in fs:
+              z=pd.read_csv(f,dtype={'corp_code':str},low_memory=False)
+              z['business_year']=pd.to_numeric(z.get('business_year'),errors='coerce')
+              z=z[z.business_year.between(2016,2020)].copy()
+              ds.append(z)
+          d=pd.concat(ds,ignore_index=True)
+          d['business_year']=pd.to_numeric(d.business_year,errors='coerce').astype('Int64')
+          d=d.dropna(subset=['business_year','corp_code','fiscal_quarter']).copy()
+          d['business_year']=d.business_year.astype(int)
+          d=d.sort_values(['corp_code','business_year','fiscal_quarter']).drop_duplicates(['corp_code','business_year','fiscal_quarter'],keep='last')
+          d.to_csv('korea_dart_quarterly_2016_2020_recovered.csv',index=False)
+          s={'development_only':True,'oos_2023_plus_untouched':True,'files':len(fs),'rows':len(d),'unique_corps':int(d.corp_code.nunique()),'year_counts':{str(k):int(v) for k,v in d.business_year.value_counts().sort_index().items()}}
+          Path('korea_dart_quarterly_2016_2020_recovered_summary.json').write_text(json.dumps(s,ensure_ascii=False,indent=2)); print(json.dumps(s,ensure_ascii=False,indent=2))
+      - name: Run multiyear Development analysis
+        run: python korea_development_multiyear_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-development-recovered-analysis
+          retention-days: 30
+          path: |
+            korea_dart_quarterly_2016_2020_recovered_summary.json
+            korea_development_2018_2020_events.csv
+            korea_development_threshold_grid.csv
+            korea_development_multiyear_summary.json
+      - name: Commit compact outputs
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add korea_dart_quarterly_2016_2020_recovered_summary.json korea_development_threshold_grid.csv korea_development_multiyear_summary.json
+          git diff --cached --quiet || git commit -m 'Update recovered Korea Development analysis'
+          git push
