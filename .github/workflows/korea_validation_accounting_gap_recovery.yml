@@ -64,7 +64,6 @@ jobs:
                       child=(start+off)//5
                       items.append({'year':y,'parent':p,'chunk':child,'size':5})
           if not missing:
-              # Matrix must not be empty. A sentinel job exits successfully without collecting.
               items=[{'year':2021,'parent':-1,'chunk':-1,'size':5}]
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:
               f.write('matrix='+json.dumps({'include':items},separators=(',',':'))+'\n')
@@ -81,7 +80,7 @@ jobs:
       max-parallel: 2
       matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
@@ -168,7 +167,6 @@ jobs:
           observed={int(y):int(n) for y,n in d.groupby(d.business_year.astype(int)).corp_code.nunique().items()}
           coverage={str(y):{'expected_corps':expected.get(y,0),'observed_corps':observed.get(y,0),'corp_coverage':observed.get(y,0)/expected[y] if expected.get(y) else None} for y in (2021,2022)}
           qcounts={f'{int(y)}-{q}':int(n) for (y,q),n in d.groupby(['business_year','fiscal_quarter']).size().items()}
-          # Validation collector contract: 2021 Q1-Q4, 2022 Q1-Q3 only.
           required={(2021,'Q1'),(2021,'Q2'),(2021,'Q3'),(2021,'Q4'),(2022,'Q1'),(2022,'Q2'),(2022,'Q3')}
           present=set((int(y),str(q)) for y,q in d[['business_year','fiscal_quarter']].drop_duplicates().itertuples(index=False,name=None))
           if required-present: raise SystemExit(f'missing whole quarter(s): {sorted(required-present)}')
