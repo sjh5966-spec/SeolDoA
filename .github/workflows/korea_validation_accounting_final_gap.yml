@@ -1,0 +1,139 @@
+name: Korea Validation Accounting Final Gap
+
+on:
+  push:
+    paths:
+      - '.github/workflows/korea_validation_accounting_final_gap.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  PYTHONUNBUFFERED: '1'
+  SOURCE_RUN_ID: '34666220262'
+  GAP_RUN_ID: '34717948405'
+
+jobs:
+  collect:
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        chunk: [1925, 1926, 1927, 1928, 1929]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: validation-accounting-seed
+          path: .
+          repository: sjh5966-spec/SeolDoA
+          run-id: ${{ env.SOURCE_RUN_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests
+      - name: Recover one final missing company
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          DART_QUARTER_YEAR: '2021'
+          DART_QUARTER_CHUNK: ${{ matrix.chunk }}
+          DART_QUARTER_CHUNK_SIZE: '1'
+        run: python korea_validation_quarterly_collector_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: validation-final-gap-2021-${{ matrix.chunk }}
+          retention-days: 14
+          path: |
+            korea_dart_quarterly_v2_2021_chunk*.csv
+            korea_dart_quarterly_v2_2021_chunk*_summary.json
+
+  aggregate:
+    needs: collect
+    if: ${{ always() && needs.collect.result == 'success' }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: validation-qacct-*
+          path: source_chunks
+          merge-multiple: true
+          repository: sjh5966-spec/SeolDoA
+          run-id: ${{ env.SOURCE_RUN_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: validation-gap-*
+          path: prior_gap_chunks
+          merge-multiple: true
+          repository: sjh5966-spec/SeolDoA
+          run-id: ${{ env.GAP_RUN_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: validation-final-gap-*
+          path: final_gap_chunks
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: validation-accounting-seed
+          path: .
+          repository: sjh5966-spec/SeolDoA
+          run-id: ${{ env.SOURCE_RUN_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas
+      - name: Merge all accounting, deduplicate and enforce OOS guard
+        shell: python
+        run: |
+          from pathlib import Path
+          import json, pandas as pd
+          roots=['source_chunks','prior_gap_chunks','final_gap_chunks']
+          fs=[]
+          for root in roots:
+              fs += sorted(Path(root).glob('korea_dart_quarterly_v2_*_chunk*.csv'))
+          if not fs: raise SystemExit('no accounting chunk outputs')
+          frames=[]
+          for f in fs:
+              try:
+                  x=pd.read_csv(f,dtype={'corp_code':str},low_memory=False)
+              except pd.errors.EmptyDataError:
+                  continue
+              if len(x): frames.append(x)
+          if not frames: raise SystemExit('all accounting chunks empty')
+          d=pd.concat(frames,ignore_index=True)
+          d=d[d.business_year.astype(int).isin([2021,2022])].copy()
+          if ((d.business_year.astype(int)==2022)&d.fiscal_quarter.eq('Q4')).any():
+              raise SystemExit('OOS guard: 2022 Q4 unexpectedly present')
+          d=d.sort_values(['business_year','corp_code','fiscal_quarter']).drop_duplicates(['corp_code','business_year','fiscal_quarter'],keep='last')
+          seed=pd.read_csv('korea_validation_historical_seed_2021_2022.csv',dtype={'corp_code':str})
+          expected={int(y):int(n) for y,n in seed.groupby(seed.fiscal_year.astype(int)).size().items()}
+          observed={int(y):int(n) for y,n in d.groupby(d.business_year.astype(int)).corp_code.nunique().items()}
+          coverage={str(y):{'expected_corps':expected.get(y,0),'observed_corps':observed.get(y,0),'corp_coverage':observed.get(y,0)/expected[y] if expected.get(y) else None} for y in (2021,2022)}
+          qcounts={f'{int(y)}-{q}':int(n) for (y,q),n in d.groupby(['business_year','fiscal_quarter']).size().items()}
+          required={(2021,'Q1'),(2021,'Q2'),(2021,'Q3'),(2021,'Q4'),(2022,'Q1'),(2022,'Q2'),(2022,'Q3')}
+          present=set((int(y),str(q)) for y,q in d[['business_year','fiscal_quarter']].drop_duplicates().itertuples(index=False,name=None))
+          if required-present: raise SystemExit(f'missing whole quarter(s): {sorted(required-present)}')
+          d.to_csv('korea_validation_quarterly_2021_2022_full.csv',index=False)
+          s={'validation_only':True,'modern_oos_protected':True,'source_run_id':34666220262,'gap_run_id':34717948405,
+             'input_files':len(fs),'rows':int(len(d)),'unique_corps':int(d.corp_code.nunique()),'coverage':coverage,
+             'year_counts':{str(int(k)):int(v) for k,v in d.business_year.value_counts().sort_index().items()},'quarter_counts':qcounts,
+             'op_populated':int(d.operating_profit_q.notna().sum()),'ni_populated':int(d.net_income_q.notna().sum()),'equity_populated':int(d.equity_q_end.notna().sum()),
+             'cfo_populated':int(d.cfo_q.notna().sum()),'fcf_populated':int(d.fcf_q.notna().sum()),
+             'note':'Accounting only. Source-run parent artifacts plus successful prior gap slices plus final 1-company slices; deduplicated by corp_code/business_year/fiscal_quarter. 2022 Q4 strictly rejected. No 2023+ filings/prices/returns accessed.'}
+          Path('korea_validation_quarterly_2021_2022_full_summary.json').write_text(json.dumps(s,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(s,ensure_ascii=False,indent=2))
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-validation-quarterly-2021-2022-full-final
+          retention-days: 30
+          path: |
+            korea_validation_quarterly_2021_2022_full.csv
+            korea_validation_quarterly_2021_2022_full_summary.json
