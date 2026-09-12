@@ -1,0 +1,189 @@
+name: Korea Validation Accounting Gap Recovery
+
+on:
+  push:
+    paths:
+      - '.github/workflows/korea_validation_accounting_gap_recovery.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  PYTHONUNBUFFERED: '1'
+  SOURCE_RUN_ID: '34666220262'
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      missing: ${{ steps.plan.outputs.missing }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: validation-accounting-seed
+          path: .
+          repository: sjh5966-spec/SeolDoA
+          run-id: ${{ env.SOURCE_RUN_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - id: plan
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: python
+        run: |
+          import csv, json, os, re, urllib.request
+          run=os.environ['SOURCE_RUN_ID']
+          names=set()
+          page=1
+          while True:
+              req=urllib.request.Request(
+                  f'https://api.github.com/repos/sjh5966-spec/SeolDoA/actions/runs/{run}/artifacts?per_page=100&page={page}',
+                  headers={'Authorization':f'Bearer {os.environ["GH_TOKEN"]}','Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'})
+              with urllib.request.urlopen(req,timeout=60) as r: data=json.load(r)
+              arts=data.get('artifacts',[])
+              names.update(a.get('name','') for a in arts if not a.get('expired'))
+              if len(arts)<100: break
+              page+=1
+          counts={2021:0,2022:0}
+          with open('korea_validation_historical_seed_2021_2022.csv',encoding='utf-8-sig',newline='') as f:
+              for row in csv.DictReader(f):
+                  y=int(row['fiscal_year'])
+                  if y in counts: counts[y]+=1
+          missing=[]; items=[]
+          for y in (2021,2022):
+              parents=(counts[y]+19)//20
+              for p in range(parents):
+                  if f'validation-qacct-{y}-{p}' in names: continue
+                  missing.append({'year':y,'parent':p})
+                  start=p*20
+                  for off in (0,5,10,15):
+                      if start+off>=counts[y]: continue
+                      child=(start+off)//5
+                      items.append({'year':y,'parent':p,'chunk':child,'size':5})
+          if not missing:
+              # Matrix must not be empty. A sentinel job exits successfully without collecting.
+              items=[{'year':2021,'parent':-1,'chunk':-1,'size':5}]
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write('matrix='+json.dumps({'include':items},separators=(',',':'))+'\n')
+              f.write('missing='+json.dumps(missing,separators=(',',':'))+'\n')
+          print('seed counts',counts)
+          print('successful source chunk artifacts',sum(1 for n in names if n.startswith('validation-qacct-')))
+          print('missing parents',missing)
+          print('recovery child jobs',len(items) if missing else 0)
+
+  collect:
+    needs: plan
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: validation-accounting-seed
+          path: .
+          repository: sjh5966-spec/SeolDoA
+          run-id: ${{ env.SOURCE_RUN_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests
+      - name: Recover one missing-parent slice
+        if: ${{ matrix.parent >= 0 }}
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          DART_QUARTER_YEAR: ${{ matrix.year }}
+          DART_QUARTER_CHUNK: ${{ matrix.chunk }}
+          DART_QUARTER_CHUNK_SIZE: ${{ matrix.size }}
+        run: python korea_validation_quarterly_collector_v1.py
+      - uses: actions/upload-artifact@v4
+        if: ${{ matrix.parent >= 0 }}
+        with:
+          name: validation-gap-${{ matrix.year }}-p${{ matrix.parent }}-c${{ matrix.chunk }}
+          retention-days: 14
+          path: |
+            korea_dart_quarterly_v2_${{ matrix.year }}_chunk*.csv
+            korea_dart_quarterly_v2_${{ matrix.year }}_chunk*_summary.json
+
+  aggregate:
+    needs: [plan, collect]
+    if: ${{ always() && needs.collect.result != 'cancelled' }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: validation-qacct-*
+          path: old_chunks
+          merge-multiple: true
+          repository: sjh5966-spec/SeolDoA
+          run-id: ${{ env.SOURCE_RUN_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        if: ${{ needs.plan.outputs.missing != '[]' }}
+        with:
+          pattern: validation-gap-*
+          path: gap_chunks
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: validation-accounting-seed
+          path: .
+          repository: sjh5966-spec/SeolDoA
+          run-id: ${{ env.SOURCE_RUN_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas
+      - name: Merge recovered accounting, deduplicate and enforce OOS guard
+        shell: python
+        run: |
+          from pathlib import Path
+          import json, pandas as pd
+          fs=sorted(Path('old_chunks').glob('korea_dart_quarterly_v2_*_chunk*.csv'))+sorted(Path('gap_chunks').glob('korea_dart_quarterly_v2_*_chunk*.csv'))
+          if not fs: raise SystemExit('no accounting chunk outputs')
+          frames=[]
+          for f in fs:
+              try:
+                  x=pd.read_csv(f,dtype={'corp_code':str},low_memory=False)
+              except pd.errors.EmptyDataError:
+                  continue
+              if len(x): frames.append(x)
+          if not frames: raise SystemExit('all accounting chunks empty')
+          d=pd.concat(frames,ignore_index=True)
+          d=d[d.business_year.astype(int).isin([2021,2022])].copy()
+          if ((d.business_year.astype(int)==2022)&d.fiscal_quarter.eq('Q4')).any():
+              raise SystemExit('OOS guard: 2022 Q4 unexpectedly present')
+          d=d.sort_values(['business_year','corp_code','fiscal_quarter']).drop_duplicates(['corp_code','business_year','fiscal_quarter'],keep='last')
+          seed=pd.read_csv('korea_validation_historical_seed_2021_2022.csv',dtype={'corp_code':str})
+          expected={int(y):int(n) for y,n in seed.groupby(seed.fiscal_year.astype(int)).size().items()}
+          observed={int(y):int(n) for y,n in d.groupby(d.business_year.astype(int)).corp_code.nunique().items()}
+          coverage={str(y):{'expected_corps':expected.get(y,0),'observed_corps':observed.get(y,0),'corp_coverage':observed.get(y,0)/expected[y] if expected.get(y) else None} for y in (2021,2022)}
+          qcounts={f'{int(y)}-{q}':int(n) for (y,q),n in d.groupby(['business_year','fiscal_quarter']).size().items()}
+          # Validation collector contract: 2021 Q1-Q4, 2022 Q1-Q3 only.
+          required={(2021,'Q1'),(2021,'Q2'),(2021,'Q3'),(2021,'Q4'),(2022,'Q1'),(2022,'Q2'),(2022,'Q3')}
+          present=set((int(y),str(q)) for y,q in d[['business_year','fiscal_quarter']].drop_duplicates().itertuples(index=False,name=None))
+          if required-present: raise SystemExit(f'missing whole quarter(s): {sorted(required-present)}')
+          d.to_csv('korea_validation_quarterly_2021_2022_full.csv',index=False)
+          s={'validation_only':True,'modern_oos_protected':True,'source_run_id':34666220262,'input_files':len(fs),'rows':int(len(d)),'unique_corps':int(d.corp_code.nunique()),
+             'coverage':coverage,'year_counts':{str(int(k)):int(v) for k,v in d.business_year.value_counts().sort_index().items()},'quarter_counts':qcounts,
+             'op_populated':int(d.operating_profit_q.notna().sum()),'ni_populated':int(d.net_income_q.notna().sum()),'equity_populated':int(d.equity_q_end.notna().sum()),
+             'cfo_populated':int(d.cfo_q.notna().sum()),'fcf_populated':int(d.fcf_q.notna().sum()),
+             'note':'Accounting only. 2023+ filings/prices/returns not accessed; 2022 Q4 intentionally excluded. Missing 20-company parents recovered only via 5-company child slices.'}
+          Path('korea_validation_quarterly_2021_2022_full_summary.json').write_text(json.dumps(s,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(json.dumps(s,ensure_ascii=False,indent=2))
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-validation-quarterly-2021-2022-full-recovered
+          retention-days: 30
+          path: |
+            korea_validation_quarterly_2021_2022_full.csv
+            korea_validation_quarterly_2021_2022_full_summary.json
