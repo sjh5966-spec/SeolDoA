@@ -1,0 +1,78 @@
+name: Korea Locked Validation Analysis V1
+
+on:
+  push:
+    paths:
+      - 'korea_validation_locked_analysis_v1.py'
+      - '.github/workflows/korea_validation_locked_analysis_v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  PYTHONUNBUFFERED: '1'
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: korea-validation-quarterly-2021-2022-full-final
+          path: .
+          repository: sjh5966-spec/SeolDoA
+          run-id: 34725863290
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: validation-accounting-seed
+          path: seed_artifact
+          repository: sjh5966-spec/SeolDoA
+          run-id: 34666220262
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: validation-universe-2021
+          path: universe_2021
+          repository: sjh5966-spec/SeolDoA
+          run-id: 34666220262
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: validation-universe-2022
+          path: universe_2022
+          repository: sjh5966-spec/SeolDoA
+          run-id: 34666220262
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: korea-dart-quarterly-2016-2020-full
+          path: development_accounting
+          repository: sjh5966-spec/SeolDoA
+          run-id: 34325367757
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Stage strictly pre-OOS inputs
+        shell: bash
+        run: |
+          cp development_accounting/korea_dart_quarterly_2016_2020_full.csv .
+          cp universe_2021/korea_validation_historical_universe_2021.csv .
+          cp universe_2022/korea_validation_historical_universe_2022.csv .
+          test -f korea_validation_quarterly_2021_2022_full.csv
+          echo 'Guard: analysis may load market years 2021 and 2022 only; 2023+ is forbidden.'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas numpy requests pyarrow
+      - name: Run one-time locked Validation check
+        run: python korea_validation_locked_analysis_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-locked-validation-analysis-v1
+          retention-days: 30
+          path: |
+            korea_validation_locked_events_v1.csv
+            korea_validation_locked_summary_v1.json
