@@ -1,0 +1,41 @@
+name: Korea Turnaround V2 Benchmark
+
+on:
+  push:
+    paths:
+      - 'korea_turnaround_v2_benchmark.py'
+      - '.github/workflows/korea_turnaround_v2_benchmark.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: korea-turnaround-v2-exploration
+          path: v2
+          repository: sjh5966-spec/SeolDoA
+          run-id: 34794505921
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas numpy requests pyarrow
+      - name: Run benchmark analysis
+        run: |
+          cp v2/korea_turnaround_v2_events.csv .
+          python korea_turnaround_v2_benchmark.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-turnaround-v2-benchmark
+          retention-days: 30
+          path: |
+            korea_turnaround_v2_benchmark_events.csv
+            korea_turnaround_v2_benchmark_summary.json
