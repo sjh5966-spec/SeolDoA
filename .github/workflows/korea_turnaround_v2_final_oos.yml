@@ -1,0 +1,212 @@
+name: Korea Turnaround V2 FINAL OOS
+
+on:
+  push:
+    paths:
+      - 'korea_turnaround_v2_oos_historical_universe.py'
+      - 'korea_turnaround_v2_oos_quarterly_collector.py'
+      - 'korea_turnaround_v2_oos_analysis.py'
+      - '.github/workflows/korea_turnaround_v2_final_oos.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  PYTHONUNBUFFERED: '1'
+
+jobs:
+  universe:
+    strategy:
+      fail-fast: false
+      matrix:
+        year: [2022, 2023, 2024, 2025]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests
+      - name: Open frozen OOS DART universe
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          DART_UNIVERSE_YEAR: ${{ matrix.year }}
+        run: python korea_turnaround_v2_oos_historical_universe.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v2-oos-universe-${{ matrix.year }}
+          retention-days: 30
+          path: |
+            korea_dart_historical_universe_${{ matrix.year }}.csv
+            korea_dart_historical_universe_${{ matrix.year }}_summary.json
+
+  seed:
+    needs: universe
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v2-oos-universe-*
+          path: universes
+          merge-multiple: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests pyarrow
+      - id: plan
+        shell: python
+        run: |
+          import glob, json, os, requests
+          from pathlib import Path
+          import pandas as pd
+          MARCAP='https://raw.githubusercontent.com/FinanceData/marcap/master/data/marcap-{year}.parquet'
+          frames=[]
+          for f in sorted(glob.glob('universes/korea_dart_historical_universe_20??.csv')):
+              d=pd.read_csv(f,dtype=str).fillna('')
+              d['corp_code']=d.corp_code.astype(str).str.zfill(8)
+              d['stock_code']=d.stock_code.astype(str).str.zfill(6)
+              d['signal_date']=pd.to_datetime(d.rcept_dt,format='%Y%m%d',errors='coerce')
+              d['target_year']=pd.to_numeric(d.target_year,errors='coerce')
+              if 'is_earliest_corp_period' in d: d=d[d.is_earliest_corp_period.str.lower().eq('true')]
+              frames.append(d)
+          u=pd.concat(frames,ignore_index=True)
+          u=u[u.signal_date.between(pd.Timestamp('2023-01-01'),pd.Timestamp('2025-12-31'))].copy()
+          markets=[]
+          for y in [2022,2023,2024,2025]:
+              p=Path(f'marcap-{y}.parquet')
+              if not p.exists():
+                  r=requests.get(MARCAP.format(year=y),timeout=180); r.raise_for_status(); p.write_bytes(r.content)
+              z=pd.read_parquet(p)
+              if 'Date' not in z: z=z.reset_index()
+              z['Date']=pd.to_datetime(z.Date); z['Code']=z.Code.astype(str).str.zfill(6)
+              markets.append(z[['Date','Code','Marcap','Market']])
+          m=pd.concat(markets,ignore_index=True).sort_values(['Code','Date'])
+          by={c:g.reset_index(drop=True) for c,g in m.groupby('Code',sort=False)}
+          keep=[]
+          for r in u.itertuples(index=False):
+              z=by.get(str(r.stock_code).zfill(6))
+              if z is None: continue
+              p=z[z.Date<r.signal_date]
+              if not p.empty and float(p.iloc[-1].Marcap)<=50e9: keep.append(r)
+          if not keep: raise SystemExit('no PIT-smallcap OOS candidates')
+          cand=pd.DataFrame([x._asdict() for x in keep])
+          # Collect each candidate fiscal year plus prior fiscal year when >=2022,
+          # so same-quarter YoY comparisons cannot be lost due prior-year size.
+          rows=[]
+          for r in cand.itertuples(index=False):
+              for fy in sorted(set([int(r.target_year),int(r.target_year)-1])):
+                  if fy<2022 or fy>2025: continue
+                  rows.append({'corp_code':str(r.corp_code).zfill(8),'fiscal_year':str(fy),'company_name':getattr(r,'corp_name',''),'basis':'','filing_date':str(getattr(r,'rcept_dt','')),'receipt_no':str(getattr(r,'rcept_no','')),'period_to':'','stock_code':str(r.stock_code).zfill(6),'corp_cls':str(getattr(r,'corp_cls','')),'first_period':str(getattr(r,'period','')),'seed_source':'v2_final_oos_pit_smallcap_plus_prior_context'})
+          out=pd.DataFrame(rows).sort_values(['fiscal_year','corp_code']).drop_duplicates(['fiscal_year','corp_code'])
+          out.to_csv('korea_turnaround_v2_oos_seed_2022_2025.csv',index=False)
+          items=[]; size=30
+          for y in [2022,2023,2024,2025]:
+              n=int((out.fiscal_year.astype(str)==str(y)).sum())
+              for c in range((n+size-1)//size): items.append({'year':y,'chunk':c,'size':size})
+          if not items or len(items)>256: raise SystemExit(f'unsafe matrix size {len(items)}')
+          Path('oos_seed_summary.json').write_text(json.dumps({'candidate_filing_rows':len(cand),'seed_corp_years':len(out),'year_counts':out.fiscal_year.value_counts().sort_index().to_dict(),'jobs':len(items)},indent=2),encoding='utf-8')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f: f.write('matrix='+json.dumps({'include':items},separators=(',',':'))+'\n')
+          print(Path('oos_seed_summary.json').read_text())
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v2-oos-accounting-seed
+          retention-days: 30
+          path: |
+            korea_turnaround_v2_oos_seed_2022_2025.csv
+            oos_seed_summary.json
+
+  collect:
+    needs: seed
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix: ${{ fromJSON(needs.seed.outputs.matrix) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: v2-oos-accounting-seed
+          path: .
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas requests
+      - name: Collect frozen OOS accounting
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          DART_QUARTER_YEAR: ${{ matrix.year }}
+          DART_QUARTER_CHUNK: ${{ matrix.chunk }}
+          DART_QUARTER_CHUNK_SIZE: ${{ matrix.size }}
+        run: python korea_turnaround_v2_oos_quarterly_collector.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v2-oos-qacct-${{ matrix.year }}-${{ matrix.chunk }}
+          retention-days: 30
+          path: |
+            korea_dart_quarterly_v2_${{ matrix.year }}_chunk*.csv
+            korea_dart_quarterly_v2_${{ matrix.year }}_chunk*_summary.json
+
+  analyze:
+    needs: collect
+    if: ${{ always() && needs.collect.result == 'success' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v2-oos-qacct-*
+          path: chunks
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v2-oos-universe-*
+          path: oos_universe
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: korea-validation-quarterly-2021-2022-full-final
+          path: validation
+          repository: sjh5966-spec/SeolDoA
+          run-id: 34725863290
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas numpy requests pyarrow
+      - name: Aggregate OOS accounting
+        shell: python
+        run: |
+          from pathlib import Path
+          import pandas as pd
+          fs=sorted(Path('chunks').glob('korea_dart_quarterly_v2_*_chunk*.csv'))
+          if not fs: raise SystemExit('no OOS accounting chunks')
+          d=pd.concat([pd.read_csv(f,dtype={'corp_code':str},low_memory=False) for f in fs],ignore_index=True)
+          d=d[pd.to_numeric(d.business_year,errors='coerce').isin([2022,2023,2024,2025])]
+          if ((pd.to_numeric(d.business_year)==2025)&d.fiscal_quarter.eq('Q4')).any(): raise SystemExit('2025 Q4 must not be present')
+          d.to_csv('korea_turnaround_v2_oos_accounting_2022_2025.csv',index=False)
+          print('accounting rows',len(d),'corps',d.corp_code.nunique())
+      - name: Stage universe and prior context
+        run: |
+          mkdir -p oos_universe_all
+          cp oos_universe/korea_dart_historical_universe_*.csv oos_universe_all/
+          rm -rf oos_universe
+          mv oos_universe_all oos_universe
+          cp validation/korea_validation_quarterly_2021_2022_full.csv .
+      - name: Run frozen one-time OOS
+        run: python korea_turnaround_v2_oos_analysis.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-turnaround-v2-final-oos
+          retention-days: 90
+          path: |
+            korea_turnaround_v2_oos_events.csv
+            korea_turnaround_v2_oos_summary.json
+            korea_turnaround_v2_oos_accounting_2022_2025.csv
