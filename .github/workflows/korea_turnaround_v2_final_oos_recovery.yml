@@ -89,9 +89,26 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+      # Download each year separately so each API listing remains below the
+      # actions/download-artifact 100-artifact pagination ceiling.
       - uses: actions/download-artifact@v4
         with:
-          pattern: v2-oos-recovery-qacct-*
+          pattern: v2-oos-recovery-qacct-2022-*
+          path: chunks
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v2-oos-recovery-qacct-2023-*
+          path: chunks
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v2-oos-recovery-qacct-2024-*
+          path: chunks
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v2-oos-recovery-qacct-2025-*
           path: chunks
           merge-multiple: true
       - uses: actions/download-artifact@v4
