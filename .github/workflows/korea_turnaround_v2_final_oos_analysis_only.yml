@@ -20,11 +20,20 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
+      - name: Download completed original accounting chunks
+        uses: actions/download-artifact@v4
+        with:
+          pattern: v2-oos-qacct-*
+          path: source_chunks
+          merge-multiple: true
+          repository: sjh5966-spec/SeolDoA
+          run-id: ${{ env.SOURCE_RUN_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Download completed recovery accounting chunks
         uses: actions/download-artifact@v4
         with:
           pattern: v2-oos-recovery-qacct-*
-          path: chunks
+          path: recovery_chunks
           merge-multiple: true
           repository: sjh5966-spec/SeolDoA
           run-id: ${{ env.RECOVERY_RUN_ID }}
@@ -58,33 +67,24 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install pandas numpy requests pyarrow
-      - name: Verify complete chunk coverage and aggregate
+      - name: Verify complete accounting coverage and aggregate
         shell: python
         run: |
           from pathlib import Path
           import pandas as pd
           seed=pd.read_csv('seed/korea_turnaround_v2_oos_seed_2022_2025.csv',dtype=str)
-          size=15
-          expected=[]
-          for y in [2022,2023,2024,2025]:
-              n=int((seed.fiscal_year.astype(str)==str(y)).sum())
-              for c in range((n+size-1)//size): expected.append((y,c))
-          fs=sorted(Path('chunks').glob('korea_dart_quarterly_v2_*_chunk*.csv'))
-          found=set()
-          frames=[]
-          import re
-          for f in fs:
-              m=re.search(r'_v2_(\d{4})_chunk(\d+)\.csv$',f.name)
-              if m:
-                  found.add((int(m.group(1)),int(m.group(2))))
-                  frames.append(pd.read_csv(f,dtype={'corp_code':str},low_memory=False))
-          missing=[x for x in expected if x not in found]
-          print('expected chunks',len(expected),'found',len(found),'missing',missing)
-          if missing: raise SystemExit(f'missing recovery chunks: {missing}')
+          fs=sorted(Path('source_chunks').glob('korea_dart_quarterly_v2_*_chunk*.csv')) + sorted(Path('recovery_chunks').glob('korea_dart_quarterly_v2_*_chunk*.csv'))
+          if not fs: raise SystemExit('no accounting chunks found')
+          frames=[pd.read_csv(f,dtype={'corp_code':str},low_memory=False) for f in fs]
           d=pd.concat(frames,ignore_index=True)
           d=d[pd.to_numeric(d.business_year,errors='coerce').isin([2022,2023,2024,2025])]
-          if ((pd.to_numeric(d.business_year)==2025)&d.fiscal_quarter.eq('Q4')).any(): raise SystemExit('2025 Q4 must not be present')
+          if ((pd.to_numeric(d.business_year,errors='coerce')==2025)&d.fiscal_quarter.eq('Q4')).any(): raise SystemExit('2025 Q4 must not be present')
           d=d.drop_duplicates()
+          seed_pairs=set(zip(seed.corp_code.astype(str).str.zfill(8),seed.fiscal_year.astype(str)))
+          data_pairs=set(zip(d.corp_code.astype(str).str.zfill(8),d.business_year.astype(str)))
+          missing=sorted(seed_pairs-data_pairs)
+          print('source files',len(list(Path('source_chunks').glob('*.csv'))),'recovery files',len(list(Path('recovery_chunks').glob('*.csv'))),'seed pairs',len(seed_pairs),'covered',len(seed_pairs)-len(missing),'missing',missing[:20])
+          if missing: raise SystemExit(f'missing accounting seed coverage: {len(missing)} pairs; first={missing[:20]}')
           d.to_csv('korea_turnaround_v2_oos_accounting_2022_2025.csv',index=False)
           print('accounting rows',len(d),'corps',d.corp_code.nunique())
       - name: Stage prior context
