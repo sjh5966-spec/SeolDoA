@@ -1,0 +1,101 @@
+name: Korea Turnaround V2 FINAL OOS Analysis Only
+
+on:
+  push:
+    paths:
+      - '.github/workflows/korea_turnaround_v2_final_oos_analysis_only.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  SOURCE_RUN_ID: '34798758480'
+  RECOVERY_RUN_ID: '34825931138'
+
+jobs:
+  analyze:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download completed recovery accounting chunks
+        uses: actions/download-artifact@v4
+        with:
+          pattern: v2-oos-recovery-qacct-*
+          path: chunks
+          merge-multiple: true
+          repository: sjh5966-spec/SeolDoA
+          run-id: ${{ env.RECOVERY_RUN_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download frozen OOS universes
+        uses: actions/download-artifact@v4
+        with:
+          pattern: v2-oos-universe-*
+          path: oos_universe
+          merge-multiple: true
+          repository: sjh5966-spec/SeolDoA
+          run-id: ${{ env.SOURCE_RUN_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download frozen seed
+        uses: actions/download-artifact@v4
+        with:
+          name: v2-oos-accounting-seed
+          path: seed
+          repository: sjh5966-spec/SeolDoA
+          run-id: ${{ env.SOURCE_RUN_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download prior validation accounting context
+        uses: actions/download-artifact@v4
+        with:
+          name: korea-validation-quarterly-2021-2022-full-final
+          path: validation
+          repository: sjh5966-spec/SeolDoA
+          run-id: 34725863290
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas numpy requests pyarrow
+      - name: Verify complete chunk coverage and aggregate
+        shell: python
+        run: |
+          from pathlib import Path
+          import pandas as pd
+          seed=pd.read_csv('seed/korea_turnaround_v2_oos_seed_2022_2025.csv',dtype=str)
+          size=15
+          expected=[]
+          for y in [2022,2023,2024,2025]:
+              n=int((seed.fiscal_year.astype(str)==str(y)).sum())
+              for c in range((n+size-1)//size): expected.append((y,c))
+          fs=sorted(Path('chunks').glob('korea_dart_quarterly_v2_*_chunk*.csv'))
+          found=set()
+          frames=[]
+          import re
+          for f in fs:
+              m=re.search(r'_v2_(\d{4})_chunk(\d+)\.csv$',f.name)
+              if m:
+                  found.add((int(m.group(1)),int(m.group(2))))
+                  frames.append(pd.read_csv(f,dtype={'corp_code':str},low_memory=False))
+          missing=[x for x in expected if x not in found]
+          print('expected chunks',len(expected),'found',len(found),'missing',missing)
+          if missing: raise SystemExit(f'missing recovery chunks: {missing}')
+          d=pd.concat(frames,ignore_index=True)
+          d=d[pd.to_numeric(d.business_year,errors='coerce').isin([2022,2023,2024,2025])]
+          if ((pd.to_numeric(d.business_year)==2025)&d.fiscal_quarter.eq('Q4')).any(): raise SystemExit('2025 Q4 must not be present')
+          d=d.drop_duplicates()
+          d.to_csv('korea_turnaround_v2_oos_accounting_2022_2025.csv',index=False)
+          print('accounting rows',len(d),'corps',d.corp_code.nunique())
+      - name: Stage prior context
+        run: cp validation/korea_validation_quarterly_2021_2022_full.csv .
+      - name: Run frozen one-time OOS analysis
+        run: python korea_turnaround_v2_oos_analysis.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-turnaround-v2-final-oos-analysis-only
+          retention-days: 90
+          path: |
+            korea_turnaround_v2_oos_events.csv
+            korea_turnaround_v2_oos_summary.json
+            korea_turnaround_v2_oos_accounting_2022_2025.csv
