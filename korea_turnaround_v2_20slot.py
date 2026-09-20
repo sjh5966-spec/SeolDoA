@@ -59,9 +59,9 @@ def main():
      if gross<=0:continue
      p=r._asdict();p["allocation"]=gross;p["cash_spent"]=gross*(1+BUY);p["shares"]=gross/r.entry_open;cash-=p["cash_spent"];pos.append(p)
    nav=cash+sum(p["shares"]*mark(p,d,"Close") for p in pos);nr.append((d,nav,cash,len(pos)))
-  n=pd.DataFrame(nr,columns=["date","nav","cash","active_slots"]);n["peak"]=n.nav.cummax();n["dd"]=n.nav/n.peak-1
+  n=pd.DataFrame(nr,columns=["date","nav","cash","active_slots"]);n["peak"]=n.nav.cummax();n["dd"]=n.nav/n.peak-1;n["daily_return"]=n.nav.pct_change().fillna(0);down=n.loc[n.daily_return<0,"daily_return"];sortino=(n.daily_return.mean()/np.sqrt((down**2).mean())*np.sqrt(252)) if len(down) and (down**2).mean()>0 else np.nan
   t=pd.DataFrame(tr);years=max((n.date.iloc[-1]-n.date.iloc[0]).days/365.25,1/365.25)
-  return {"total_return":float(n.nav.iloc[-1]-1),"cagr":float(n.nav.iloc[-1]**(1/years)-1),"mdd":float(n.dd.min()),"entered":int(len(t)),"trade_mean":float(t.net_return.mean()),"trade_median":float(t.net_return.median()),"win_rate":float((t.net_return>0).mean()),"avg_active_slots":float(n.active_slots.mean()),"avg_cash_fraction":float((n.cash/n.nav).mean())}
+  return {"total_return":float(n.nav.iloc[-1]-1),"cagr":float(n.nav.iloc[-1]**(1/years)-1),"mdd":float(n.dd.min()),"sortino":float(sortino) if np.isfinite(sortino) else None,"entered":int(len(t)),"trade_mean":float(t.net_return.mean()),"trade_median":float(t.net_return.median()),"win_rate":float((t.net_return>0).mean()),"avg_active_slots":float(n.active_slots.mean()),"avg_cash_fraction":float((n.cash/n.nav).mean())}
  results={p:run(p) for p in ["small_mcap","signal_strength","profit_growth"]}
  summary={"definition":"Same frozen V2 candidates and dynamic NAV 5% sizing; only same-entry-day capacity priority differs.","profit_growth_definition":"(current OP-prior OP)/prior OP only when prior OP>0; prior OP<=0 or missing ranks below valid growth rates. Tie-break: smaller mcap.","results":results}
  SUM.write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding="utf-8");print(json.dumps(summary,ensure_ascii=False,indent=2))
