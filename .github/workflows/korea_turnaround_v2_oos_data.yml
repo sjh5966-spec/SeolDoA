@@ -35,3 +35,30 @@ jobs:
           path: |
             korea_dart_historical_universe_${{ matrix.year }}.csv
             korea_dart_historical_universe_${{ matrix.year }}_summary.json
+
+  freeze:
+    needs: universe
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v2-oos-data-universe-*
+          path: frozen_oos
+          merge-multiple: true
+      - name: Build frozen universe manifest
+        shell: python
+        run: |
+          import hashlib,json
+          from pathlib import Path
+          files=sorted(Path('frozen_oos').glob('*'))
+          manifest={'scope':'OOS PIT universe 2022-2025; target signals 2023-2025','files':[]}
+          for p in files:
+              if p.is_file():
+                  manifest['files'].append({'name':p.name,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size})
+          Path('frozen_oos/manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
+          print(json.dumps(manifest,indent=2))
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v2-oos-frozen-universe-2022-2025
+          retention-days: 90
+          path: frozen_oos/
