@@ -36,10 +36,14 @@ def api(session,key,params):
             r=session.get(API,params={'crtfc_key':key,**params},timeout=60); r.raise_for_status()
             d=r.json(); st=str(d.get('status',''))
             if st in ('000','013'): return d
-            if st=='020': time.sleep(2*(attempt+1)); continue
-            return d
+            if st=='020':
+                print(f"OpenDART retry status={st} message={d.get('message')} http={r.status_code} params={{{'bgn_de':params.get('bgn_de'),'end_de':params.get('end_de'),'pblntf_ty':params.get('pblntf_ty'),'pblntf_detail_ty':params.get('pblntf_detail_ty'),'page_no':params.get('page_no')}}}", flush=True)
+                time.sleep(2*(attempt+1)); continue
+            raise RuntimeError(f"OpenDART API error status={st} message={d.get('message')} http={r.status_code} params={{{'bgn_de':params.get('bgn_de'),'end_de':params.get('end_de'),'pblntf_ty':params.get('pblntf_ty'),'pblntf_detail_ty':params.get('pblntf_detail_ty'),'page_no':params.get('page_no')}}}")
+        except RuntimeError:
+            raise
         except Exception as e:
-            last=str(e); time.sleep(attempt+1)
+            last=f'{type(e).__name__}: {e}'; print(f'OpenDART transport attempt={attempt+1} error={last}',flush=True); time.sleep(attempt+1)
     raise RuntimeError(f'OpenDART request failed after retries: {last}')
 
 def target_period(report_nm,year):
