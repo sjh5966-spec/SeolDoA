@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        year: [2022, 2023, 2024, 2025]
+        year: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     steps:
@@ -51,7 +51,7 @@ jobs:
           import hashlib,json
           from pathlib import Path
           files=sorted(Path('frozen_oos').glob('*'))
-          manifest={'scope':'OOS PIT universe 2022-2025; target signals 2023-2025','files':[]}
+          manifest={'scope':'PIT universe 2015-2025; 2015 is prior context for signals beginning 2016','files':[]}
           for p in files:
               if p.is_file():
                   manifest['files'].append({'name':p.name,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size})
@@ -59,6 +59,6 @@ jobs:
           print(json.dumps(manifest,indent=2))
       - uses: actions/upload-artifact@v4
         with:
-          name: v2-oos-frozen-universe-2022-2025
+          name: v2-oos-frozen-universe-2015-2025
           retention-days: 90
           path: frozen_oos/
