@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - '.github/workflows/korea_turnaround_v2_oos_data.yml'
+      - 'korea_turnaround_v2_oos_historical_universe.py'
 
 permissions:
   contents: read
