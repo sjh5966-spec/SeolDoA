@@ -101,6 +101,7 @@ jobs:
               if 'is_earliest_corp_period' in d: d=d[d.is_earliest_corp_period.str.lower().eq('true')]
               if not d.empty: frames.append(d)
           if not frames: raise SystemExit('no non-empty PIT universe rows')
+          if not frames: raise SystemExit('all frozen universe CSVs are empty')
           u=pd.concat(frames,ignore_index=True)
           rows=[]
           for r in u.itertuples(index=False):
@@ -182,6 +183,8 @@ jobs:
           from pathlib import Path
           import pandas as pd
           seed=pd.read_csv('seed/korea_turnaround_v2_oos_seed_2015_2025.csv',dtype=str)
+          summ=json.loads(Path('seed/accounting_seed_summary.json').read_text(encoding='utf-8'))
+          empty_universe=set(map(str,summ.get('empty_universe_years',[])))
           fs=glob.glob('chunks/korea_dart_quarterly_v2_*_chunk*.csv')
           got=pd.concat([pd.read_csv(f,dtype=str,low_memory=False) for f in fs],ignore_index=True) if fs else pd.DataFrame()
           rows=[]
@@ -190,7 +193,7 @@ jobs:
               g=got[got.business_year.astype(str)==str(y)] if not got.empty else pd.DataFrame()
               expected=len(s)*4
               missing_op=int(g.operating_profit_q.isna().sum() + g.operating_profit_q.astype(str).str.strip().eq('').sum()) if not g.empty else expected
-              rows.append({'year':y,'seed_corps':len(s),'expected_quarters':expected,'collected_rows':len(g),'row_coverage_pct':round(100*len(g)/expected,2) if expected else None,'missing_operating_profit_q':missing_op,'status':'SUCCESS' if expected and len(g)==expected else ('EMPTY' if not len(g) else 'PARTIAL')})
+              rows.append({'year':y,'seed_corps':len(s),'expected_quarters':expected,'collected_rows':len(g),'row_coverage_pct':round(100*len(g)/expected,2) if expected else None,'missing_operating_profit_q':missing_op,'status':('ZERO_UNIVERSE' if str(y) in empty_universe and expected==0 else ('SUCCESS' if expected and len(g)==expected else ('EMPTY' if not len(g) else 'PARTIAL')))})
           a=pd.DataFrame(rows)
           a.to_csv('pit_accounting_yearly_audit_2015_2025.csv',index=False)
           Path('pit_accounting_yearly_audit_2015_2025.json').write_text(a.to_json(orient='records',indent=2),encoding='utf-8')
