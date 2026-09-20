@@ -1,0 +1,38 @@
+name: Korea Turnaround V2 20-Slot Portfolio
+on:
+  push:
+    paths:
+      - korea_turnaround_v2_20slot.py
+      - .github/workflows/korea_turnaround_v2_20slot.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  backtest:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pandas numpy requests pyarrow
+      - name: Download frozen V2 historical events
+        uses: actions/download-artifact@v4
+        with:
+          name: korea-turnaround-v2-historical-2018-2020
+          path: frozen
+          repository: sjh5966-spec/SeolDoA
+          run-id: 35496369958
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: cp frozen/korea_turnaround_v2_historical_2018_2020_events.csv .
+      - name: Run 20-slot portfolio backtest
+        run: python korea_turnaround_v2_20slot.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: korea-turnaround-v2-20slot
+          retention-days: 30
+          path: |
+            korea_turnaround_v2_20slot_trades.csv
+            korea_turnaround_v2_20slot_summary.json
