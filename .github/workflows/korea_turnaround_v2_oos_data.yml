@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/korea_turnaround_v2_oos_data.yml'
       - 'korea_turnaround_v2_oos_historical_universe.py'
+      - 'korea_dart_historical_universe_v1.py'
       - 'korea_turnaround_v2_oos_quarterly_collector.py'
 
 permissions:
