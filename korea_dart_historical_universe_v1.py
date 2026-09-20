@@ -31,15 +31,16 @@ def chunks(start,end,days=89):
 
 def api(session,key,params):
     last=None
+    diag={k:params.get(k) for k in ('bgn_de','end_de','pblntf_ty','pblntf_detail_ty','page_no')}
     for attempt in range(5):
         try:
             r=session.get(API,params={'crtfc_key':key,**params},timeout=60); r.raise_for_status()
             d=r.json(); st=str(d.get('status',''))
             if st in ('000','013'): return d
             if st=='020':
-                print(f"OpenDART retry status={st} message={d.get('message')} http={r.status_code} params={{{'bgn_de':params.get('bgn_de'),'end_de':params.get('end_de'),'pblntf_ty':params.get('pblntf_ty'),'pblntf_detail_ty':params.get('pblntf_detail_ty'),'page_no':params.get('page_no')}}}", flush=True)
+                print(f"OpenDART retry status={st} message={d.get('message')} http={r.status_code} params={diag}", flush=True)
                 time.sleep(2*(attempt+1)); continue
-            raise RuntimeError(f"OpenDART API error status={st} message={d.get('message')} http={r.status_code} params={{{'bgn_de':params.get('bgn_de'),'end_de':params.get('end_de'),'pblntf_ty':params.get('pblntf_ty'),'pblntf_detail_ty':params.get('pblntf_detail_ty'),'page_no':params.get('page_no')}}}")
+            raise RuntimeError(f"OpenDART API error status={st} message={d.get('message')} http={r.status_code} params={diag}")
         except RuntimeError:
             raise
         except Exception as e:
