@@ -65,7 +65,6 @@ jobs:
           retention-days: 90
           path: frozen_oos/
 
-
   accounting_seed:
     needs: freeze
     runs-on: ubuntu-24.04
@@ -86,29 +85,36 @@ jobs:
           import glob,json,os
           from pathlib import Path
           import pandas as pd
-          frames=[]
+          frames=[]; empty_files=[]
           for f in sorted(glob.glob('frozen_oos/korea_dart_historical_universe_20??.csv')):
-              d=pd.read_csv(f,dtype=str).fillna('')
+              if Path(f).stat().st_size == 0:
+                  empty_files.append(Path(f).name); continue
+              try:
+                  d=pd.read_csv(f,dtype=str).fillna('')
+              except pd.errors.EmptyDataError:
+                  empty_files.append(Path(f).name); continue
+              if d.empty or 'corp_code' not in d.columns or 'target_year' not in d.columns:
+                  empty_files.append(Path(f).name); continue
               d['corp_code']=d.corp_code.astype(str).str.zfill(8)
               d['target_year']=pd.to_numeric(d.target_year,errors='coerce')
+              d=d[d.target_year.notna()].copy()
               if 'is_earliest_corp_period' in d: d=d[d.is_earliest_corp_period.str.lower().eq('true')]
-              frames.append(d)
+              if not d.empty: frames.append(d)
+          if not frames: raise SystemExit('no non-empty PIT universe rows')
           u=pd.concat(frames,ignore_index=True)
           rows=[]
           for r in u.itertuples(index=False):
               ty=int(r.target_year)
-              # target fiscal year plus immediate prior fiscal year for YoY comparisons.
               for fy in {ty,ty-1}:
                   if 2015<=fy<=2025:
                       rows.append({'corp_code':str(r.corp_code).zfill(8),'fiscal_year':str(fy),'company_name':getattr(r,'corp_name',''),'basis':'','filing_date':str(getattr(r,'rcept_dt','')),'receipt_no':str(getattr(r,'rcept_no','')),'period_to':'','stock_code':str(getattr(r,'stock_code','')).zfill(6),'corp_cls':str(getattr(r,'corp_cls','')),'first_period':str(getattr(r,'period','')),'seed_source':'frozen_pit_universe_2015_2025_plus_prior'})
           out=pd.DataFrame(rows).sort_values(['fiscal_year','corp_code']).drop_duplicates(['fiscal_year','corp_code'])
           out.to_csv('korea_turnaround_v2_oos_seed_2015_2025.csv',index=False)
-          items=[]; size=30
-          counts={}
+          items=[]; size=30; counts={}
           for y in range(2015,2026):
               n=int((out.fiscal_year.astype(str)==str(y)).sum()); counts[str(y)]=n
               for ch in range((n+size-1)//size): items.append({'year':y,'chunk':ch,'size':size})
-          Path('accounting_seed_summary.json').write_text(json.dumps({'corp_years':len(out),'year_counts':counts,'jobs':len(items)},indent=2),encoding='utf-8')
+          Path('accounting_seed_summary.json').write_text(json.dumps({'corp_years':len(out),'year_counts':counts,'jobs':len(items),'empty_universe_files':empty_files},indent=2),encoding='utf-8')
           with open(os.environ['GITHUB_OUTPUT'],'a') as g: g.write('matrix='+json.dumps({'include':items},separators=(',',':'))+'\n')
           print(Path('accounting_seed_summary.json').read_text())
       - uses: actions/upload-artifact@v4
