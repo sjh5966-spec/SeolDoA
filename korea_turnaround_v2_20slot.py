@@ -65,3 +65,4 @@ def main():
  results={p:run(p) for p in ["small_mcap","signal_strength","profit_growth"]}
  summary={"definition":"Same frozen V2 candidates and dynamic NAV 5% sizing; only same-entry-day capacity priority differs.","profit_growth_definition":"(current OP-prior OP)/prior OP only when prior OP>0; prior OP<=0 or missing ranks below valid growth rates. Tie-break: smaller mcap.","results":results}
  SUM.write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding="utf-8");print(json.dumps(summary,ensure_ascii=False,indent=2))
+if __name__=="__main__":main()
