@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/korea_turnaround_v2_oos_data.yml'
       - 'korea_turnaround_v2_oos_historical_universe.py'
+      - 'korea_turnaround_v2_oos_quarterly_collector.py'
 
 permissions:
   contents: read
@@ -63,3 +64,133 @@ jobs:
           name: v2-oos-frozen-universe-2015-2025
           retention-days: 90
           path: frozen_oos/
+
+
+  accounting_seed:
+    needs: freeze
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: v2-oos-frozen-universe-2015-2025
+          path: frozen_oos
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install pandas
+      - id: plan
+        shell: python
+        run: |
+          import glob,json,os
+          from pathlib import Path
+          import pandas as pd
+          frames=[]
+          for f in sorted(glob.glob('frozen_oos/korea_dart_historical_universe_20??.csv')):
+              d=pd.read_csv(f,dtype=str).fillna('')
+              d['corp_code']=d.corp_code.astype(str).str.zfill(8)
+              d['target_year']=pd.to_numeric(d.target_year,errors='coerce')
+              if 'is_earliest_corp_period' in d: d=d[d.is_earliest_corp_period.str.lower().eq('true')]
+              frames.append(d)
+          u=pd.concat(frames,ignore_index=True)
+          rows=[]
+          for r in u.itertuples(index=False):
+              ty=int(r.target_year)
+              # target fiscal year plus immediate prior fiscal year for YoY comparisons.
+              for fy in {ty,ty-1}:
+                  if 2015<=fy<=2025:
+                      rows.append({'corp_code':str(r.corp_code).zfill(8),'fiscal_year':str(fy),'company_name':getattr(r,'corp_name',''),'basis':'','filing_date':str(getattr(r,'rcept_dt','')),'receipt_no':str(getattr(r,'rcept_no','')),'period_to':'','stock_code':str(getattr(r,'stock_code','')).zfill(6),'corp_cls':str(getattr(r,'corp_cls','')),'first_period':str(getattr(r,'period','')),'seed_source':'frozen_pit_universe_2015_2025_plus_prior'})
+          out=pd.DataFrame(rows).sort_values(['fiscal_year','corp_code']).drop_duplicates(['fiscal_year','corp_code'])
+          out.to_csv('korea_turnaround_v2_oos_seed_2015_2025.csv',index=False)
+          items=[]; size=30
+          counts={}
+          for y in range(2015,2026):
+              n=int((out.fiscal_year.astype(str)==str(y)).sum()); counts[str(y)]=n
+              for ch in range((n+size-1)//size): items.append({'year':y,'chunk':ch,'size':size})
+          Path('accounting_seed_summary.json').write_text(json.dumps({'corp_years':len(out),'year_counts':counts,'jobs':len(items)},indent=2),encoding='utf-8')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as g: g.write('matrix='+json.dumps({'include':items},separators=(',',':'))+'\n')
+          print(Path('accounting_seed_summary.json').read_text())
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v2-pit-accounting-seed-2015-2025
+          retention-days: 90
+          path: |
+            korea_turnaround_v2_oos_seed_2015_2025.csv
+            accounting_seed_summary.json
+
+  accounting_collect:
+    needs: accounting_seed
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix: ${{ fromJSON(needs.accounting_seed.outputs.matrix) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: v2-pit-accounting-seed-2015-2025
+          path: .
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install pandas requests
+      - name: Collect PIT quarterly accounting
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          DART_QUARTER_YEAR: ${{ matrix.year }}
+          DART_QUARTER_CHUNK: ${{ matrix.chunk }}
+          DART_QUARTER_CHUNK_SIZE: ${{ matrix.size }}
+        run: python korea_turnaround_v2_oos_quarterly_collector.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v2-pit-qacct-${{ matrix.year }}-${{ matrix.chunk }}
+          retention-days: 90
+          path: |
+            korea_dart_quarterly_v2_${{ matrix.year }}_chunk*.csv
+            korea_dart_quarterly_v2_${{ matrix.year }}_chunk*_summary.json
+
+  accounting_audit:
+    needs: accounting_collect
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v2-pit-qacct-*
+          path: chunks
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: v2-pit-accounting-seed-2015-2025
+          path: seed
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install pandas
+      - name: Audit yearly success and missingness
+        shell: python
+        run: |
+          import glob,json
+          from pathlib import Path
+          import pandas as pd
+          seed=pd.read_csv('seed/korea_turnaround_v2_oos_seed_2015_2025.csv',dtype=str)
+          fs=glob.glob('chunks/korea_dart_quarterly_v2_*_chunk*.csv')
+          got=pd.concat([pd.read_csv(f,dtype=str,low_memory=False) for f in fs],ignore_index=True) if fs else pd.DataFrame()
+          rows=[]
+          for y in range(2015,2026):
+              s=seed[seed.fiscal_year.astype(str)==str(y)]
+              g=got[got.business_year.astype(str)==str(y)] if not got.empty else pd.DataFrame()
+              expected=len(s)*4
+              missing_op=int(g.operating_profit_q.isna().sum() + g.operating_profit_q.astype(str).str.strip().eq('').sum()) if not g.empty else expected
+              rows.append({'year':y,'seed_corps':len(s),'expected_quarters':expected,'collected_rows':len(g),'row_coverage_pct':round(100*len(g)/expected,2) if expected else None,'missing_operating_profit_q':missing_op,'status':'SUCCESS' if expected and len(g)==expected else ('EMPTY' if not len(g) else 'PARTIAL')})
+          a=pd.DataFrame(rows)
+          a.to_csv('pit_accounting_yearly_audit_2015_2025.csv',index=False)
+          Path('pit_accounting_yearly_audit_2015_2025.json').write_text(a.to_json(orient='records',indent=2),encoding='utf-8')
+          print(a.to_string(index=False))
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v2-pit-accounting-audit-2015-2025
+          retention-days: 90
+          path: pit_accounting_yearly_audit_2015_2025.*
