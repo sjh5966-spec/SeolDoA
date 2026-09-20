@@ -35,4 +35,5 @@ jobs:
           retention-days: 30
           path: |
             korea_turnaround_v2_20slot_trades.csv
+            korea_turnaround_v2_20slot_nav.csv
             korea_turnaround_v2_20slot_summary.json
