@@ -40,7 +40,7 @@ def api(session,key,params):
             return d
         except Exception as e:
             last=str(e); time.sleep(attempt+1)
-    return {'status':'REQUEST_ERROR','message':last,'list':[]}
+    raise RuntimeError(f'OpenDART request failed after retries: {last}')
 
 def target_period(report_nm,year):
     s=str(report_nm or '')
