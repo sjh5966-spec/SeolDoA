@@ -15,6 +15,7 @@ permissions:
 
 env:
   PYTHONUNBUFFERED: '1'
+  OOS_PRIORITY_LOCK: 'small_mcap_vs_signal_strength'
 
 jobs:
   universe:
