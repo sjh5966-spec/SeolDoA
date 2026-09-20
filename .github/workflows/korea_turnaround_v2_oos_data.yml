@@ -1,0 +1,37 @@
+name: Korea V2 OOS Data Acquire
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/korea_turnaround_v2_oos_data.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  universe:
+    strategy:
+      fail-fast: false
+      matrix:
+        year: [2022, 2023, 2024, 2025]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install pandas requests
+      - name: Collect PIT universe
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          DART_UNIVERSE_YEAR: ${{ matrix.year }}
+        run: python korea_turnaround_v2_oos_historical_universe.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v2-oos-data-universe-${{ matrix.year }}
+          retention-days: 90
+          path: |
+            korea_dart_historical_universe_${{ matrix.year }}.csv
+            korea_dart_historical_universe_${{ matrix.year }}_summary.json
