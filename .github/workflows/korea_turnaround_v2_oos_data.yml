@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        year: [2015] # diagnostic retry 2026-09-21
+        year: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     steps:
