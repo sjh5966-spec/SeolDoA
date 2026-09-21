@@ -17,6 +17,7 @@ jobs:
   universe:
     strategy:
       fail-fast: false
+      max-parallel: 1
       matrix:
         year: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
     runs-on: ubuntu-24.04
@@ -161,8 +162,8 @@ jobs:
             korea_dart_quarterly_v2_${{ matrix.year }}_chunk*_summary.json
 
   accounting_audit:
-    needs: accounting_collect
-    if: always()
+    needs: [accounting_seed, accounting_collect]
+    if: ${{ always() && needs.accounting_seed.result == 'success' }}
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/download-artifact@v4
