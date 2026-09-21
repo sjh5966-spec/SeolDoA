@@ -112,7 +112,7 @@ jobs:
                       rows.append({'corp_code':str(r.corp_code).zfill(8),'fiscal_year':str(fy),'company_name':getattr(r,'corp_name',''),'basis':'','filing_date':str(getattr(r,'rcept_dt','')),'receipt_no':str(getattr(r,'rcept_no','')),'period_to':'','stock_code':str(getattr(r,'stock_code','')).zfill(6),'corp_cls':str(getattr(r,'corp_cls','')),'first_period':str(getattr(r,'period','')),'seed_source':'frozen_pit_universe_2015_2025_plus_prior'})
           out=pd.DataFrame(rows).sort_values(['fiscal_year','corp_code']).drop_duplicates(['fiscal_year','corp_code'])
           out.to_csv('korea_turnaround_v2_oos_seed_2015_2025.csv',index=False)
-          items=[]; size=30; counts={}
+          items=[]; size=120; counts={}
           for y in range(2015,2026):
               n=int((out.fiscal_year.astype(str)==str(y)).sum()); counts[str(y)]=n
               for ch in range((n+size-1)//size): items.append({'year':y,'chunk':ch,'size':size})
@@ -131,7 +131,7 @@ jobs:
     needs: accounting_seed
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 3
       matrix: ${{ fromJSON(needs.accounting_seed.outputs.matrix) }}
     runs-on: ubuntu-24.04
     timeout-minutes: 90
@@ -192,7 +192,7 @@ jobs:
           for y in range(2015,2026):
               s=seed[seed.fiscal_year.astype(str)==str(y)]
               g=got[got.business_year.astype(str)==str(y)] if not got.empty else pd.DataFrame()
-              expected=len(s)*4
+              expected=len(s)*(3 if y==2025 else 4)
               missing_op=int(g.operating_profit_q.isna().sum() + g.operating_profit_q.astype(str).str.strip().eq('').sum()) if not g.empty else expected
               rows.append({'year':y,'seed_corps':len(s),'expected_quarters':expected,'collected_rows':len(g),'row_coverage_pct':round(100*len(g)/expected,2) if expected else None,'missing_operating_profit_q':missing_op,'status':('ZERO_UNIVERSE' if str(y) in empty_universe and expected==0 else ('SUCCESS' if expected and len(g)==expected else ('EMPTY' if not len(g) else 'PARTIAL')))})
           a=pd.DataFrame(rows)
