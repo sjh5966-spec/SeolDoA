@@ -1,0 +1,108 @@
+name: Korea V2 OOS Accounting Recovery 30
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/korea_turnaround_v2_oos_accounting_recovery.yml']
+permissions:
+  contents: read
+  actions: write
+env:
+  SOURCE_RUN_ID: '35558885648'
+  CHUNK_SIZE: '30'
+jobs:
+  cancel_source:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Cancel obsolete 120-corp source run
+        env: {GH_TOKEN: "${{ github.token }}"}
+        run: |
+          curl -fsSL -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "https://api.github.com/repos/${{ github.repository }}/actions/runs/${SOURCE_RUN_ID}/cancel" || true
+  collect:
+    needs: cancel_source
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        year: [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025]
+        shard: [0,1,2,3]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install pandas requests
+      - name: Download frozen seed
+        env: {GH_TOKEN: "${{ github.token }}"}
+        run: |
+          gh run download "${SOURCE_RUN_ID}" --repo "${{ github.repository }}" --name v2-pit-accounting-seed-2015-2025 --dir .
+          test -s korea_turnaround_v2_oos_seed_2015_2025.csv
+      - name: Collect assigned 30-corp chunks
+        env:
+          DART_API_KEY: "${{ secrets.DART_API_KEY }}"
+          DART_QUARTER_YEAR: "${{ matrix.year }}"
+          DART_QUARTER_CHUNK_SIZE: '30'
+          SHARD: "${{ matrix.shard }}"
+        shell: bash
+        run: |
+          set -euo pipefail
+          N=$(python -c "import os,pandas as pd; d=pd.read_csv('korea_turnaround_v2_oos_seed_2015_2025.csv',dtype=str); print((d.fiscal_year.astype(str)==os.environ['DART_QUARTER_YEAR']).sum())")
+          TOTAL=$(( (N + 29) / 30 ))
+          for ((ch=SHARD; ch<TOTAL; ch+=4)); do
+            echo "::group::year=$DART_QUARTER_YEAR chunk=$ch size=30"
+            DART_QUARTER_CHUNK="$ch" python korea_turnaround_v2_oos_quarterly_collector.py
+            echo "::endgroup::"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v2-pit-qacct30-${{ matrix.year }}-s${{ matrix.shard }}
+          retention-days: 90
+          path: |
+            korea_dart_quarterly_v2_${{ matrix.year }}_chunk*.csv
+            korea_dart_quarterly_v2_${{ matrix.year }}_chunk*_summary.json
+  audit:
+    needs: collect
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Download seed
+        env: {GH_TOKEN: "${{ github.token }}"}
+        run: gh run download "${SOURCE_RUN_ID}" --repo "${{ github.repository }}" --name v2-pit-accounting-seed-2015-2025 --dir seed
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: v2-pit-qacct30-*
+          path: chunks
+          merge-multiple: true
+      - run: pip install pandas
+      - name: Strict yearly audit
+        shell: python
+        run: |
+          import glob
+          from pathlib import Path
+          import pandas as pd
+          seed=pd.read_csv('seed/korea_turnaround_v2_oos_seed_2015_2025.csv',dtype=str)
+          parts=[]
+          for f in glob.glob('chunks/korea_dart_quarterly_v2_*_chunk*.csv'):
+              try:
+                  d=pd.read_csv(f,dtype=str,low_memory=False)
+                  if not d.empty: parts.append(d)
+              except pd.errors.EmptyDataError: pass
+          got=pd.concat(parts,ignore_index=True) if parts else pd.DataFrame()
+          rows=[]
+          for y in range(2015,2026):
+              s=seed[seed.fiscal_year.astype(str)==str(y)]
+              g=got[got.business_year.astype(str)==str(y)] if not got.empty else pd.DataFrame()
+              expected=len(s)*(3 if y==2025 else 4)
+              missing=expected if g.empty else int(g.operating_profit_q.isna().sum()+g.operating_profit_q.astype(str).str.strip().eq('').sum())
+              rows.append({'year':y,'seed_corps':len(s),'expected_quarters':expected,'collected_rows':len(g),'row_coverage_pct':round(100*len(g)/expected,2) if expected else None,'missing_operating_profit_q':missing,'status':'SUCCESS' if expected and len(g)==expected and missing==0 else ('EMPTY' if g.empty else 'PARTIAL')})
+          a=pd.DataFrame(rows); a.to_csv('pit_accounting_yearly_audit_2015_2025.csv',index=False)
+          Path('pit_accounting_yearly_audit_2015_2025.json').write_text(a.to_json(orient='records',indent=2),encoding='utf-8')
+          print(a.to_string(index=False))
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v2-pit-accounting-audit30-2015-2025
+          retention-days: 90
+          path: pit_accounting_yearly_audit_2015_2025.*
