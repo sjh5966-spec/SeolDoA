@@ -1,0 +1,79 @@
+name: Korea V2 OOS Accounting Year Recovery
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/korea_turnaround_v2_oos_accounting_year_recovery.yml']
+permissions:
+  contents: read
+  actions: write
+env:
+  SOURCE_RUN_ID: '35558885648'
+  OBSOLETE_RUN_ID: '35595795909'
+  RECOVERY_YEAR: '2018'
+  CHUNK_SIZE: '30'
+jobs:
+  cancel_obsolete:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Cancel stalled sharded recovery
+        env: {GH_TOKEN: "${{ github.token }}"}
+        run: |
+          curl -fsSL -X POST -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "https://api.github.com/repos/${{ github.repository }}/actions/runs/${OBSOLETE_RUN_ID}/cancel" || true
+  plan:
+    needs: cancel_obsolete
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.p.outputs.matrix }}
+    steps:
+      - name: Download frozen seed
+        env: {GH_TOKEN: "${{ github.token }}"}
+        run: gh run download "${SOURCE_RUN_ID}" --repo "${{ github.repository }}" --name v2-pit-accounting-seed-2015-2025 --dir .
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install pandas
+      - id: p
+        shell: python
+        run: |
+          import json,os,pandas as pd
+          d=pd.read_csv('korea_turnaround_v2_oos_seed_2015_2025.csv',dtype=str)
+          y=os.environ['RECOVERY_YEAR']; n=int((d.fiscal_year.astype(str)==y).sum())
+          size=int(os.environ['CHUNK_SIZE']); chunks=(n+size-1)//size
+          m={'include':[{'chunk':i} for i in range(chunks)]}
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f: f.write('matrix='+json.dumps(m,separators=(',',':'))+'\n')
+          print({'year':y,'corps':n,'chunk_size':size,'jobs':chunks})
+      - uses: actions/upload-artifact@v4
+        with:
+          name: year-recovery-seed-${{ env.RECOVERY_YEAR }}
+          path: korea_turnaround_v2_oos_seed_2015_2025.csv
+  collect:
+    needs: plan
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: year-recovery-seed-${{ env.RECOVERY_YEAR }}
+          path: .
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install pandas requests
+      - name: Collect exactly one 30-corp chunk
+        env:
+          DART_API_KEY: "${{ secrets.DART_API_KEY }}"
+          DART_QUARTER_YEAR: "${{ env.RECOVERY_YEAR }}"
+          DART_QUARTER_CHUNK: "${{ matrix.chunk }}"
+          DART_QUARTER_CHUNK_SIZE: "${{ env.CHUNK_SIZE }}"
+        run: python korea_turnaround_v2_oos_quarterly_collector.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v2-pit-qacct30-${{ env.RECOVERY_YEAR }}-${{ matrix.chunk }}
+          retention-days: 90
+          path: |
+            korea_dart_quarterly_v2_${{ env.RECOVERY_YEAR }}_chunk*.csv
+            korea_dart_quarterly_v2_${{ env.RECOVERY_YEAR }}_chunk*_summary.json
